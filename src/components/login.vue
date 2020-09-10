@@ -58,25 +58,16 @@
 </template>
 
 <script>
-export default {
-
-    data () {
-        return {
-        }
-    }
-}
 </script>
 
 <style scoped>
 .container
 {
   position: absolute;
-  width:40%;
-  right:0px;
+  width:90%;
 }
 .outer-login{
-  height: 100vh;
-  background: #0062E6 !important;
+  height: 72vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,11 +83,11 @@ export default {
 
 
 .card-body{
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .title{
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .form-input{
@@ -120,7 +111,7 @@ export default {
   position: absolute;
   top: 10px;
   padding-left: 15px;
-  color: #007bff;
+  color:  #006a71;
 }
 
 .form-input input::placeholder{
@@ -129,7 +120,7 @@ export default {
 }
 
 .form-input input:focus, .form-input input:valid{
-  border: 2px solid #007bff;
+  border: 2px solid  #006a71;
 }
 
 .form-input input:focus::placeholder{
@@ -137,7 +128,7 @@ export default {
 }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before{
-  background-color: #007bff !important;
+  background-color:  #006a71 !important;
   border: 0px;
 }
 
@@ -146,7 +137,7 @@ export default {
   border: none;
   cursor: pointer;
   border-radius: 50px;
-  background: #007bff;
+  background:  #006a71;
   color: #fff;
   font-size: 90%;
   font-weight: bold;
@@ -156,16 +147,16 @@ export default {
 }
 
 .form-box button[type="submit"]:hover{
-  background: #0069d9;
+  background:  #006a71;
 }
 
 .forget-link, .register-link{
-  color: #007bff;
+  color: #006a71;
   font-weight: bold;
 }
 
 .forget-link:hover, .register-link:hover{
-  color: #0069d9;
+  color:  #818181;
   text-decoration: none;
 }
 

@@ -1,18 +1,23 @@
 <template>
-<identity></identity>
+  <v-app>
+      <router-view />
+  </v-app>
 </template>
 
 <script>
-  import Identity from './components/identity-verification.vue';
+
 export default {
-  components:{
-  'identity':Identity
-  },
-    data () {
-        return {
-        }
-    }
+  name: 'App',
+  data(){
+    return {
+      layout:"div",
+    };
+  }
 }
 </script>
-<style scoped>
+
+<style>
+#app{
+  background-color:#cbeaed;;
+}
 </style>

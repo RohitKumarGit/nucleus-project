@@ -25,7 +25,9 @@
          
             <div class="mb-3">
               <button type="submit" class="btn btn-block text-uppercase">
+                <router-link to="/signup/setup">
                 Proceed
+                </router-link>
               </button>
             </div>
 
@@ -44,6 +46,11 @@ export default {
     data () {
         return {
         }
+    },
+    methods:{
+        toSetup:function(){
+        this.$router.push('./setup');
+        },
     }
 }
 </script>
@@ -52,12 +59,10 @@ export default {
 .container
 {
   position: absolute;
-  width:40%;
-  right:0px;
+  width:90%;
 }
 .outer-verify{
-  height: 100vh;
-  background: #0062E6 !important;
+  height: 72vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,7 +106,7 @@ export default {
   position: absolute;
   top: 10px;
   padding-left: 15px;
-  color: #007bff;
+  color: #006a71;
 }
 
 .form-input input::placeholder{
@@ -110,7 +115,7 @@ export default {
 }
 
 .form-input input:focus, .form-input input:valid{
-  border: 2px solid #007bff;
+  border: 2px solid #006a71;
 }
 
 .form-input input:focus::placeholder{
@@ -118,7 +123,7 @@ export default {
 }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before{
-  background-color: #007bff !important;
+  background-color: #006a71 !important;
   border: 0px;
 }
 
@@ -127,8 +132,8 @@ export default {
   border: none;
   cursor: pointer;
   border-radius: 50px;
-  background: #007bff;
-  color: #fff;
+  background: #006a71;
+  color: #fff !important;
   font-size: 90%;
   font-weight: bold;
   letter-spacing: .1rem;
