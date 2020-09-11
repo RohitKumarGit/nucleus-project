@@ -2,7 +2,7 @@
   <div class="outer-basic">
  <div class="container">
     <div class="row px-3">
-      <div class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
+      <div class="col-sm-10 col-md-9 col-lg-10 col-xl-9 card flex-row mx-auto px-0">
         <div class="card-body">
           <h4 class="title text-center mt-4">
             Basic Details

@@ -2,7 +2,7 @@
   <div class="outer-login">
  <div class="container">
     <div class="row px-3">
-      <div class="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
+      <div class=" col-sm-10 col-md-9 col-lg-10 col-xl-9 card flex-row mx-auto px-0">
         <div class="card-body">
           <h4 class="title text-center mt-4">
             Login into account
@@ -67,7 +67,7 @@
   width:90%;
 }
 .outer-login{
-  height: 72vh;
+  height: 35rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,7 +77,7 @@
 .card{
   overflow: hidden;
   border: 0 !important;
-  border-radius: 20px !important;
+  border-radius: 4% !important;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -96,9 +96,9 @@
 
 .form-input input{
   width: 100%;
-  height: 45px;
-  padding-left: 40px;
-  margin-bottom: 20px;
+  height: 2.8rem;
+  padding-left: 2.4rem;
+  margin-bottom: 1.4rem;
   box-sizing: border-box;
   box-shadow: none;
   border: 1px solid #00000020;
@@ -109,8 +109,8 @@
 
 .form-input span{
   position: absolute;
-  top: 10px;
-  padding-left: 15px;
+  top: 0.7rem;
+  padding-left: 1.1rem;
   color:  #006a71;
 }
 
@@ -133,7 +133,7 @@
 }
 
 .form-box button[type="submit"]{
-  margin-top: 10px;
+  margin-top: 1.4rem;
   border: none;
   cursor: pointer;
   border-radius: 50px;
@@ -143,7 +143,7 @@
   font-weight: bold;
   letter-spacing: .1rem;
   transition: 0.5s;
-  padding: 12px;
+  padding: 0.8rem;
 }
 
 .form-box button[type="submit"]:hover{
