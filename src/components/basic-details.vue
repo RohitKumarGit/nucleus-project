@@ -1,8 +1,4 @@
 <template>
-  <div class="outer-basic">
- <div class="container">
-    <div class="row px-3">
-      <div class="col-sm-10 col-md-9 col-lg-10 col-xl-9 card flex-row mx-auto px-0">
         <div class="card-body">
           <h4 class="title text-center mt-4">
             Basic Details
@@ -42,10 +38,6 @@
               </button>
             </div>
           </form>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 </template>
 
@@ -53,29 +45,9 @@
 </script>
 
 <style scoped>
-.container
-{
-  position: absolute;
-  width:90%;
-}
-.outer-basic{
-  height: 72vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.card{
-  overflow: hidden;
-  border: 0 !important;
-  border-radius: 20px !important;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-}
-
 
 .card-body{
-  padding: 1rem;
+  padding: 0rem;
 }
 
 .title{
@@ -88,9 +60,9 @@
 
 .form-input input{
   width: 100%;
-  height: 45px;
-  padding-left: 40px;
-  margin-bottom: 20px;
+  height: 2.8rem;
+  padding-left: 2.5rem;
+  margin-bottom: 1.2rem;
   box-sizing: border-box;
   box-shadow: none;
   border: 1px solid #00000020;
@@ -159,7 +131,7 @@
 }
 .gender
 {
-    padding-bottom: 7px;
-    padding-left: 5px;
+    padding-bottom: 0.5rem;
+    padding-left: 0.2rem;
 }
 </style>

@@ -6,19 +6,27 @@
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner ">
                         <div class="carousel-item active">
-                        <img class="d-block w-100" src="../assets/resort3.jpg" alt="First slide">
+                        <img class="d-block w-100" src="../assets/trial3.jpg" alt="First slide">
                         </div>
                         <div class="carousel-item">
-                        <img class="d-block w-100" src="../assets/resort1.jpg" alt="Second slide">
+                        <img class="d-block w-100" src="../assets/trial1.jpg" alt="Second slide">
                         </div>
                         <div class="carousel-item">
-                        <img class="d-block w-100" src="../assets/resort2.jpg" alt="Third slide">
+                        <img class="d-block w-100" src="../assets/trial2.jpg" alt="Third slide">
                         </div>
                     </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                     <router-view />
+                    <div class="outer-login">
+                        <div class="container">
+                             <div class="row px-3">
+                                <div class="col-sm-10 col-md-9 card flex-row mx-auto px-0">
+                                   <router-view />
+                                </div>
+                            </div>
+                        </div>
+                     </div>
                 </div>
             </div>
         </div>
@@ -35,7 +43,8 @@ export default {
 
 <style scoped>
 #maindiv{ 
-    padding:2rem;
+    background:#006a71;
+    padding:10%;
 }
 .carousel-item
 {
@@ -48,8 +57,20 @@ img{
 .col-lg-6{
     padding:0;
 }
-.container{
-    background-color:  #006a71;
+.container{ 
+  background:#ffffdd;
     border-radius:5%;
+}
+.outer-login{
+  min-height: 33rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.card{
+  overflow: hidden;
+  border: 0 !important;
+  background: transparent;
 }
 </style>

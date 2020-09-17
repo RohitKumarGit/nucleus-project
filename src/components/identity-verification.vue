@@ -1,8 +1,4 @@
 <template>
-  <div class="outer-verify">
- <div class="container">
-    <div class="row px-3">
-      <div class="col-sm-10 col-md-9 col-lg-10 col-xl-9 card flex-row mx-auto px-0">
         <div class="card-body">
           <h4 class="title text-center mt-4">
             Identity verification
@@ -30,14 +26,8 @@
                 </router-link>
               </button>
             </div>
-
-
           </form>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
 </template>
 
 <script>
@@ -56,29 +46,8 @@ export default {
 </script>
 
 <style scoped>
-.container
-{
-  position: absolute;
-  width:90%;
-}
-.outer-verify{
-  height: 72vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.card{
-  overflow: hidden;
-  border: 0 !important;
-  border-radius: 20px !important;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-}
-
-
 .card-body{
-  padding: 2rem;
+  padding: 0rem;
 }
 
 .title{
