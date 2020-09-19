@@ -2,9 +2,9 @@
     <div id="maindiv">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 d-none d-lg-block">
+                <div class="col-lg-7 d-none d-lg-block left-div">
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner ">
+                    <div class="carousel-inner">
                         <div class="carousel-item active">
                         <img class="d-block w-100" src="../assets/trial3.jpg" alt="First slide">
                         </div>
@@ -17,13 +17,12 @@
                     </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-5 right-div">
                     <div class="outer-login">
-                        <div class="container">
                              <div class="row px-3">
-                                <div class="col-sm-10 col-md-9 card flex-row mx-auto px-0">
+                                <div class="col-sm-8 col-md-8 col-lg-10 card flex-row mx-auto px-0 form">
                                    <router-view />
-                                </div>
+                                
                             </div>
                         </div>
                      </div>
@@ -43,34 +42,66 @@ export default {
 
 <style scoped>
 #maindiv{ 
-    background:#006a71;
-    padding:10%;
+    display:flex;
+    background:#cbeaed;
+    position:fixed;
+    height:100%;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    padding-left:1.5rem;
+    padding-right:1.5rem;
 }
-.carousel-item
+.container
 {
-    height: 100%;
+    background:#00828b;
+}
+.carousel
+{
+    max-height:38rem;
+}
+.carousel-inner
+{
+    max-height:38rem;
+    border-top-left-radius:1.75rem;
+    border-bottom-left-radius:1.75rem;
+
 }
 img{
-    border-top-left-radius: 5%;
-    border-bottom-left-radius: 5%;
-}
-.col-lg-6{
-    padding:0;
+     max-height:38rem;
 }
 .container{ 
   background:#ffffdd;
-    border-radius:5%;
-}
-.outer-login{
-  min-height: 33rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  box-shadow: 1rem 1rem 2.2rem #002225;
+  border-radius:1.75rem;
 }
 .card{
   overflow: hidden;
   border: 0 !important;
   background: transparent;
+}
+
+div.col-md-6.col-12{
+    
+    }
+
+.left-div
+{
+    padding:0rem;
+}
+.right-div
+{
+    border-top-right-radius:1.75rem;
+    border-bottom-right-radius:1.75rem;
+}
+.row
+{
+    border-radius:1.75rem;
+}
+.form
+{
+display:flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

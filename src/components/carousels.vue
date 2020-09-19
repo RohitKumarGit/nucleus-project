@@ -36,15 +36,4 @@ export default {
 </script>
 
 <style scoped>
-.container
-{
-  position: absolute;
-  background-color: lightblue;
-  min-height: 100%;
-  min-width: 100%;
-}
-.d-block
-{
-    border-radius: 20px;
-}
 </style>

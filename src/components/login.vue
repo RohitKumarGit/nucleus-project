@@ -55,7 +55,8 @@
 <style scoped>
 
 .card-body{
-  padding: 0rem;
+max-height: 50rem;
+padding-top: 4.5rem;
 }
 
 .title{
@@ -74,7 +75,6 @@
   box-sizing: border-box;
   box-shadow: none;
   border: 1px solid #00000020;
-  border-radius: 50px;
   outline: none;
   background: transparent;
 }
@@ -83,7 +83,7 @@
   position: absolute;
   top: 0.7rem;
   padding-left: 1.1rem;
-  color:  #006a71;
+  color:  #00828b;
 }
 
 .form-input input::placeholder{
@@ -92,7 +92,7 @@
 }
 
 .form-input input:focus, .form-input input:valid{
-  border: 2px solid  #006a71;
+  border: 2px solid  #00828b;
 }
 
 .form-input input:focus::placeholder{
@@ -100,7 +100,7 @@
 }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before{
-  background-color:  #006a71 !important;
+  background-color:  #00828b !important;
   border: 0px;
 }
 
@@ -109,7 +109,7 @@
   border: none;
   cursor: pointer;
   border-radius: 50px;
-  background:  #006a71;
+  background:  #00828b;
   color: #fff;
   font-size: 90%;
   font-weight: bold;
@@ -119,11 +119,11 @@
 }
 
 .form-box button[type="submit"]:hover{
-  background:  #006a71;
+  background:  #00828b;
 }
 
 .forget-link, .register-link{
-  color: #006a71;
+  color: #00828b;
   font-weight: bold;
 }
 
