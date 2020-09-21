@@ -1,4 +1,5 @@
 <template>
+  <SignupLogin>
         <div class="card-body">
           <h4 class="title text-center mt-4">
             Login into account
@@ -46,10 +47,17 @@
               </a>
             </div>
           </form>
-</div>
+        </div>
+    </SignupLogin>
 </template>
 
 <script>
+import SignupLogin from '../views/SignupLogin'
+export default{
+  components:{
+    SignupLogin,
+  }
+}
 </script>
 
 <style scoped>

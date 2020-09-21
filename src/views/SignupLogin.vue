@@ -6,13 +6,13 @@
                 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                        <img class="d-block w-100" src="../assets/trial3.jpg" alt="First slide">
+                        <img class="d-block w-100" src="../assets/resort3.jpg" alt="First slide">
                         </div>
                         <div class="carousel-item">
-                        <img class="d-block w-100" src="../assets/trial1.jpg" alt="Second slide">
+                        <img class="d-block w-100" src="../assets/resort5.jpg" alt="Second slide">
                         </div>
                         <div class="carousel-item">
-                        <img class="d-block w-100" src="../assets/trial2.jpg" alt="Third slide">
+                        <img class="d-block w-100" src="../assets/resort6.jpg" alt="Third slide">
                         </div>
                     </div>
                     </div>
@@ -20,9 +20,9 @@
                 <div class="col-lg-5 right-div">
                     <div class="outer-login">
                              <div class="row px-3">
-                                <div class="col-sm-8 col-md-8 col-lg-10 card flex-row mx-auto px-0 form">
+                                <div class="col-sm-9 col-md-9 col-lg-10 card flex-row mx-auto px-0 form">
                                    <router-view />
-                                
+                                    <slot></slot>
                             </div>
                         </div>
                      </div>
@@ -43,7 +43,7 @@ export default {
 <style scoped>
 #maindiv{ 
     display:flex;
-    background:#cbeaed;
+    background: #bceaed;
     position:fixed;
     height:100%;
     width:100%;
@@ -71,8 +71,8 @@ img{
      max-height:38rem;
 }
 .container{ 
-  background:#ffffdd;
-  box-shadow: 1rem 1rem 2.2rem #002225;
+  background:white;
+  box-shadow: 0.5rem 0.5rem 1.2rem #002225;
   border-radius:1.75rem;
 }
 .card{
@@ -80,11 +80,6 @@ img{
   border: 0 !important;
   background: transparent;
 }
-
-div.col-md-6.col-12{
-    
-    }
-
 .left-div
 {
     padding:0rem;
@@ -100,7 +95,7 @@ div.col-md-6.col-12{
 }
 .form
 {
-display:flex;
+    display:flex;
     justify-content: center;
     align-items: center;
 }

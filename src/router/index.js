@@ -6,6 +6,7 @@ import Login from '../components/login'
 import Basic from '../components/basic-details'
 import Identity from '../components/identity-verification'
 import Setup from '../components/user-setup'
+import User from '../components/UserBasic'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,11 @@ Vue.use(VueRouter)
     path: '/',
     name: 'HelloWorld',
     component: HelloWorld
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
     path: '/signup',
@@ -34,13 +40,12 @@ Vue.use(VueRouter)
         name: 'setup',
         component: Setup,
         },
-        {
-          path: 'login',
-          name: 'login',
-          component: Login
-        },
-
     ]
+  },
+  {
+    path: '/user',
+    name: 'User',
+    component: User
   },
 ]
 

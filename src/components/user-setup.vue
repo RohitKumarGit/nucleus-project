@@ -19,7 +19,7 @@
             <hr class="my-4">
                         <div class="mb-3">
               <button type="submit" class="btn btn-block text-uppercase">
-                <router-link to="/signup/login">
+                <router-link to="/login">
                 Proceed to Login
                 </router-link>
               </button>
