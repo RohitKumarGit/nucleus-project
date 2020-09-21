@@ -21,7 +21,7 @@
          
             <div class="mb-3">
               <button type="submit" class="btn btn-block text-uppercase">
-                <router-link to="/signup/setup">
+                <router-link to="/signup/setup" class="proceed">
                 Proceed
                 </router-link>
               </button>
@@ -47,7 +47,7 @@ export default {
 
 <style scoped>
 .card-body{
-  padding: 0rem;
+  padding-top:4.5rem;
 }
 
 .title{
@@ -97,7 +97,7 @@ export default {
 }
 
 .form-box button[type="submit"]{
-  margin-top: 10px;
+  margin-top: 0.7rem;
   border: none;
   cursor: pointer;
   border-radius: 50px;
@@ -138,6 +138,10 @@ export default {
 {
   padding-top: 50px;
   padding-bottom: 20px;
+}
+.proceed
+{
+  color:#ffffdd;
 }
 
 </style>

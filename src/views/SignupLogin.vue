@@ -43,7 +43,7 @@ export default {
 <style scoped>
 #maindiv{ 
     display:flex;
-    background: #bceaed;
+    background: #cbeaed;
     position:fixed;
     height:100%;
     width:100%;
@@ -88,6 +88,7 @@ img{
 {
     border-top-right-radius:1.75rem;
     border-bottom-right-radius:1.75rem;
+    background-color:#ffffdd;
 }
 .row
 {

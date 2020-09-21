@@ -64,7 +64,7 @@ export default{
 
 .card-body{
 max-height: 50rem;
-padding-top: 4.5rem;
+padding-top: 5rem;
 }
 
 .title{
@@ -113,32 +113,33 @@ padding-top: 4.5rem;
 }
 
 .form-box button[type="submit"]{
-  margin-top: 1.4rem;
+  margin-top: 0.7rem;
   border: none;
   cursor: pointer;
   border-radius: 50px;
-  background:  #00828b;
-  color: #fff;
+  background: #006a71;
+  color: #fff !important;
   font-size: 90%;
   font-weight: bold;
   letter-spacing: .1rem;
   transition: 0.5s;
-  padding: 0.8rem;
+  padding: 12px;
 }
 
 .form-box button[type="submit"]:hover{
-  background:  #00828b;
+  background: #0069d9;
 }
 
 .forget-link, .register-link{
-  color: #00828b;
+  color: #006a71;
   font-weight: bold;
 }
 
 .forget-link:hover, .register-link:hover{
-  color:  #818181;
+  color: #0069d9;
   text-decoration: none;
 }
+
 
 .form-box .btn-social{
   color: white !important;

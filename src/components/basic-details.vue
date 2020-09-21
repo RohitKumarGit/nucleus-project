@@ -17,9 +17,9 @@
               <input type="date" name="" placeholder="DOB" required>
             </div>
             <div class="gender">
-            <label>Gender:&nbsp;&nbsp;</label>
-            <label class="radio-inline"><input type="radio" name="optradio" checked>&nbsp;Male&nbsp;</label>
-            <label class="radio-inline"><input type="radio" name="optradio">&nbsp;Female&nbsp;</label>
+            <label>Gender :&nbsp;&nbsp;</label>
+            &nbsp;<label class="radio-inline"><input type="radio" name="optradio" checked>&nbsp;Male&nbsp;</label>&nbsp;
+            <label class="radio-inline"><input type="radio" name="optradio">&nbsp;Female&nbsp;</label>&nbsp;
             <label class="radio-inline"><input type="radio" name="optradio">&nbsp;Others&nbsp;</label>
             </div>
               <div class="form-input">
@@ -30,9 +30,9 @@
                  <span><i class="far fa-envelope"></i></span>
               <input type="email" placeholder="Enter your email" required>
               </div>
-         <div class="mb-3">
+         <div>
               <button type="submit" class="btn btn-block text-uppercase">
-                <router-link to="/signup/identity">
+                <router-link to="/signup/identity" class="proceed">
                 Proceed
                 </router-link>
               </button>
@@ -48,6 +48,7 @@
 
 .card-body{
   padding: 0rem;
+  padding-top: 3rem;
 }
 
 .title{
@@ -97,7 +98,7 @@
 }
 
 .form-box button[type="submit"]{
-  margin-top: 10px;
+  margin-top: 0.7rem;
   border: none;
   cursor: pointer;
   border-radius: 50px;
@@ -111,16 +112,16 @@
 }
 
 .form-box button[type="submit"]:hover{
-  background: #006a71;
+  background: #0069d9;
 }
 
 .forget-link, .register-link{
-  color: #006a71;
+  color: #007bff;
   font-weight: bold;
 }
 
 .forget-link:hover, .register-link:hover{
-  color: #006a71;
+  color: #0069d9;
   text-decoration: none;
 }
 
@@ -133,5 +134,9 @@
 {
     padding-bottom: 0.5rem;
     padding-left: 0.2rem;
+}
+.proceed
+{
+  color:#ffffdd;
 }
 </style>

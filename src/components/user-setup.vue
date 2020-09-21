@@ -19,7 +19,7 @@
             <hr class="my-4">
                         <div class="mb-3">
               <button type="submit" class="btn btn-block text-uppercase">
-                <router-link to="/login">
+                <router-link to="/login" class="proceed">
                 Proceed to Login
                 </router-link>
               </button>
@@ -41,7 +41,7 @@ export default {
 <style scoped>
 
 .card-body{
-  padding: 0rem;
+  padding-top: 5.5rem;
 }
 
 .title{
@@ -123,7 +123,10 @@ export default {
   border: 0;
   font-weight: bold;
 }
-
+.proceed
+{
+  color:#ffffdd;
+}
 
 
 </style>
