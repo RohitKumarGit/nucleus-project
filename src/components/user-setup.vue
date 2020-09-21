@@ -42,6 +42,7 @@ export default {
 
 .card-body{
   padding-top: 5.5rem;
+  border-radius: 1.75rem;
 }
 
 .title{
