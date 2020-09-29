@@ -9,9 +9,10 @@ import 'bootstrap'
 Vue.use(BootstrapVue)
 
 Vue.use(IconsPlugin)
-
+global.jQuery = require('jquery');
+var $ = global.jQuery;
+window.$ = $;
 Vue.config.productionTip = false
-
 new Vue({
   router,
   store,

@@ -7,6 +7,7 @@ import Basic from '../components/basic-details'
 import Identity from '../components/identity-verification'
 import Setup from '../components/user-setup'
 import User from '../components/UserBasic'
+import Navbar from '../components/user-navbar'
 
 Vue.use(VueRouter)
 
@@ -19,7 +20,7 @@ Vue.use(VueRouter)
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
   },
   {
     path: '/signup',
@@ -47,6 +48,11 @@ Vue.use(VueRouter)
     name: 'User',
     component: User
   },
+  {
+    path: '/user-navbar',
+        name: 'Navbar',
+        component: Navbar,
+  }
 ]
 
 const router = new VueRouter({
