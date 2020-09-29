@@ -65,7 +65,6 @@ export default{
 .card-body{
 max-height: 50rem;
 padding-top: 5rem;
-border-radius: 1.75rem;
 }
 
 .title{

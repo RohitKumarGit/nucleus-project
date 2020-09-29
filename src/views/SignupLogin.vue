@@ -100,8 +100,4 @@ img{
     justify-content: center;
     align-items: center;
 }
-.right-div
-{
-    border-radius:1.75rem;
-}
 </style>

@@ -48,7 +48,6 @@ export default {
 <style scoped>
 .card-body{
   padding-top:4.5rem;
-  border-radius: 1.75rem;
 }
 
 .title{

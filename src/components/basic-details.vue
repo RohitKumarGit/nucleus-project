@@ -49,7 +49,6 @@
 .card-body{
   padding: 0rem;
   padding-top: 3rem;
-  border-radius: 1.75rem;
 }
 
 .title{
@@ -99,7 +98,7 @@
 }
 
 .form-box button[type="submit"]{
-  margin-top: 0.2rem;
+  margin-top: 0.7rem;
   border: none;
   cursor: pointer;
   border-radius: 50px;
