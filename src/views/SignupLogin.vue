@@ -86,8 +86,7 @@ img{
 }
 .right-div
 {
-    border-top-right-radius:1.75rem;
-    border-bottom-right-radius:1.75rem;
+    border-radius:1.75rem;
     background-color:#ffffdd;
 }
 .row

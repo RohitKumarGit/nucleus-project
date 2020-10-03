@@ -49,6 +49,7 @@
 .card-body{
   padding: 0rem;
   padding-top: 3rem;
+
 }
 
 .title{
@@ -70,6 +71,7 @@
   border-radius: 50px;
   outline: none;
   background: transparent;
+
 }
 
 .form-input span{
