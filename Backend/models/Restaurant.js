@@ -10,10 +10,10 @@ const RestaurantSchema=new mongoose.Schema({
       type:Boolean,
       default:true
     },
-    category:{
+    Food_category:{
       FoodPreferences:{
         type:String,
-        enum:['Veg','Non-Veg','Vegan']
+        enum:['Pure Veg','Non-Veg','Vegan','Egg/Veg','Jain','Cocktail','Mocktail']
       },
       Cuisine:{
         type:String,
