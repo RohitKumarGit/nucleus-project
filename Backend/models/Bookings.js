@@ -1,11 +1,12 @@
 const mongoose=require('mongoose');
+const Schema = mongoose.Schema
 const bookingSchema=new mongoose.Schema({
   booking_date:
   {type:Date,
     required:true,
     default:Date.now},
 
-  User_id:
+  user_id:
     {type:Schema.Types.ObjectId,
     ref:'User'},
 

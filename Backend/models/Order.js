@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const { NULL, TRUE } = require('node-sass');
+const Schema = mongoose.Schema
 const orderSchema=new mongoose.Schema({
     user_id:{
       type:Schema.Types.ObjectId,
@@ -24,7 +24,9 @@ const orderSchema=new mongoose.Schema({
     }],
     order_type:
     {type:Number,
-    enum:[0,1]},
+    min:0,
+    max:1
+  },
     //0--> Room service,1-->Restaurant Table Self Help
     room_no:{
       type:Number,

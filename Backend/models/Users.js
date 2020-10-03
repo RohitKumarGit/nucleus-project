@@ -1,35 +1,35 @@
 const mongoose=require("mongoose");
 const userSchema =new mongoose.Schema({
-  username:
+  name:
   {type:String,
-    uppercase:true,
+  
     required:true},
 
   phone:{
     type:Number,
-    validate:{
-      validator:function(v){
-        return v.length()>=8;
-                           }
-            }
-        },
+    min:0,
+    max:9999999999
+  },
 
-  userType:{
+  type:{
     default:0, //0->guest,1->admin
-    type:Number
+    type:Number,
+    max:1,
+  },
+  password:{
+    type:String
   },
   
   email:{type:String,
     required:true},
 
-  userGeneratedDate:{
-    type:Date,
-    default:Date.now},
-
+  
   isVerified:{
     default:false,
     type:Boolean
   }
+},{
+  timestamps:true
 });
 const User=mongoose.model('User',userSchema);
 module.exports=User;

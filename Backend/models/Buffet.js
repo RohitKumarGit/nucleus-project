@@ -1,18 +1,16 @@
 const mongoose=require('mongoose');
-const { NULL } = require('node-sass');
+const Schema = mongoose.Schema
 const buffetSchema=new mongoose.Schema({
-  user_id:
-  {type:Schema.Type.ObjectId,
-    ref:'User',
-    required:true},
+  
+  
 
   restaurant_id:{
     type:Schema.Types.ObjectId,
-    ref:'Menu',
+    ref:'Restaurant',
     required:true},
 
-  slot_details:[{
-    slot_time:{
+  slots:[{
+    time:{
 
       starting:{
         type:Date,
@@ -22,20 +20,14 @@ const buffetSchema=new mongoose.Schema({
         type:Date,
         required:true}
     },
-
-    total_slots:
-    {type:Number,
+    isAvailable:{
+      type:Boolean,
+      default:true
+    },
+   bookedBy:{type:Schema.Types.ObjectId,
+    ref:'User',
     required:true},
-    available_slots:{
-      type:Number,
-      
-      default:function(){
-        if(this.slot_details.total.slots!=NULL)
-        return this.slot_details.total_slots;
-        return 0;
-      }
-
-    }
+    
 
   }]
 

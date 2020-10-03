@@ -1,31 +1,24 @@
 const mongoose=require('mongoose');
 const RestaurantSchema=new mongoose.Schema({
-
-  menu:{
-    type:[{menu_items:
-      [
-      {item_name:{
-      type:String,
-      required:true,
-      unique:true},
-
-    item_price:{
+  menu_items:[{
+    name:String,
+    price:{
       type:Number,
-      required:true},
-
+      min:0
+    },
     is_available:{
       type:Boolean,
-      default:true}
-     }
-    ],
-    menu_num:{
-      type:Number,
-      default:1
-      }
+      default:true
+    },
+    category:[{
+      type:Array,
+      enum:['Veg','Non-Veg',"Chineese","North Indian","South Indian"]
+      
+    }],
+   
   }],
-    required:true
-  },
-  food_type:[]
+  name:String,
+  location:String
 });
 const Restaurant=mongoose.model('Restaurant',RestaurantSchema);
 module.exports=Restaurant;
