@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start":"node index.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "@admin-bro/express": "^3.0.1",
@@ -23,6 +23,7 @@
     "mongoose": "^5.10.7",
     "nodemon": "^2.0.4",
     "popper.js": "^1.16.1",
+    "validator": "^13.1.17",
     "vue": "^2.6.12",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"

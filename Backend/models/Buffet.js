@@ -24,9 +24,9 @@ const buffetSchema=new mongoose.Schema({
       type:Boolean,
       default:true
     },
-   bookedBy:{type:Schema.Types.ObjectId,
+   bookedBy:[{type:Schema.Types.ObjectId,
     ref:'User',
-    required:true},
+    required:true}],
     
 
   }]

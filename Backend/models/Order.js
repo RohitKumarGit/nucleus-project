@@ -23,9 +23,8 @@ const orderSchema=new mongoose.Schema({
       }
     }],
     order_type:
-    {type:Number,
-    min:0,
-    max:1
+    {type:String,
+    enum:['Room Service','Restaurant Table Self Help']
   },
     //0--> Room service,1-->Restaurant Table Self Help
     room_no:{

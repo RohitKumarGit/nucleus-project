@@ -11,8 +11,8 @@ const RestaurantSchema=new mongoose.Schema({
       default:true
     },
     category:[{
-      type:Array,
-      enum:['Veg','Non-Veg',"Chineese","North Indian","South Indian"]
+      type:String,
+      enum:['Veg','Non-Veg','Chineese','North Indian','South Indian']
       
     }],
    
