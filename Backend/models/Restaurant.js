@@ -10,11 +10,20 @@ const RestaurantSchema=new mongoose.Schema({
       type:Boolean,
       default:true
     },
-    category:[{
-      type:String,
-      enum:['Veg','Non-Veg','Chineese','North Indian','South Indian']
-      
-    }],
+    category:{
+      FoodPreferences:{
+        type:String,
+        enum:['Veg','Non-Veg','Vegan']
+      },
+      Cuisine:{
+        type:String,
+        enum:['Nort Indian','South Indian','Gujrati','Bengali','Italian','Chinese','Mexican','American']
+      },
+      PossibleAllergics:[{
+        type:String,
+        enum:['Peanuts','Dairy']
+      }]
+    },
    
   }],
   name:String,
