@@ -1,27 +1,47 @@
 const mongoose=require('mongoose');
+const { NULL, TRUE } = require('node-sass');
 const orderSchema=new mongoose.Schema({
-    user_id:Number,
-    restaurant_id:Number,
-    items:Array[{
-      name:String,
-      count:Number,
-      special_note:String
+    user_id:{
+      type:Schema.Types.ObjectId,
+      ref:'User'},
+
+    restaurant_id:{
+      type:Schema.Types.ObjectId,
+      ref:'Restaurant'},
+
+    items:[{
+      name:
+      {type:String,
+        required:true
+      },
+      count:
+      {type:Number,
+        default:1},
+      special_note:{
+        type:String,
+        default:null
+      }
     }],
-    order_type:Number,//0--> Room service,1-->Restaurant Table Self Help
+    order_type:
+    {type:Number,
+    enum:[0,1]},
+    //0--> Room service,1-->Restaurant Table Self Help
     room_no:{
-      default:null,
-      type:Number
+      type:Number,
+      default:null
     },
     table_number:{
-      default:null,
-      type:Number
+      type:Number,
+      default:null
     },
     order_detail :{
       is_preorder:{
         type:Boolean,
         default:false
       },
-      date_time:Date
+      date_time:{
+        type:Date,
+        default:Date.now}
     },
     isCancelled:{
       default:false,
