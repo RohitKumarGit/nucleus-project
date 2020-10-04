@@ -45,8 +45,8 @@ Vue.use(VueRouter)
   {
     path: '/user',
     name: 'User',
-    component: User
-  },
+    component:User
+  }
 ]
 
 const router = new VueRouter({
