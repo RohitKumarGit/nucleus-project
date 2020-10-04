@@ -63,14 +63,8 @@ export default {
 .carousel-inner
 {
     max-height:38rem;
-<<<<<<< Updated upstream
-    border-top-left-radius:1.75rem;
-    border-bottom-left-radius:1.75rem;
-
-=======
     border-top-left-radius :1.75rem;
     border-bottom-left-radius: 1.75rem;
->>>>>>> Stashed changes
 }
 img{
      max-height:38rem;

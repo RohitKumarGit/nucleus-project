@@ -13,7 +13,7 @@
     
     <div class="form-column">
       
-      <div class="subscribtion free" v-on:click="">
+      <div class="subscribtion free">
           <h2>Breakfast</h2>
           <p>Unlimited music online</p>
       </div>
