@@ -1,5 +1,6 @@
 const mongoose=require("mongoose");
 const validator = require('validator');
+const bcrypt = require("bcrypt");
 const userSchema =new mongoose.Schema({
   name:
   {type:String,
@@ -7,20 +8,14 @@ const userSchema =new mongoose.Schema({
     required:true},
 
     phone    : { type: String,
-      validate: {
-          validator: (v)=> {
-              var re = /^\d{10}$/;
-              return (v == null || v.trim().length < 1) || re.test(v)
-          },
-          message: 'Provided phone number is invalid.'
-      },
+      
       required:[true,'Please enter a Phone Number']
 },
 
   type:{
     default:'Customer', 
     type:String,
-    enum:['Customer','Reception','Manager','Employee']
+    enum:['Customer','Reception','Manager','Restaurant Owner']
   },
   password:{
     type:String,
@@ -48,5 +43,49 @@ const userSchema =new mongoose.Schema({
 },{
   timestamps:true
 });
+userSchema.pre('save',function(next){
+  var user = this;
+  if(!user.isModified("password")){
+    return next();
+  }
+  bcrypt.genSalt(1, function(err, salt) {
+    if (err) {
+      console.log(err);
+      next(err)
+    }
+
+    
+    bcrypt.hash(user.password, salt, function(err, hash) {
+        if (err){
+          console.log(err)
+        }
+        console.log("hashed",hash)
+        console.log("original",user.password)
+        user.password = hash;
+        next();
+    });
+});
+})
+userSchema.statics.comparePassword =async function(email,candidatePassword) {
+  const user = await User.findOne({
+    email:email
+  })
+  
+  if(!user){
+    return false
+  }
+  console.log(user.password)
+  console.log(email,candidatePassword)
+  try {
+    const res = await bcrypt.compare(candidatePassword, user.password)
+    console.log(res)
+    user.type ="Restaurant Owner"
+    return user
+  } catch (error) {
+    console.log(error)
+  }
+  
+  return false
+};
 const User=mongoose.model('User',userSchema);
 module.exports=User;

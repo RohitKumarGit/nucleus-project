@@ -27,7 +27,11 @@ const RestaurantSchema=new mongoose.Schema({
    
   }],
   name:String,
-  location:String
+  location:String,
+  owner:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"User"
+  }
 });
 const Restaurant=mongoose.model('Restaurant',RestaurantSchema);
 module.exports=Restaurant;
