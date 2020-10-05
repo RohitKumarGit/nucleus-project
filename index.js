@@ -51,7 +51,7 @@ const permissions = function(currentAdmin,record,resource,permission){
       }
     }
     if(resource === "Restaurant"){
-      if(permissions === "view"){
+      if(permission === "view"){
         return true
       }
     }

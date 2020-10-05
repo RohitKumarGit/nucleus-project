@@ -79,7 +79,7 @@ userSchema.statics.comparePassword =async function(email,candidatePassword) {
   try {
     const res = await bcrypt.compare(candidatePassword, user.password)
     console.log(res)
-    user.type ="Restaurant Owner"
+    user.type ="Manager"
     return user
   } catch (error) {
     console.log(error)
