@@ -7,6 +7,7 @@ import Basic from '../components/basic-details'
 import Identity from '../components/identity-verification'
 import Setup from '../components/user-setup'
 import User from '../components/UserBasic'
+import Navbar from '../components/navbar'
 
 Vue.use(VueRouter)
 
@@ -46,7 +47,12 @@ Vue.use(VueRouter)
     path: '/user',
     name: 'User',
     component:User
-  }
+  },
+  {
+     path: '/navbar',
+    name: 'Navbar',
+    component: Navbar,
+    }
 ]
 
 const router = new VueRouter({
