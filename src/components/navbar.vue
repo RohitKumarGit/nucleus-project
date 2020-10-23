@@ -16,7 +16,7 @@
                     <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="javascript:void(0);"><i class="fas fa-hamburger"></i>Food Preorder</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="javascript:void(0);"><i class="fas fa-utensils"></i>Book Buffet</a>
+                    <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="./buffet"><i class="fas fa-utensils"></i>Book Buffet</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="javascript:void(0);"><i class="fas fa-broom"></i>Room Service</a>
@@ -63,6 +63,7 @@ body{
 	font-family: 'Roboto', sans-serif;
 }
 * {
+	font-size: 1.3rem;
 	margin: 0;
 	padding: 0;
 }
@@ -92,11 +93,11 @@ i {
 	float: left;
 }
 #navbarSupportedContent ul li a{
-	color: rgba(255,255,255,0.5);
+	color: rgba(256,256,256,0.8);
     text-decoration: none;
-    font-size: 15px;
+    font-size: 1rem;
     display: block;
-    padding: 10px 10px;
+    padding: 0.8rem;
     transition-duration:0.5s;
 	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     position: relative;

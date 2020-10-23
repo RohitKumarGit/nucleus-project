@@ -73,7 +73,7 @@
 }
 
 .course-preview {
-	background-color:#db5c5a;
+	background-color:#006a71;
 	color: #fff;
 	padding: 2rem;
 	max-width: 250px;

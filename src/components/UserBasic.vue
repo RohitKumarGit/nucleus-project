@@ -1,13 +1,17 @@
 <template>
-    <div class=" basic ">
+<!-- Not able to scroll page contents when size reduced -->
+    <div class=" basic">
       <Navbar></Navbar>
-      <p>{{user.email}}</p>
+      <br>
+      <div class="contents">
+        <span>Welcome {{user.email}} !</span>
       <div class="row">
         <div class="box col-12 col-lg-6 ">
       <Services></Services>
       </div>
         <div class="box col-12 col-md-6 ">
           <Bookings></Bookings>
+        </div>
         </div>
       </div>
     </div>
@@ -32,11 +36,23 @@ export default{
 .basic {
   position:fixed;
   width:100%;
-  height: 100%;
   background-image:url("../assets/Bg2.png");
+  height: 100%;
   background-repeat: repeat;
 }
 .basic .row{
   margin: 1rem;
+}
+.contents{
+  margin:1rem;
+}
+span{
+  color:#006a71;
+  font-size:1.6rem;
+  margin-left: 5rem ;
+  font-weight: 500;
+  background-color: rgba(256,256,256,0.9);
+  border-radius: 2rem;
+  padding:1rem;
 }
 </style>

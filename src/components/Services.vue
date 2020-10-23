@@ -18,13 +18,13 @@
             </div>
           </div>
           <div class="square col-6 col-xl-4">
-             <img class="img-fluid" src="../assets/resort3.jpg">
+             <img class="img-fluid" src="../assets/resort5.jpg">
             <div class="content">
               <p> Food<br> Preorder</p>
             </div>
           </div>
           <div class="square col-6 col-xl-4">
-            <img class="img-fluid" src="../assets/resort3.jpg">
+            <img class="img-fluid" src="../assets/resort1.jpg">
             <div class="content">
               <p> Book<br> Buffet</p>
             </div>
@@ -75,7 +75,7 @@ span{
 }
 .square:hover img{
   box-shadow: 6px 11px 22px -5px rgba(0,0,0,0.64);
-  filter: brightness(0.9);
+  filter: brightness(1);
 }
 img{
   border-radius:2rem;

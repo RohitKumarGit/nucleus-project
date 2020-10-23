@@ -3,11 +3,12 @@ import VueRouter from 'vue-router'
 import HelloWorld from '../components/HelloWorld'
 import SignupLogin from '../views/SignupLogin'
 import Login from '../components/login'
-// import Basic from '../components/basic-details'
-// import Identity from '../components/identity-verification'
+import Basic from '../components/basic-details'
+import Identity from '../components/identity-verification'
 import Setup from '../components/user-setup'
 import User from '../components/UserBasic'
-import Navbar from '../components/navbar'
+// import Navbar from '../components/navbar'
+import Buffet from '../components/buffet'
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -27,16 +28,16 @@ Vue.use(VueRouter)
     path: '/signup',
     name: 'signup',
     component: SignupLogin,
-    children:[//{
-    //     path: 'basic',
-    //     name: 'basic',
-    //     component: Basic,
-    //     },
-    //     {
-    //   path: 'identity',
-    //   name: 'identity-verification',
-    //   component: Identity,
-    //   },
+    children:[{
+        path: 'basic',
+        name: 'basic',
+        component: Basic,
+        },
+        {
+      path: 'identity',
+      name: 'identity-verification',
+      component: Identity,
+      },
       {
         path: 'setup',
         name: 'setup',
@@ -51,9 +52,9 @@ Vue.use(VueRouter)
     meta:{authRequired: true}
   },
   {
-     path: '/navbar',
-    name: 'Navbar',
-    component: Navbar,
+     path: '/buffet',
+    name: 'Buffet',
+    component: Buffet,
     },
 ]
 

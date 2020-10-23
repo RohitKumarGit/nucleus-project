@@ -1,6 +1,8 @@
 <template>
-<div class="basic">
-  <div id="wrapper">
+<div>
+  <Navbar></Navbar>
+  <div class="basic">
+   <div id="wrapper">
     <div id="container">
       <div class="row">
       <div class="information-column col-12 col-md-5">
@@ -86,10 +88,12 @@
     </div>
     </div>
   </div>
+  </div>
 </div>
 </template>
 
 <script>
+import Navbar from './navbar';
 export default{
   data () {
       return { isActive1:false,
@@ -97,6 +101,9 @@ export default{
       isActive3:false,
       }
     },
+    components:{
+    "Navbar" :Navbar,
+  }
 }
 </script>
 
@@ -179,7 +186,7 @@ export default{
   padding: 2rem;
   float: right;
   background: #006a71;
-  background: linear-gradient(45deg, #069faa 0%, #027780 54%, #006a71 100%);
+  background: linear-gradient(45deg, #02929c 0%, #015c63 54%, #006a71 100%);
 }
 
 .subscribtion {
