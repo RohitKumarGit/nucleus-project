@@ -30,7 +30,7 @@
   </button>
   <div class="dropdown-menu">
     <a class="dropdown-item" href="#">Edit Profile</a>
-    <a class="dropdown-item" href="#">Sign Out</a>
+    <button id="signout" @click="logout()">Sign Out</button>
   </div>
 </div>
         </div>
@@ -38,12 +38,21 @@
 </template>
 
 <script>
-
+import * as firebase from "firebase/app";
+import "firebase/auth";
 export default {
   data(){
     return {
     };
-  }
+  },
+  methods:{
+      logout(){
+          firebase.auth().signOut()
+          .then(()=>{
+            this.$router.replace("/");
+          });
+      }
+    },
 }
 </script>
 
@@ -221,5 +230,11 @@ i {
 a
 {
 	font-family:Roboto,sans-serif;
+}
+#signout{
+	font-size: 100%;
+	padding:0;
+	border:0;
+	background-color: transparent;
 }
 </style>

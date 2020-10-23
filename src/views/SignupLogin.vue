@@ -34,9 +34,9 @@
 <script>
 export default {
     data() {
-    },
-    methods: {
-    },
+        return{
+        }
+    }
   }
 </script>
 
