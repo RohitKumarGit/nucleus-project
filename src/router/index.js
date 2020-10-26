@@ -8,7 +8,12 @@ import Identity from '../components/identity-verification'
 import Setup from '../components/user-setup'
 import User from '../components/UserBasic'
 // import Navbar from '../components/navbar'
+<<<<<<< Updated upstream
 import Buffet from '../components/Buffet'
+=======
+import Buffet from '../components/buffet'
+import Local from '../components/TestSubject'
+>>>>>>> Stashed changes
 import store from '../store'
 import Table from '../components/table-reserve'
 import Table2 from '../components/table-reserve2'
@@ -60,6 +65,7 @@ Vue.use(VueRouter)
     name: 'Buffet',
     component: Buffet,
     },
+<<<<<<< Updated upstream
      {
      path: '/table',
     name: 'Table',
@@ -80,6 +86,13 @@ Vue.use(VueRouter)
     name: 'Room',
     component: Room,
     }
+=======
+    {
+      path: '/local',
+     name: 'Local',
+     component: Local,
+     },
+>>>>>>> Stashed changes
 ]
 
 const router = new VueRouter({
