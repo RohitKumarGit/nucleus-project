@@ -1,6 +1,10 @@
-const app = require("express")();
+const express = require("express");
+const app = express()
 const port = process.env.PORT || 8080 ;
 const mongoose = require("mongoose")
+const history = require('connect-history-api-fallback')
+var morgan = require('morgan')
+
 const Billing = require('./Backend/models/Billing');
 const Bookings = require('./Backend/models/Bookings');
 const Buffet = require('./Backend/models/Buffet');
@@ -13,7 +17,7 @@ const AdminBroMongoose = require('@admin-bro/mongoose')
 const AdminBroExpressjs = require('@admin-bro/express'); 
 const User = require("./Backend/models/Users");
 AdminBro.registerAdapter(AdminBroMongoose)
-const uri = "mongodb+srv://user:xtXE0mmcC7GmhZrM@cluster0.begc9.mongodb.net/NUCLEUS?retryWrites=true&w=majority"
+const uri = "mongodb+srv://user:uvOyX5UA6I2mjplk@cluster0.azmit.mongodb.net/NUCLEUS?retryWrites=true&w=majority"
 mongoose.connect(uri, {
   useNewUrlParser: "true",
 })
@@ -23,7 +27,7 @@ mongoose.connection.on("error", err => {
 mongoose.connection.on("connected", (err, res) => {
     console.log("mongoose is connected")
 })
-
+morgan('tiny')
 const permissions = function(currentAdmin,record,resource,permission){
  
   if(currentAdmin.type === "Manager"){
@@ -60,6 +64,9 @@ const permissions = function(currentAdmin,record,resource,permission){
   return false
 }
 const adminBro = new AdminBro({
+  branding:{
+    companyName :"NUCLEUS ADMIN"
+  },
     resources:[{
       resource:Billing,
       options:{
@@ -261,6 +268,13 @@ const adminBro = new AdminBro({
     cookiePassword: 'some-secret-password-used-to-secure-cookie',
   })
   app.use(adminBro.options.rootPath, routers)
+const path = require("path")
+  app.use(history({
+    verbose: false,
+    disableDotRule:false
+    }));
+  app.use('/', express.static(path.join(__dirname, 'dist')));
+  
 app.listen(port, function(err){
     if(!err){
         console.log("server is running at ", port)
