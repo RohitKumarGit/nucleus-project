@@ -20,7 +20,9 @@
             <hr class="my-4">
               <div class="mb-3">
                 <button class="btn btn-block text-uppercase" @click="register()">
-                  Proceed to Login
+                 <router-link to="/login" class="proceed">
+                    Proceed
+                </router-link>
                 </button>
             </div>
           </form>

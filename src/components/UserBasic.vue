@@ -36,7 +36,8 @@ export default{
 .basic {
   position:fixed;
   width:100%;
-  background-image:url("../assets/Bg2.png");
+  /* background-image:url("../assets/Bg2.png"); */
+  background-color: #cbeaed;
   height: 100%;
   background-repeat: repeat;
 }

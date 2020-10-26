@@ -158,7 +158,7 @@ export default{
   width: 100%;
   height: 100%;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(3, 118, 153, 0.5) 0%, rgba(227, 228, 232, 0.3) 0%, rgba(214, 215, 219, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(3, 118, 153, 0.9) 0%, rgba(227, 228, 232, 0.2) 0%, rgba(214, 215, 219, 0.7) 100%);
 }
 .content h1 {
   width: 100%;

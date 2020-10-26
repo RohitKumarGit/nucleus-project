@@ -30,11 +30,11 @@
           <form class="form-box px-3">
             <div class="form-input">
             <span><i class="far fa-calendar-check"></i></span>
-          <input placeholder="Date" class="textbox-n" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')" id="date" required>
+          <input placeholder="Date" class="textbox-n" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')" id="date" >
             </div>
             <div class="form-input">
               <span><i class="far fa-clock"></i></span>
-              <input placeholder="Time" class="textbox-n" type="text" onfocus="(this.type='time')" onfocusout="(this.type='text')" id="time" required>
+              <input placeholder="Time" class="textbox-n" type="text" onfocus="(this.type='time')" onfocusout="(this.type='text')" id="time" >
             </div>
             <div class="form-input">
               <span><i class="fas fa-users"></i></span>
@@ -42,11 +42,13 @@
             </div>
             <div class="form-input">
               <span><i class="fas fa-hourglass-end"></i></span>
-              <input placeholder="Duration" class="textbox-n" type="text" onfocus="(this.type='time')" onfocusout="(this.type='text')" id="duration" required>
+              <input placeholder="Duration" class="textbox-n" type="text" onfocus="(this.type='time')" onfocusout="(this.type='text')" id="duration" >
             </div>
             <div class="mb-3">
               <button type="submit" class="btn btn-block text-uppercase">
+                <router-link to="/table2" class="proceed">
                 Proceed
+                </router-link>
               </button>
             </div>
           </form>

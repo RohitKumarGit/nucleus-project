@@ -1,7 +1,7 @@
 <template>
     <div class="row leftdiv">
         <div class="para">
-            <p> What do you wish to do next ?</p>
+            <h2> What do you wish to do next ?</h2>
             <p><span>  Enjoy your Stay  </span></p>
         </div>
         <div class="row container">
@@ -57,6 +57,7 @@
     width:100%;
     display:flex;
     flex-direction: column;
+    color: #006a71;
 }
 span{
   font-weight: 500;

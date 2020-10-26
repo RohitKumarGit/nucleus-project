@@ -43,8 +43,10 @@
             </div>
             <div class="mb-3">
               <button type="submit" class="btn btn-block text-uppercase">
+              <router-link to="/table3" class="proceed">
                 Proceed
-              </button>
+                </router-link>
+                </button>
             </div>
           </form>
         </div>
