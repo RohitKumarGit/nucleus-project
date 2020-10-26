@@ -10,16 +10,13 @@
                     <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="javascript:void(0);"><i class="fas fa-couch"></i>Book Table</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="javascript:void(0);"><i class="fas fa-hamburger"></i>Food Preorder</a>
+                    <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="./table"><i class="fas fa-couch"></i>Book Table</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="./buffet"><i class="fas fa-utensils"></i>Book Buffet</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="javascript:void(0);"><i class="fas fa-broom"></i>Room Service</a>
+                    <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="./room"><i class="fas fa-broom"></i>Room Service</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="javascript:void(0);"><i class="fas fa-biking"></i>Local Attractions</a>  </li>
