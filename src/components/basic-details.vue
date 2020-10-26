@@ -1,4 +1,6 @@
 <template>
+<!-- form to get basic details store values in vuex and then post those, after this redirect to /signup/identity then data is stored 
+for it then redirect to /signup/setup for authentication-->
         <div class="card-body">
           <h4 class="title text-center mt-4">
             Basic Details
@@ -49,6 +51,7 @@
 .card-body{
   padding: 0rem;
   padding-top: 3rem;
+
 }
 
 .title{
@@ -70,6 +73,7 @@
   border-radius: 50px;
   outline: none;
   background: transparent;
+
 }
 
 .form-input span{

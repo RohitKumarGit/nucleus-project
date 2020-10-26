@@ -17,9 +17,18 @@
     "bootstrap-vue": "^2.16.0",
     "connect-history-api-fallback": "^1.6.0",
     "core-js": "^3.6.5",
+
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "express-session": "^1.17.1",
+
+
+
+
+
+    
+    "firebase": "^7.23.0",
+
     "jquery": "^3.5.1",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.7",
