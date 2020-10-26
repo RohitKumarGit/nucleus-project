@@ -8,8 +8,12 @@ import Identity from '../components/identity-verification'
 import Setup from '../components/user-setup'
 import User from '../components/UserBasic'
 // import Navbar from '../components/navbar'
-import Buffet from '../components/buffet'
+import Buffet from '../components/Buffet'
 import store from '../store'
+import Table from '../components/table-reserve'
+import Table2 from '../components/table-reserve2'
+import Table3 from '../components/table-reserve3'
+import Room from '../components/room-service-main'
 
 Vue.use(VueRouter)
 
@@ -56,6 +60,26 @@ Vue.use(VueRouter)
     name: 'Buffet',
     component: Buffet,
     },
+     {
+     path: '/table',
+    name: 'Table',
+    component: Table,
+    },
+    {
+     path: '/table2',
+    name: 'Table2',
+    component: Table2,
+    },
+    {
+     path: '/table3',
+    name: 'Table3',
+    component: Table3,
+    },
+    {
+     path: '/room',
+    name: 'Room',
+    component: Room,
+    }
 ]
 
 const router = new VueRouter({
