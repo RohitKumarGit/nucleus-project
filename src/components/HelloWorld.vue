@@ -1,8 +1,7 @@
 <template>
     <div>
-        <button > <router-link to="/user" > User </router-link></button>
         <button > <router-link to="/login" > Login </router-link></button>
-        <button > <router-link to="/signup/basic" > Signup </router-link></button>
+        <button > <router-link to="/signup/setup" > Signup </router-link></button>
     </div>
 </template>
 

@@ -3,38 +3,58 @@
           <h4 class="title text-center mt-4">
             User Setup
           </h4>
-          <form class="form-box px-3" method="post" oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'>
+          <form class="form-box px-3" >
             <div class="form-input">
             <span><i class="far fa-user"></i></span>
-              <input type="email" name="" placeholder="Enter your User Name" tabindex="10" required>
+              <input type="email"  placeholder="Enter your Email-id" v-model="email" required>
             </div>
             <div class="form-input">
               <span><i class="fa fa-key"></i></span>
-              <input type="password" name="up" placeholder="Password" required>
+              <input type="password"  placeholder="Password" v-model="password" required>
             </div>
-                        <div class="form-input">
+            <div class="form-input">
               <span><i class="fa fa-key"></i></span>
-              <input type="password" name="up2" placeholder="Confirm Password" required>
+              <input type="password" placeholder="Confirm Password" v-model="cpassword" required>
             </div>
+            <p v-if="error">{{error}}</p>
             <hr class="my-4">
-                        <div class="mb-3">
-              <button type="submit" class="btn btn-block text-uppercase">
-                <router-link to="/login" class="proceed">
-                Proceed to Login
-                </router-link>
-              </button>
+              <div class="mb-3">
+                <button class="btn btn-block text-uppercase" @click="register()">
+                    Proceed
+                </button>
             </div>
           </form>
 </div>
 </template>
 
 <script>
-export default {
-
+import * as firebase from "firebase/app";
+import "firebase/auth";
+export default{
     data () {
         return {
-        }
+          email:"",
+          password:"",
+          cpassword:"",
+          error:null
+        };
     },
+    methods:{
+      register(){
+        if(this.password.length<6)
+          this.error="Password length > 6";
+        else if(this.password!=this.cpassword)
+          this.error="Passwords don't match";
+        else{
+          firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.email, this.password)
+          .catch(error=>{
+            this.error=error.message;
+          });
+        } 
+      }
+    }
 }
 </script>
 
@@ -90,7 +110,7 @@ export default {
   border: 0px;
 }
 
-.form-box button[type="submit"]{
+.form-box button{
   margin-top: 10px;
   border: none;
   cursor: pointer;
@@ -104,7 +124,7 @@ export default {
   padding: 12px;
 }
 
-.form-box button[type="submit"]:hover{
+.form-box button:hover{
   background: #006a71;
 }
 
