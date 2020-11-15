@@ -9,7 +9,7 @@
         <div class="box col-12 col-lg-6 ">
       <Services></Services>
       </div>
-        <div class="box col-12 col-md-6 ">
+        <div class="box col-12 col-lg-6 ">
           <Bookings></Bookings>
         </div>
         </div>
@@ -36,10 +36,11 @@ export default{
 .basic {
   position:fixed;
   width:100%;
-  /* background-image:url("../assets/Bg2.png"); */
-  background-color: #cbeaed;
+ background: rgb(93,197,205);
+background: linear-gradient(315deg, rgba(93,197,205,1) 1%, rgba(203,234,237,1) 29%, rgba(93,197,205,1) 50%, rgba(203,234,237,1) 82%, rgba(93,197,205,1) 100%);
   height: 100%;
   background-repeat: repeat;
+  overflow:auto;
 }
 .basic .row{
   margin: 1rem;

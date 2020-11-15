@@ -5,37 +5,37 @@
             <p><span>  Enjoy your Stay  </span></p>
         </div>
         <div class="row container">
-          <div class="square col-6 col-xl-4">
+          <div class="square col-12 col-sm-6 col-xl-4">
              <img class="img-fluid" src="../assets/resort3.jpg">
             <div class="content">
               <p> Table <br>Reservation</p>
             </div>
           </div>
-          <div class="square col-6 col-xl-4">
+          <div class="square col-12 col-sm-6 col-xl-4">
             <img class="img-fluid" src="../assets/resort5.jpg">
             <div class="content">
               <p> Room<br> Service</p>
             </div>
           </div>
-          <div class="square col-6 col-xl-4">
+          <div class="square col-12 col-sm-6  col-xl-4">
              <img class="img-fluid" src="../assets/resort5.jpg">
             <div class="content">
               <p> Food<br> Preorder</p>
             </div>
           </div>
-          <div class="square col-6 col-xl-4">
+          <div class="square col-12 col-sm-6  col-xl-4">
             <img class="img-fluid" src="../assets/resort1.jpg">
             <div class="content">
               <p> Book<br> Buffet</p>
             </div>
           </div>
-          <div class="square col-6 col-xl-4">
+          <div class="square col-12 col-md-6  col-xl-4">
             <img class="img-fluid" src="../assets/resort7.jpg">
             <div class="content">
               <p> Local <br>Attractions</p>
             </div>
           </div>
-          <div class="square col-6 col-xl-4">
+          <div class="square col-12 col-md-6  col-xl-4">
             <img class="img-fluid" src="../assets/resort2.jpg">
             <div class="content">
               <p> Other <br>Activities</p>
@@ -51,7 +51,7 @@
   padding-top:1rem;
   border-radius:2rem;
   font-weight: 500;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
 }
 .para{
     width:100%;
