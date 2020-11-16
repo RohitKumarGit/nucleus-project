@@ -18,8 +18,7 @@ import Room from '../components/room-service-main'
 
 Vue.use(VueRouter)
 
-  const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'HelloWorld',
     component: HelloWorld
@@ -33,64 +32,66 @@ Vue.use(VueRouter)
     path: '/signup',
     name: 'signup',
     component: SignupLogin,
-    children:[{
+    children: [{
         path: 'basic',
         name: 'basic',
         component: Basic,
-        },
-        {
-      path: 'identity',
-      name: 'identity-verification',
-      component: Identity,
+      },
+      {
+        path: 'identity',
+        name: 'identity-verification',
+        component: Identity,
       },
       {
         path: 'setup',
         name: 'setup',
         component: Setup,
-        },
+      },
     ]
   },
   {
     path: '/user',
     name: 'User',
-    component:User,
-    meta:{authRequired: true}
+    component: User,
+    meta: {
+      authRequired: true
+    }
   },
   {
     path: '/local',
-   name: 'Local',
-   component: Local,
-   },
-   {
+    name: 'Local',
+    component: Local,
+  },
+  {
     path: '/buffet',
-   name: 'Buffet',
-   component: Buffet,
-   },
-{
-  path: '/setup',
-  name: 'setup',
-  component: Setup,
+    name: 'Buffet',
+    component: Buffet,
+  },
+  {
+    path: '/setup',
+    name: 'setup',
+    component: Setup,
   },
   {
     path: '/table',
-   name: 'Table',
-   component: Table,
-   },
-   {
+    name: 'Table',
+    component: Table,
+  },
+  {
     path: '/table2',
-   name: 'Table2',
-   component: Table2,
-   },
-   {
+    name: 'Table2',
+    component: Table2,
+  },
+  {
     path: '/table3',
-   name: 'Table3',
-   component: Table3,
-   },
-   {
+    name: 'Table3',
+    component: Table3,
+  },
+  {
     path: '/room',
-   name: 'Room',
-   component: Room,
-   }
+    name: 'Room',
+    component: Room,
+  }
 ]
 
 
@@ -99,20 +100,20 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
-router.beforeEach((to,_,next)=>{
-  if(to.matched.some(routeRecord => routeRecord.meta.authRequired)) {
-    if(!store.state.user) {
+router.beforeEach((to, _, next) => {
+  if (to.matched.some(routeRecord => routeRecord.meta.authRequired)) {
+    if (!store.state.user) {
       next({
-        path:"/",
-        query:{redirect: to.fullPath}
+        path: "/",
+        query: {
+          redirect: to.fullPath
+        }
       });
-    }
-    else{
+    } else {
       next();
     }
-  }else{
+  } else {
     next();
   }
 });
 export default router
-
