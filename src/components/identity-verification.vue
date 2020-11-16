@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
 
     data () {
@@ -41,6 +42,13 @@ export default {
         toSetup:function(){
         this.$router.push('./setup');
         },
+        handle(){
+          // handle this page
+          console.log(this.signup) // this will contain all data from previous page
+          // take input from all fields just like basic detais and commit it to vuex
+          // similarly do for the third page
+          // as there is no API as of now leave the part of saving it to database
+        }
     }
 }
 </script>

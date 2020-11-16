@@ -1,5 +1,7 @@
 const express = require('express');
 const User = require('../Users');
+const Room = require('../Room');
+const Booking = require('../Bookings');
 const router = new express.Router();
 router.post('/signup/setup', async (req, res) => {
   const user = new User(req.body);
@@ -58,6 +60,18 @@ router.patch('/editprofile', async (req, res) => {
 
 router.delete('/checkout', async (req, res) => {
   try {
+    var booking = await Booking.findOne({
+      user_id: req.user._id
+    });
+    for (i = 0; i < booking.room.size(); i++) {
+      var x = booking.room[i];
+      var y = Room.findOne({
+        number: x
+      });
+      y[vacant] = true;
+      await y.save();
+    }
+    await booking.remove();
     await req.user.remove();
     res.send(req.user);
   } catch (e) {
