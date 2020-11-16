@@ -10,9 +10,15 @@ const bookingSchema=new mongoose.Schema({
     {type:Schema.Types.ObjectId,
     ref:'User'},
 
-  room_number:
-    {type:Schema.Types.ObjectId,
-      required:true},
+  rooms:
+    [{type:Schema.Types.ObjectId,
+      required:true}],
+    
+  total_bill:
+  {
+    type:Number,
+    required:true
+  },
 
   check_in:
     {type:Date,

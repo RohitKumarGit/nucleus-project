@@ -66,26 +66,19 @@ userSchema.pre('save',function(next){
     });
 });
 })
-userSchema.statics.comparePassword =async function(email,candidatePassword) {
-  const user = await User.findOne({
-    email:email
-  })
-  
-  if(!user){
-    return false
+userSchema.statics.comparePassword = async function (email, candidatePassword) {
+  let user = await User.findOne({
+    email: email
+  });
+  if (!user) {
+    throw new Error('No user found!');
   }
-  console.log(user.password)
-  console.log(email,candidatePassword)
   try {
-    const res = await bcrypt.compare(candidatePassword, user.password)
-    console.log(res)
-    user.type ="Manager"
-    return user
+    const res = await bcrypt.compare(candidatePassword, user.password);
+    return user;
   } catch (error) {
-    console.log(error)
+    throw new Error('Please Authenticate!');
   }
-  
-  return false
 };
 const User=mongoose.model('User',userSchema);
 module.exports=User;
