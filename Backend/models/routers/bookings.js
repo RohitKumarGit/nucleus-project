@@ -54,12 +54,5 @@ router.post('/booking', async (req, res) => {
   }
 });
 
-router.patch('/booking', async (req, res) => {
-
-});
-
-router.delete('/booking', async (req, res) => {
-
-});
 
 module.exports = router;
