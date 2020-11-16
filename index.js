@@ -4,7 +4,7 @@ const port = process.env.PORT || 8080;
 const mongoose = require("mongoose")
 const history = require('connect-history-api-fallback')
 var morgan = require('morgan')
-
+const {verifyToken} = require('./Backend/middlewares/firebase');
 const Billing = require('./Backend/models/Billing');
 const Bookings = require('./Backend/models/Bookings');
 const Buffet = require('./Backend/models/Buffet');
@@ -343,7 +343,8 @@ app.use(history({
   disableDotRule: false
 }));
 app.use('/', express.static(path.join(__dirname, 'dist')));
-
+app.use(verifyToken)
+// put all routers which need authentication below this
 app.listen(port, function (err) {
   if (!err) {
     console.log("server is running at ", port)
