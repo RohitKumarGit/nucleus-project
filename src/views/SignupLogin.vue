@@ -34,9 +34,9 @@
 <script>
 export default {
     data() {
-    },
-    methods: {
-    },
+        return{
+        }
+    }
   }
 </script>
 
@@ -63,9 +63,8 @@ export default {
 .carousel-inner
 {
     max-height:38rem;
-    border-top-left-radius:1.75rem;
-    border-bottom-left-radius:1.75rem;
-
+    border-top-left-radius :1.75rem;
+    border-bottom-left-radius: 1.75rem;
 }
 img{
      max-height:38rem;
@@ -86,8 +85,7 @@ img{
 }
 .right-div
 {
-    border-top-right-radius:1.75rem;
-    border-bottom-right-radius:1.75rem;
+    border-radius:1.75rem;
     background-color:#ffffdd;
 }
 .row
