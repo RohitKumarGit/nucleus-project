@@ -8,15 +8,15 @@ for it then redirect to /signup/setup for authentication-->
           <form class="form-box px-3">
             <div class="form-input">
                 <span><i class="far fa-user"></i></span>
-              <input type="text" name="" placeholder="First Name" tabindex="10" required>
+              <input v-model="fname" type="text" name="" placeholder="First Name" tabindex="10" required>
             </div>
             <div class="form-input">
                   <span><i class="far fa-user"></i></span>
-              <input type="text" name="" placeholder="Last Name" tabindex="10" required>
+              <input v-model="lname" type="text" name="" placeholder="Last Name" tabindex="10" required>
             </div>
             <div class="form-input">
                 <span><i class="fas fa-birthday-cake"></i></span>
-              <input type="date" name="" placeholder="DOB" required>
+              <input type="date" name="" placeholder="DOB" required v-model="dob"> 
             </div>
             <div class="gender">
             <label>Gender :&nbsp;&nbsp;</label>
@@ -26,14 +26,14 @@ for it then redirect to /signup/setup for authentication-->
             </div>
               <div class="form-input">
               <span><i class="fas fa-phone-square"></i></span>
-              <input type="text" placeholder=" 9876543210" required>
+              <input v-model="phone" type="text" placeholder=" 9876543210" required>
               </div>
                <div class="form-input">
                  <span><i class="far fa-envelope"></i></span>
-              <input type="email" placeholder="Enter your email" required>
+              <input  v-model="email" type="email" placeholder="Enter your email" required>
               </div>
          <div>
-              <button type="submit" class="btn btn-block text-uppercase">
+              <button type="submit" class="btn btn-block text-uppercase" @click="proceed">
                 <router-link to="/signup/identity" class="proceed">
                 Proceed
                 </router-link>
@@ -42,8 +42,35 @@ for it then redirect to /signup/setup for authentication-->
           </form>
 </div>
 </template>
-
 <script>
+import {mapState} from 'v'
+export default {
+   data(){
+     return {
+       fname:"",
+      email:"",
+      lname:"",
+      phone:"",
+      dob:""
+     }
+     
+
+   },
+   methods:{
+     proceed(){
+       // save to vuex
+       const {fname,email,lname,phone,dob} = this;
+       this.$store.commit("signupflow",{
+         fname,
+         email,
+         lname,
+         dob,
+        phone
+       })
+       this.$router.push('/signup/identity') // after this page
+     }
+   }
+}
 </script>
 
 <style scoped>
