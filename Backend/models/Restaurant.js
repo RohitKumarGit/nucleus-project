@@ -25,8 +25,34 @@ const RestaurantSchema = new mongoose.Schema({
       }]
     },
   }],
-  name: String,
-  location: String,
+  name: 
+  {
+    type:String,
+    required:true
+  },
+  location: 
+  {
+    type:String,
+    required:true
+  },
+  table:[{
+    table_num:{
+      type:Number,
+      required:true
+    },
+    table_size:{
+      type:Number,
+      required:true,
+      min:1
+    },
+    Is_reserved:{
+      type:Boolean
+    }
+  }],
+  vacancy:{
+    type:Number,
+    required:true
+  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
