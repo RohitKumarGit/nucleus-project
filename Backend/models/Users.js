@@ -35,6 +35,9 @@ const userSchema = new mongoose.Schema({
     },
     required: [true, "Email required"]
   },
+  verification:{
+  type:Schema.Types.Mixed
+  },
   isVerified: {
     default: false,
     type: Boolean

@@ -11,5 +11,6 @@ const billingSchema = new mongoose.Schema({
     ref: 'Order'
   }
 });
+//for food only, for room orders, preorders, and table orders in restaurants
 const Billing = mongoose.model('Billing', billingSchema);
 module.exports = Billing;
