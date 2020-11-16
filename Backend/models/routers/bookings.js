@@ -1,28 +1,14 @@
 const express = require('express');
 const Booking = require('../Bookings');
-const Bookings = require('../Bookings');
 const Room = require('../Room');
 const router = new express.Router();
 
 //Gets all the bookings made by an user and returns an array.
 router.get('/booking', async (req, res) => {
   try {
-    var booking = await Bookings.find({
+    var booking = await Booking.find({
       user_id: req.user._id,
-    })
-    res.send(booking);
-  } catch (e) {
-    res.send(e);
-  }
-});
-
-//Get a particular booking after checking the User ID and room Number
-router.get('/booking/roomnumber', async (req, res) => {
-  try {
-    var booking = await Bookings.find({
-      user_id: req.user._id,
-      room_number: req.body.room_number
-    })
+    });
     res.send(booking);
   } catch (e) {
     res.send(e);
@@ -32,11 +18,39 @@ router.get('/booking/roomnumber', async (req, res) => {
 //Creates a new booking
 router.post('/booking', async (req, res) => {
   try {
-    var booking = new Bookings(req.body);
+    var price = 0;
+    var booking = new Booking(req.body);
     booking[user_id] = req.user._id;
-
+    var isvalid = true;
+    var i = 0;
+    for (i = 0; i < req.body.room.size(); i++) {
+      var x = req.body.room[i];
+      var y = await Room.findOne({
+        number: x
+      });
+      if (!y[vacant]) {
+        isvalid = false;
+        break;
+      }
+    }
+    if (!isvalid) {
+      throw new Error('Invalid Room!');
+    } else {
+      for (i = 0; i < req.body.room.size(); i++) {
+        var x = req.body.room[i];
+        var y = Room.findOne({
+          number: x
+        });
+        price += y[price] * (req.body.check_out - req.body.checkin_date) / (1000 * 60 * 60 * 24);
+        y[vacant] = false;
+        await y.save();
+      }
+    }
+    booking[total_bill] += price;
+    await booking.save();
+    res.send(booking);
   } catch (e) {
-    res.status(400).send();
+    res.status(400).send(e);
   }
 });
 
