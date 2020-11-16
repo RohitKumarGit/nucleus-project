@@ -15,7 +15,7 @@ import Table3 from '../components/table-reserve3'
 import Room from '../components/room-service-main'
 import Error from '../components/error'
 import Feedback from '../components/feedback'
-import Buffet from '../components/buffet'
+import Buffet from '../components/Buffet'
 import store from '../store'
 
 Vue.use(VueRouter)
