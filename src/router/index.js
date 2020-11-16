@@ -8,15 +8,15 @@ import Identity from '../components/identity-verification'
 import Setup from '../components/user-setup'
 import User from '../components/UserBasic'
 // import Navbar from '../components/navbar'
-import Buffet from '../components/buffet'
 import Local from '../components/TestSubject'
-import store from '../store'
 import Table from '../components/table-reserve'
 import Table2 from '../components/table-reserve2'
 import Table3 from '../components/table-reserve3'
 import Room from '../components/room-service-main'
 import Error from '../components/error'
 import Feedback from '../components/feedback'
+import Buffet from '../components/buffet'
+import store from '../store'
 
 Vue.use(VueRouter)
 
@@ -68,18 +68,13 @@ Vue.use(VueRouter)
    name: 'Buffet',
    component: Buffet,
    },
-{
-  path: '/setup',
-  name: 'setup',
-  component: Setup,
-  },
   {
-    path: '/table',
+    path: '/table2',
    name: 'Table',
    component: Table2,
    },
    {
-    path: '/table2',
+    path: '/table',
    name: 'Table2',
    component: Table,
    },
@@ -99,10 +94,15 @@ Vue.use(VueRouter)
    component: Feedback,
    },
    {
+    path: '/room',
+   name: 'Room',
+   component: Room,
+   },
+   {
     path: '/*',
    name: 'Error',
    component: Error,
-   }
+   },
 ]
 
 

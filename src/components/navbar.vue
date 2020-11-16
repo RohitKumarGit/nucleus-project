@@ -12,6 +12,7 @@
                 <li class="nav-item">
                     <router-link class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'" to="./table"><i class="fas fa-couch"></i>Book Table</router-link>
                 </li>
+              
                 <li class="nav-item">
                     <router-link class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'" to="./buffet"><i class="fas fa-utensils"></i>Book Buffet</router-link>
                 </li>
