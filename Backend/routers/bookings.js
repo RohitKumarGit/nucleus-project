@@ -1,6 +1,6 @@
 const express = require('express');
-const Booking = require('../Bookings');
-const Room = require('../Room');
+const Booking = require('../models/Bookings');
+const Room = require('../models/Room');
 const router = new express.Router();
 
 //Gets all the bookings made by an user and returns an array.

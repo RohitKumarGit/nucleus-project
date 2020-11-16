@@ -4,7 +4,9 @@ const port = process.env.PORT || 8080;
 const mongoose = require("mongoose")
 const history = require('connect-history-api-fallback')
 var morgan = require('morgan')
-const {verifyToken} = require('./Backend/middlewares/firebase');
+const {
+  verifyToken
+} = require('./Backend/middlewares/firebase');
 const Billing = require('./Backend/models/Billing');
 const Bookings = require('./Backend/models/Bookings');
 const Buffet = require('./Backend/models/Buffet');
@@ -394,11 +396,7 @@ const adminBro = new AdminBro({
 })
 const routers = AdminBroExpressjs.buildAuthenticatedRouter(adminBro, {
   authenticate: async (email, password) => {
-
-
-
     return User.comparePassword(email, password)
-
   },
   cookiePassword: 'some-secret-password-used-to-secure-cookie',
 })
