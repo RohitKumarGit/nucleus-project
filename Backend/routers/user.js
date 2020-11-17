@@ -1,7 +1,7 @@
 const express = require('express');
-const User = require('../Users');
-const Room = require('../Room');
-const Booking = require('../Bookings');
+const User = require('../models/Users');
+const Room = require('../models/Room');
+const Booking = require('../models/Bookings');
 const router = new express.Router();
 router.post('/signup/setup', async (req, res) => {
   const user = new User(req.body);

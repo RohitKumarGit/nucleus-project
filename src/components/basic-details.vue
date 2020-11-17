@@ -41,7 +41,7 @@ for it then redirect to /signup/setup for authentication-->
 </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+
 export default {
    data(){
      return {

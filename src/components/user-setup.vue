@@ -28,8 +28,10 @@
 </template>
 
 <script>
+import {mapState} from  'vuex'
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import axios from 'axios'
 export default{
     data () {
         return {
@@ -39,8 +41,12 @@ export default{
           error:null
         };
     },
+    computed:{
+      ...mapState(['signup'])
+    },
     methods:{
-      register(){
+      async register(){
+        const p = this;
          const {email,password,cpassword} = this;
        this.$store.commit("signupflow",{
          email,password,cpassword
@@ -50,13 +56,31 @@ export default{
         else if(this.password!=this.cpassword)
           this.error="Passwords don't match";
         else{
-          firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.email, this.password)
-          .catch(error=>{
-            this.error=error.message;
-          });
-          this.$router.push('/login')
+          try {
+            await firebase.auth().createUserWithEmailAndPassword(email,password)
+            this.$router.push('/login')
+            firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+    // User is signed in.
+    const {data} = axios.post('/signup/setup',{
+                firstname:p.$store.state.fname ,// lastname, uid , phone dateOfBirth email 
+                lastname:p.$store.state.lname,
+                uid:user.uid,
+                phone:p.$store.state.phone,
+                dateOfBirth:p.$store.state.dob,
+                email:p.$store.state.email,
+            })
+            console.log(data)
+        } else {
+    // No user is signed in.
+          }
+              });
+            
+
+          } catch (error) {
+            this.error = error.message
+          }
+          
         } 
       }
     }
