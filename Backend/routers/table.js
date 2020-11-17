@@ -17,7 +17,10 @@ router.get('/tablereserve', async (req, res) => {
     var reserve = await Table.findOne({
       user_id: user._id
     });
-    res.send(reserve);
+    if (!reserve) {
+      throw new Error("No tables reserved yet")
+    }
+    return res.send(reserve);
   } catch (e) {
     res.send({
       e
