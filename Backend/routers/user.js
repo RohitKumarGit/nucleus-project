@@ -1,7 +1,5 @@
 const express = require('express');
 const User = require('../models/Users');
-const Room = require('../models/Room');
-const Booking = require('../models/Bookings');
 const router = new express.Router();
 router.post('/signup/setup', async (req, res) => {
   const user = new User(req.body);
@@ -15,31 +13,6 @@ router.post('/signup/setup', async (req, res) => {
     res.status(400).send(e);
   }
 });
-
-router.post('/login', async (req, res) => {
-  try {
-    const user = await User.comparePassword(req.body.email, req.body.password);
-    res.send({
-      user
-    });
-  } catch (e) {
-    res.status(400).send();
-  }
-});
-
-router.post('/logout', async (req, res) => {
-  try {
-    const user = User.findOne({
-      uid: req.uid
-    });
-    user.uid = "";
-    await user.save();
-    res.status(200).send();
-  } catch (e) {
-    res.status(400).send();
-  }
-})
-
 router.get('/user', async (req, res) => {
   res.send(req.user);
 });
