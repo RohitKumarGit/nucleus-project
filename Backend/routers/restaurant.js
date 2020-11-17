@@ -1,5 +1,5 @@
 const express = require('express');
-const Restaurant = require('../Restaurant');
+const Restaurant = require('../models/Restaurant');
 const router = new express.Router();
 
 router.get('/menu', async (req, res) => {

@@ -1,5 +1,6 @@
-const mongoose=require('mongoose');
-const Schema = new mongoose.Schema({
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema
+const table_reserveSchema = new mongoose.Schema({
     user_id: {
         type: Schema.Types.ObjectId,
         ref: 'User'
@@ -8,6 +9,10 @@ const Schema = new mongoose.Schema({
         type:Schema.Types.ObjectId,
         ref:'Restaurant'
     },
+    table_num:[{
+        type:Number,
+        required:true
+    }],
     Adults:{
         type:Number,
         required:true
@@ -29,5 +34,5 @@ const Schema = new mongoose.Schema({
 }
 
 );
-const Table = mongoose.model('Table', userSchema);
-module.exports = Table;
+const Table_reserve = mongoose.model('Table_reserve', table_reserveSchema);
+module.exports = Table_reserve;

@@ -4,13 +4,16 @@ const port = process.env.PORT || 8080;
 const mongoose = require("mongoose")
 const history = require('connect-history-api-fallback')
 var morgan = require('morgan')
-const {verifyToken} = require('./Backend/middlewares/firebase');
+const {
+  verifyToken
+} = require('./Backend/middlewares/firebase');
 const Billing = require('./Backend/models/Billing');
 const Bookings = require('./Backend/models/Bookings');
 const Buffet = require('./Backend/models/Buffet');
 const Order = require('./Backend/models/Order');
 const Restaurant = require('./Backend/models/Restaurant');
 const Room = require('./Backend/models/Room');
+const Table_reserve = require('./Backend/models/Table_reserve');
 const Users = require('./Backend/models/Users');
 const AdminBro = require('admin-bro')
 const AdminBroMongoose = require('@admin-bro/mongoose')
@@ -49,7 +52,7 @@ const permissions = function (currentAdmin, record, resource, permission) {
     }
   }
   if (currentAdmin.type === "Restaurant Owner") {
-    if (resource === "Order" || resource === "Buffet") {
+    if (resource === "Order" || resource === "Buffet" || resource === "Table_reserve") {
       if (permission === "view") {
         return true
       }
@@ -76,7 +79,7 @@ const adminBro = new AdminBro({
               currentAdmin,
               record
             }) {
-              console.log("chechking permission")
+              console.log("checking permission")
               return permissions(currentAdmin, record, "Billing", "new")
             }
           },
@@ -289,6 +292,38 @@ const adminBro = new AdminBro({
       }
 
     }, {
+      resource: Table_reserve,
+      options: {
+        actions: {
+          new: {
+            isAccessible: function ({
+              currentAdmin,
+              record
+            }) {
+              return permissions(currentAdmin, record, "Table_reserve", "new")
+            }
+          },
+          edit: {
+            isAccessible: function ({
+              currentAdmin,
+              record
+            }) {
+              return permissions(currentAdmin, record, "Table_reserve", "edit")
+            }
+          },
+          delete: {
+            isAccessible: function ({
+              currentAdmin,
+              record
+            }) {
+              return permissions(currentAdmin, record, "Table_reserve", "delete")
+            }
+          }
+        }
+      }
+
+
+    }, {
       resource: Users,
       options: {
         actions: {
@@ -328,11 +363,7 @@ const adminBro = new AdminBro({
 })
 const routers = AdminBroExpressjs.buildAuthenticatedRouter(adminBro, {
   authenticate: async (email, password) => {
-
-
-
     return User.comparePassword(email, password)
-
   },
   cookiePassword: 'some-secret-password-used-to-secure-cookie',
 })

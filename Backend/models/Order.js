@@ -31,7 +31,8 @@ const orderSchema = new mongoose.Schema({
   },
   //0--> Room service,1-->Restaurant Table Self Help
   room_no: {
-    type: Number,
+    type: Schema.Types.ObjectId,
+    ref:'Room',
     default: null
   },
   table_number: {
