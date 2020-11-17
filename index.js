@@ -169,38 +169,6 @@ const adminBro = new AdminBro({
 
 
     }, {
-      resource: Laundry,
-      options: {
-        actions: {
-          new: {
-            isAccessible: function ({
-              currentAdmin,
-              record
-            }) {
-              return permissions(currentAdmin, record, "Laundry", "new")
-            }
-          },
-          edit: {
-            isAccessible: function ({
-              currentAdmin,
-              record
-            }) {
-              return permissions(currentAdmin, record, "Laundry", "edit")
-            }
-          },
-          delete: {
-            isAccessible: function ({
-              currentAdmin,
-              record
-            }) {
-              return permissions(currentAdmin, record, "Laundry", "delete")
-            }
-          }
-
-        }
-      }
-
-    }, {
       resource: Order,
       options: {
         actions: {
