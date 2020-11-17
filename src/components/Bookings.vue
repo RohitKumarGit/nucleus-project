@@ -39,7 +39,6 @@
 .rightdiv h1{
   font-size: 1.6rem;
   font-weight:500;
-  color: #006a71;
 }
 .courses-container {
 	display: flex;

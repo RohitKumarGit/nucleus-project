@@ -2,6 +2,7 @@
   <div class="basic">
     <Navbar></Navbar>
     <div class="container-xl">
+      <h1> Local Attractions</h1>
     <div class="row">
       <div class="box col-12 col-md-6 col-xl-4">
         <div class="skill-card">
@@ -93,6 +94,7 @@ export default {
   height:100%;
   width:100%;
   background-color: #cbeaed;
+  overflow:auto;
 }
 h1{
   margin:1.5rem;
@@ -105,9 +107,9 @@ h1{
 }
 .skill-card {
   border-radius: 1rem;
-  margin:1rem;
+  margin:0.5rem;
   width:100%;
-  height:22rem;
+  height:21rem;
   padding:0;
   background-color: #FFF;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);

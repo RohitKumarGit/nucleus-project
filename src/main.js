@@ -4,7 +4,7 @@ import store from './store'
 import Vue from 'vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import './assets/app.scss'
-import 'bootstrap'
+import 'bootstrap';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 var firebaseConfig = {

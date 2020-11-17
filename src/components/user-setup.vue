@@ -6,7 +6,7 @@
           <form class="form-box px-3" >
             <div class="form-input">
             <span><i class="far fa-user"></i></span>
-              <input type="email"  placeholder="Enter your User Name" v-model="email" required>
+              <input type="email"  placeholder="Enter your Email-id" v-model="email" required>
             </div>
             <div class="form-input">
               <span><i class="fa fa-key"></i></span>
@@ -20,9 +20,7 @@
             <hr class="my-4">
               <div class="mb-3">
                 <button class="btn btn-block text-uppercase" @click="register()">
-                 <router-link to="/login" class="proceed">
                     Proceed
-                </router-link>
                 </button>
             </div>
           </form>
@@ -43,6 +41,10 @@ export default{
     },
     methods:{
       register(){
+         const {email,password,cpassword} = this;
+       this.$store.commit("signupflow",{
+         email,password,cpassword
+       })
         if(this.password.length<6)
           this.error="Password length > 6";
         else if(this.password!=this.cpassword)
@@ -54,6 +56,7 @@ export default{
           .catch(error=>{
             this.error=error.message;
           });
+          this.$router.push('/login')
         } 
       }
     }

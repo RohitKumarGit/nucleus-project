@@ -7,19 +7,20 @@
         <div class="collapse navbar-collapse my" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="./user"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                    <router-link class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" to="./user"><i class="fas fa-tachometer-alt"></i>Dashboard</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="./table"><i class="fas fa-couch"></i>Book Table</a>
+                    <router-link class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'" to="./table"><i class="fas fa-couch"></i>Book Table</router-link>
+                </li>
+              
+                <li class="nav-item">
+                    <router-link class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'" to="./buffet"><i class="fas fa-utensils"></i>Book Buffet</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="./buffet"><i class="fas fa-utensils"></i>Book Buffet</a>
+                    <router-link class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'" to="./room"><i class="fas fa-broom"></i>Room Service</router-link>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="./room"><i class="fas fa-broom"></i>Room Service</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'" href="./local"><i class="fas fa-biking"></i>Local Attractions</a>  </li>
+                    <router-link class="nav-link" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'" to="./local"><i class="fas fa-biking"></i>Local Attractions</router-link>  </li>
             </ul>
             <div class="dropdown">
   <button type="button" class="btn dropdown-toggle btn-primary navbar-button" data-toggle="dropdown">
@@ -82,7 +83,7 @@ i {
 	padding: 0px;
 	margin: 0px;
 }
-#navbarSupportedContent ul li a i{
+#navbarSupportedContent ul li  {
 	margin-right: 10px;
 }
 #navbarSupportedContent li {
@@ -99,10 +100,12 @@ i {
 	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     position: relative;
 }
-#navbarSupportedContent>ul>li.active>a{
-	color: #006a71;
-	background-color: transparent;
+
+#navbarSupportedContent ul li .router-link-active{
+	color: #006a71 !important;
+	background-color: #ffffdd;
 	transition: all 0.5s;
+	border-radius: 2rem;
 }
 #navbarSupportedContent a:not(:only-child):after {
 	content: "\f105";
