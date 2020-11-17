@@ -7,8 +7,7 @@
             <h6 class="attach-desc">Attach Original ID(Aadhar ID/PAN Card/Driving License,etc)</h6>
   <form>
   <div class="custom-file">
-    <input type="file" class="custom-file-input" id="customFile">
-    <label class="custom-file-label" for="customFile">Choose file</label>
+    <b-form-file v-model="file1" accept="image/*">Choose file</b-form-file>
   </div>
 
             <div class="mb-3">
@@ -20,10 +19,8 @@
 </form>
          
             <div class="mb-3">
-              <button type="submit" class="btn btn-block text-uppercase">
-                <router-link to="/signup/setup" class="proceed">
+              <button type="submit" class="btn btn-block text-uppercase proceed" @click="handle">
                 Proceed
-                </router-link>
               </button>
             </div>
           </form>
@@ -35,12 +32,22 @@ export default {
 
     data () {
         return {
+          file1:null,
         }
     },
     methods:{
-        toSetup:function(){
-        this.$router.push('./setup');
-        },
+        handle(){
+          // handle this page
+          console.log(this.signup) 
+          const {file1} = this;
+          this.$store.commit("signupflow",{
+          file1
+       })
+       this.$router.push('/signup/setup') // this will contain all data from previous page
+          // take input from all fields just like basic detais and commit it to vuex
+          // similarly do for the third page
+          // as there is no API as of now leave the part of saving it to database
+        }
     }
 }
 </script>
