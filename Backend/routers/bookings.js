@@ -1,13 +1,17 @@
 const express = require('express');
 const Booking = require('../models/Bookings');
 const Room = require('../models/Room');
+const User = require('../models/Users');
 const router = new express.Router();
 
 //Gets all the bookings made by an user and returns an array.
 router.get('/booking', async (req, res) => {
   try {
+    var user = await User.findOne({
+      uid: req.uid
+    });
     var booking = await Booking.find({
-      user_id: req.user._id,
+      user_id: user._id,
     });
     res.send(booking);
   } catch (e) {
@@ -18,9 +22,12 @@ router.get('/booking', async (req, res) => {
 //Creates a new booking
 router.post('/booking', async (req, res) => {
   try {
+    var user = await User.findOne({
+      uid: req.uid
+    });
     var price = 0;
     var booking = new Booking(req.body);
-    booking[user_id] = req.user._id;
+    booking[user_id] = user._id;
     var isvalid = true;
     var i = 0;
     for (i = 0; i < req.body.room.size(); i++) {

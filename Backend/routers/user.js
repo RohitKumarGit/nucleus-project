@@ -8,7 +8,8 @@ router.post('/signup/setup', async (req, res) => {
   try {
     await user.save();
     res.status(201).send({
-      user
+      user,
+      uid
     });
   } catch (e) {
     res.status(400).send(e);
@@ -28,8 +29,11 @@ router.post('/login', async (req, res) => {
 
 router.post('/logout', async (req, res) => {
   try {
-    req.user.tokens = []; //Token array will be reset
-    await req.user.save();
+    const user = User.findOne({
+      uid: req.uid
+    });
+    user.uid = "";
+    await user.save();
     res.status(200).send();
   } catch (e) {
     res.status(400).send();
@@ -50,9 +54,12 @@ router.patch('/editprofile', async (req, res) => {
     })
   }
   try {
-    updates.forEach((update) => req.user[update] = req.body[update])
-    await req.user.save()
-    res.send(req.user)
+    var user = await User.findOne({
+      uid: req.uid
+    });
+    updates.forEach((update) => user[update] = req.body[update])
+    await user.save()
+    res.send(user)
   } catch (e) {
     res.status(400).send(e)
   }
@@ -60,8 +67,11 @@ router.patch('/editprofile', async (req, res) => {
 
 router.delete('/checkout', async (req, res) => {
   try {
-    await req.user.remove();
-    res.send(req.user);
+    var user = await User.findOne({
+      uid: req.uid
+    });
+    await user.remove();
+    res.send(user);
   } catch (e) {
     res.status(500).send();
   }

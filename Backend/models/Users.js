@@ -8,6 +8,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  uid: {
+    type: String,
+    required: true
+  },
   phone: {
     type: String,
     required: [true, 'Please enter a Phone Number']
