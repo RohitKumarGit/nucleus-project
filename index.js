@@ -27,7 +27,7 @@ mongoose.connection.on("error", err => {
 mongoose.connection.on("connected", (err, res) => {
   console.log("mongoose is connected")
 })
-morgan('tiny')
+app.use(morgan('tiny'))
 const permissions = function (currentAdmin, record, resource, permission) {
 
   if (currentAdmin.type === "Manager") {
