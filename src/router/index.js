@@ -2,12 +2,13 @@ import Vue from 'vue'
 import Landing from '../components/landing'
 import VueRouter from 'vue-router'
 import SignupLogin from '../views/SignupLogin'
+import Book from '../components/booking-request'
 import Login from '../components/login'
+import EditProfile from '../components/edit-profile'
 import Basic from '../components/basic-details'
 import Identity from '../components/identity-verification'
 import Setup from '../components/user-setup'
 import User from '../components/UserBasic'
-// import Navbar from '../components/navbar'
 import Local from '../components/TestSubject'
 import Table from '../components/table-reserve'
 import Table2 from '../components/table-reserve2'
@@ -18,6 +19,7 @@ import Feedback from '../components/feedback'
 import Buffet from '../components/Buffet'
 import store from '../store'
 
+
 Vue.use(VueRouter)
 
   const routes = [
@@ -25,6 +27,16 @@ Vue.use(VueRouter)
       path: '/',
       name: 'land',
       component: Landing
+    },
+    {
+      path: '/book',
+      name: 'Book',
+      component: Book
+    },
+    {
+      path: '/edit',
+      name: 'EditProfile',
+      component: EditProfile
     },
   {
     path: '/login',
@@ -102,7 +114,7 @@ Vue.use(VueRouter)
     path: '/*',
    name: 'Error',
    component: Error,
-   },
+   }
 ]
 
 
