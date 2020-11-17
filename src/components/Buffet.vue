@@ -105,7 +105,7 @@ export default{
       return { isActive1:false,
       isActive2:false,
       isActive3:false,
-      restaurant: "",
+      restaurant: "ABC",
       people:"",
       slots:"",
       }
