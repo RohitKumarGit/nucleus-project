@@ -29,6 +29,17 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['Customer', 'Reception', 'Manager', 'Restaurant Owner']
   },
+  password: {
+    type: String,
+    minlength: 6,
+    validate: {
+      validator: (v) => {
+        return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,1024}$/.test(v);
+      },
+      message: "weak password"
+    },
+    required: [true, "Password Required"]
+  },
   email: {
     type: String,
     validate: {
@@ -38,8 +49,8 @@ const userSchema = new mongoose.Schema({
     },
     required: [true, "Email required"]
   },
-  document: {
-    type: String
+  verification: {
+    type: Schema.Types.Mixed
   },
   isVerified: {
     default: false,
