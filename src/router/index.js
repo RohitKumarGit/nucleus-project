@@ -67,6 +67,9 @@ const routes = [{
     path: '/buffet',
     name: 'Buffet',
     component: Buffet,
+    meta: {
+      authRequired: true
+    }
   },
   {
     path: '/setup',

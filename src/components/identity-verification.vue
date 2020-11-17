@@ -32,7 +32,7 @@ export default {
 
     data () {
         return {
-          file1:"",
+          file1:null,
         }
     },
     methods:{
