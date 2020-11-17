@@ -26,28 +26,31 @@ const buffetSchema = new mongoose.Schema({
           type: Date,
           required: true
         },
-
-        Limit: {
-          type: Number,
-          required: true,
-          min: 1
-        }
       },
-
+      Limit: {
+        type: Number,
+        required: true,
+        min: 1
+      },
+      totalPeople: {
+        type: Number,
+        required: true,
+        default: 0,
+      },
       isAvailable: {
         type: Boolean,
         default: true
       },
       bookedBy: [{
-        user_id:{
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true},
-        number:
-        {
-          type:Number,
-          required:true,
-          default:1
+        user_id: {
+          type: Schema.Types.ObjectId,
+          ref: 'User',
+          required: true
+        },
+        number: {
+          type: Number,
+          required: true,
+          default: 1
         }
       }],
     }]
