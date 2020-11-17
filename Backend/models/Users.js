@@ -4,7 +4,11 @@ const bcrypt = require("bcrypt");
 const Room = require('./Room');
 const Booking = require('./Bookings');
 const userSchema = new mongoose.Schema({
-  name: {
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
     type: String,
     required: true
   },
@@ -15,6 +19,10 @@ const userSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: [true, 'Please enter a Phone Number']
+  },
+  dateOfBirth: {
+    type: Date,
+    required: true
   },
   type: {
     default: 'Customer',

@@ -22,6 +22,6 @@ router.get('/buffet', async (req, res) => {
     });
   }
 });
-router.post('/buffet', async (req, res) => {
+router.patch('/buffet', async (req, res) => {
 
 });
