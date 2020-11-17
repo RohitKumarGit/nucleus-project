@@ -11,6 +11,11 @@ const billingSchema = new mongoose.Schema({
       type: Schema.Types.ObjectId,
       ref: 'Order'
     }],
+    totalBill:{
+      type:Number,
+      default:0,
+      max:10000
+    }
   }
 });
 //for food only, for room orders, preorders, and table orders in restaurants
