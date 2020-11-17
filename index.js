@@ -10,7 +10,6 @@ const {
 const Billing = require('./Backend/models/Billing');
 const Bookings = require('./Backend/models/Bookings');
 const Buffet = require('./Backend/models/Buffet');
-const Laundry = require('./Backend/models/Laundry');
 const Order = require('./Backend/models/Order');
 const Restaurant = require('./Backend/models/Restaurant');
 const Room = require('./Backend/models/Room');
@@ -201,7 +200,7 @@ const adminBro = new AdminBro({
         }
       }
 
-    },{
+    }, {
       resource: Order,
       options: {
         actions: {
@@ -356,7 +355,7 @@ const adminBro = new AdminBro({
       }
 
 
-    },{
+    }, {
       resource: Users,
       options: {
         actions: {

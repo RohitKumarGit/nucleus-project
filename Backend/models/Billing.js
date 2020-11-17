@@ -7,28 +7,10 @@ const billingSchema = new mongoose.Schema({
   },
 
   total_food_orders: {
-    order_id:[{
-    type: Schema.Types.ObjectId,
-    ref: 'Order'}],
-    total_bill:
-    {
-      type:Number,
-      default:0,
-      required:false
-    }
-  },
-  total_laundry_bill:{
-     laundry_id:[
-      {
-        type:Schema.Types.ObjectId,
-        ref:'Laundry'
-      }
-    ],
-    total_bill:{
-      type:Number,
-      default:0,
-      required:false
-    }
+    order_id: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Order'
+    }],
   }
 });
 //for food only, for room orders, preorders, and table orders in restaurants
