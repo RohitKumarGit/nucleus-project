@@ -7,8 +7,8 @@
             <h6 class="attach-desc">Attach Original ID(Aadhar ID/PAN Card/Driving License,etc)</h6>
   <form>
   <div class="custom-file">
-    <input type="file" class="custom-file-input" id="customFile">
-    <label class="custom-file-label" for="customFile">Choose file</label>
+    <input type="file" class="custom-file-input" id="file" ref="file" v-on:change="handleFileUpload()" accept='image/*'>
+    <label class="custom-file-label" for="file">Choose file</label>
   </div>
 
             <div class="mb-3">
@@ -20,10 +20,8 @@
 </form>
          
             <div class="mb-3">
-              <button type="submit" class="btn btn-block text-uppercase">
-                <router-link to="/signup/setup" class="proceed">
+              <button type="submit" class="btn btn-block text-uppercase proceed" @click="handle">
                 Proceed
-                </router-link>
               </button>
             </div>
           </form>
@@ -31,16 +29,29 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
 
     data () {
         return {
+          file:"",
         }
     },
     methods:{
-        toSetup:function(){
-        this.$router.push('./setup');
-        },
+        handleFileUpload(){
+          this.file = this.$refs.file.files[0];
+      },
+        handle(){
+          // handle this page
+          console.log(this.signup) 
+          this.$store.commit("signupflow",{
+          file
+       })
+       this.$router.push('/signup/setup') // this will contain all data from previous page
+          // take input from all fields just like basic detais and commit it to vuex
+          // similarly do for the third page
+          // as there is no API as of now leave the part of saving it to database
+        }
     }
 }
 </script>

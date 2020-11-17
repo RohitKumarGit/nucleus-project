@@ -41,6 +41,10 @@ export default{
     },
     methods:{
       register(){
+         const {email,password,cpassword} = this;
+       this.$store.commit("signupflow",{
+         email,password,cpassword
+       })
         if(this.password.length<6)
           this.error="Password length > 6";
         else if(this.password!=this.cpassword)
@@ -52,6 +56,7 @@ export default{
           .catch(error=>{
             this.error=error.message;
           });
+          this.$router.push('/login')
         } 
       }
     }

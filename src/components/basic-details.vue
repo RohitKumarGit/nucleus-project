@@ -8,42 +8,72 @@ for it then redirect to /signup/setup for authentication-->
           <form class="form-box px-3">
             <div class="form-input">
                 <span><i class="far fa-user"></i></span>
-              <input type="text" name="" placeholder="First Name" tabindex="10" required>
+              <input v-model="fname" type="text" name="fname" placeholder="First Name" tabindex="10" required>
             </div>
             <div class="form-input">
                   <span><i class="far fa-user"></i></span>
-              <input type="text" name="" placeholder="Last Name" tabindex="10" required>
+              <input v-model="lname" type="text" name="lname" placeholder="Last Name" tabindex="10" required>
             </div>
             <div class="form-input">
                 <span><i class="fas fa-birthday-cake"></i></span>
-              <input type="date" name="" placeholder="DOB" required>
+              <input type="date" name="dob" placeholder="DOB" required v-model="dob"> 
             </div>
             <div class="gender">
             <label>Gender :&nbsp;&nbsp;</label>
-            &nbsp;<label class="radio-inline"><input type="radio" name="optradio" checked>&nbsp;Male&nbsp;</label>&nbsp;
-            <label class="radio-inline"><input type="radio" name="optradio">&nbsp;Female&nbsp;</label>&nbsp;
-            <label class="radio-inline"><input type="radio" name="optradio">&nbsp;Others&nbsp;</label>
+            &nbsp;<label class="radio-inline"><input type="radio" name="optradio" @change="onChange($event)" value="male" checked>&nbsp;Male&nbsp;</label>&nbsp;
+            <label class="radio-inline"><input type="radio" name="optradio" @change="onChange($event)" value="female">&nbsp;Female&nbsp;</label>&nbsp;
+            <label class="radio-inline"><input type="radio" name="optradio" @change="onChange($event)" value="others">&nbsp;Others&nbsp;</label>
             </div>
               <div class="form-input">
               <span><i class="fas fa-phone-square"></i></span>
-              <input type="text" placeholder=" 9876543210" required>
+              <input v-model="phone" type="text" placeholder="Phone number" required>
               </div>
                <div class="form-input">
                  <span><i class="far fa-envelope"></i></span>
-              <input type="email" placeholder="Enter your email" required>
+              <input  v-model="email" type="email" placeholder="Enter your email" required>
               </div>
          <div>
-              <button type="submit" class="btn btn-block text-uppercase">
-                <router-link to="/signup/identity" class="proceed">
+              <button type="submit" class="btn btn-block text-uppercase proceed" @click="proceed" >
                 Proceed
-                </router-link>
               </button>
             </div>
           </form>
 </div>
 </template>
-
 <script>
+import {mapState} from 'vuex'
+export default {
+   data(){
+     return {
+       fname:"",
+      email:"",
+      gender:"male",
+      lname:"",
+      phone:"",
+      dob:""
+     }
+     
+
+   },
+   methods:{
+     proceed(){
+       // save to vuex
+       const {fname,email,gender,lname,phone,dob,} = this;
+       this.$store.commit("signupflow",{
+         fname,
+         email,
+         gender,
+         lname,
+         dob,
+        phone
+       })
+       this.$router.push('/signup/identity') // after this page
+     },
+     onChange(event) {
+              this.gender= event.target.value;
+          }
+   }
+}
 </script>
 
 <style scoped>

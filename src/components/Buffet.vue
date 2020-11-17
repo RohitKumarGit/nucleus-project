@@ -14,7 +14,13 @@
       </div>
       
       <div class="form-column col-12 col-md-7">
-        
+        <div>
+  <select name="Restaurant" @change="onChange($event)" class="form-control" v-model="Restaurant">
+   <option value="ABC">ABC</option>
+   <option value="XYZ">XYZ</option>
+</select>
+  <button v-on:click="Search">Populate List</button>
+</div>',
         <div class="subscribtion free"  v-on:click="isActive3 = !isActive3,isActive2 = !isActive2" v-bind:class="{ hidden: isActive1 }">
             <h2>Morning Mania</h2>
             <p>Food to energize you for the day</p>
@@ -33,51 +39,51 @@
       <form class="form" v-bind:class="{ active: isActive3||isActive1||isActive2}">
           
           <label>Number of people</label>
-          <input type="number" placeholder="0">
+          <input type="number" placeholder="0" v-model="people">
         
           <label class="payment free-form">Slot timing</label>
           <br>
 
         <div class="container">
           <div class="bform"  v-bind:class="{ hidden: isActive1}"> 
-            <input class="hidden radio-label" type="radio" name="bslot" id="8-9" checked="checked"/>
-            <label class="button-label" for="8-9">
+            <input class="hidden radio-label" type="radio" name="0" id="0" checked="checked"/>
+            <label class="button-label" for="0">
               <h1>8-9 am</h1>
             </label>
-            <input class="hidden radio-label" type="radio" name="bslot" id="9-10"/>
-            <label class="button-label" for="9-10">
+            <input class="hidden radio-label" type="radio" name="0" id="1"/>
+            <label class="button-label" for="1">
               <h1>9-10 am</h1>
             </label>
-            <input class="hidden radio-label" type="radio" name="bslot" id="10-11"/>
-            <label class="button-label" for="10-11">
-              <h1>10-11</h1>
+            <input class="hidden radio-label" type="radio" name="0" id="2"/>
+            <label class="button-label" for="2">
+              <h1>10-11 am</h1>
             </label>
           </div>
           <div class="lform"  v-bind:class="{ hidden: isActive2}"> 
-            <input class="hidden radio-label" type="radio" name="lslot" id="12-1" checked="checked"/>
-            <label class="button-label" for="12-1">
+            <input class="hidden radio-label" type="radio" name="1" id="3" checked="checked"/>
+            <label class="button-label" for="3">
               <h1>12-1 pm</h1>
             </label>
-            <input class="hidden radio-label" type="radio" name="lslot" id="1-2"/>
-            <label class="button-label" for="1-2">
+            <input class="hidden radio-label" type="radio" name="1" id="4"/>
+            <label class="button-label" for="4">
               <h1>1-2 pm</h1>
             </label>
-            <input class="hidden radio-label" type="radio" name="lslot" id="2-3"/>
-            <label class="button-label" for="2-3">
+            <input class="hidden radio-label" type="radio" name="1" id="5"/>
+            <label class="button-label" for="5">
               <h1>2-3 pm</h1>
             </label>
           </div>
           <div class="dform"  v-bind:class="{ hidden: isActive3}"> 
-            <input class="hidden radio-label" type="radio" name="dslot" id="7-8" checked="checked"/>
-            <label class="button-label" for="7-8">
+            <input class="hidden radio-label" type="radio" name="2" id="6" checked="checked"/>
+            <label class="button-label" for="6">
               <h1>7-8 pm</h1>
             </label>
-            <input class="hidden radio-label" type="radio" name="dslot" id="8-9p"/>
-            <label class="button-label" for="8-9p">
+            <input class="hidden radio-label" type="radio" name="2" id="7"/>
+            <label class="button-label" for="6">
               <h1>8-9 pm</h1>
             </label>
-            <input class="hidden radio-label" type="radio" name="dslot" id="9-10p"/>
-            <label class="button-label" for="9-10p">
+            <input class="hidden radio-label" type="radio" name="2" id="8"/>
+            <label class="button-label" for="8">
               <h1>9-10 pm</h1>
             </label>
           </div>
@@ -99,10 +105,20 @@ export default{
       return { isActive1:false,
       isActive2:false,
       isActive3:false,
+      restaurant: "",
+      people:"",
+      slots:"",
       }
     },
     components:{
     "Navbar" :Navbar,
+  },
+  mounted(){
+  },
+  methods: {
+    onChange(event) {
+            this.restaurant=event.target.value;
+        }
   }
 }
 </script>
