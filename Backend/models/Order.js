@@ -9,6 +9,7 @@ const orderSchema = new mongoose.Schema({
   restaurant_id: {
     type: Schema.Types.ObjectId,
     ref: 'Restaurant'
+
   },
 
   items: [{
@@ -32,7 +33,7 @@ const orderSchema = new mongoose.Schema({
   //0--> Room service,1-->Restaurant Table Self Help
   room_no: {
     type: Schema.Types.ObjectId,
-    ref:'Room',
+    ref: 'Room',
     default: null
   },
   table_number: {

@@ -15,6 +15,7 @@
         </div>
       </div>
     </div>
+    
 </template>
 <script>
 import Navbar from './navbar';
