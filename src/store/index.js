@@ -6,15 +6,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user:null,
-    signup:null,
-    buffet:null,
+    signup:null
   },
   mutations: {
     updateUser(state,{user}){
       Vue.set(state,"user",user);
     },
     signupflow(state,data){
-      state.signup = {...state.signup,...data};
+      state.signup = {...state.signup,...data}
     }
   },
   getters:{
