@@ -17,6 +17,7 @@ const billingSchema = new mongoose.Schema({
       max:10000
     }
   }
+
 });
 //for food only, for room orders, preorders, and table orders in restaurants
 const Billing = mongoose.model('Billing', billingSchema);
