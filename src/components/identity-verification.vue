@@ -7,8 +7,7 @@
             <h6 class="attach-desc">Attach Original ID(Aadhar ID/PAN Card/Driving License,etc)</h6>
   <form>
   <div class="custom-file">
-    <input type="file" class="custom-file-input" id="file" ref="file" v-on:change="handleFileUpload()" accept='image/*'>
-    <label class="custom-file-label" for="file">Choose file</label>
+    <b-form-file v-model="file1" accept="image/*">Choose file</b-form-file>
   </div>
 
             <div class="mb-3">
@@ -29,23 +28,20 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
 export default {
 
     data () {
         return {
-          file:"",
+          file1:"",
         }
     },
     methods:{
-        handleFileUpload(){
-          this.file = this.$refs.file.files[0];
-      },
         handle(){
           // handle this page
           console.log(this.signup) 
+          const {file1} = this;
           this.$store.commit("signupflow",{
-          file
+          file1
        })
        this.$router.push('/signup/setup') // this will contain all data from previous page
           // take input from all fields just like basic detais and commit it to vuex
