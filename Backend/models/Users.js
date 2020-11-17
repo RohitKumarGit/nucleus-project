@@ -3,6 +3,7 @@ const validator = require('validator');
 const bcrypt = require("bcrypt");
 const Room = require('./Room');
 const Booking = require('./Bookings');
+const Billing = require('./Billing');
 const userSchema = new mongoose.Schema({
   firstname: {
     type: String,
@@ -66,6 +67,9 @@ userSchema.pre('remove', async function (next) {
   var booking = await Booking.findOne({
     user_id: user._id
   });
+  var billing = await Billing.findOne({
+    user_id: user._id
+  });
   for (i = 0; i < booking.room.size(); i++) {
     var x = booking.room[i];
     var y = Room.findOne({
@@ -75,6 +79,7 @@ userSchema.pre('remove', async function (next) {
     await y.save();
   }
   await booking.remove();
+  await billing.remove();
   next();
 });
 

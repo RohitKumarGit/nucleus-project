@@ -40,19 +40,25 @@ router.patch('/buffet', async (req, res) => {
     });
     //0 for 1st slot 1 for 2nd and 2 for 3rd --> slotTime
     var buffetType = buffet.slots[req.body.slotType].slot_details[req.body.slotTime];
-    var x = req.body.number;
-    var y = buffetType.totalPeople;
-    if (Number(y) + Number(x) <= Number(buffetType.Limit)) {
-      buffetType.bookedBy.append({
-        userId: user._id,
-        number: req.body.number
-      });
-      buffetType.totalPeople += Number(x);
-      await buffet.save();
+    if (buffetType.isAvailable) {
+      var x = req.body.number;
+      var y = buffetType.totalPeople;
+      if (Number(y) + Number(x) <= Number(buffetType.Limit)) {
+        buffetType.bookedBy.append({
+          userId: user._id,
+          number: req.body.number
+        });
+        if (Number(y) + Number(x) === Number(buffetType.Limit)) {
+          buffetType.isAvailable = false;
+        }
+        buffetType.totalPeople += Number(x);
+        await buffet.save();
+      }
+      res.send(buffet);
     } else {
       throw new Error('Slot Full');
     }
-    res.send(buffet);
+
   } catch (e) {
     res.status(500).send({
       e

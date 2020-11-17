@@ -9,7 +9,6 @@ const orderSchema = new mongoose.Schema({
   restaurant_id: {
     type: Schema.Types.ObjectId,
     ref: 'Restaurant'
-
   },
 
   items: [{
