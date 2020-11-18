@@ -62,7 +62,7 @@ export default{
           
         else{
           try {
-            await firebase.auth().createUserWithEmailAndPassword(email,password)
+            const user = await firebase.auth().createUserWithEmailAndPassword(email,password)
             await  axios.post('/signup/setup',{
                 firstname:p.$store.state.fname ,// lastname, uid , phone dateOfBirth email 
                 lastname:p.$store.state.lname,
