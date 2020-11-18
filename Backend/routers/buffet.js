@@ -2,8 +2,8 @@ const express = require('express');
 const Buffet = require('../models/Buffet');
 const Restaurant = require('../models/Restaurant');
 const router = new express.Router();
-
-router.get('/buffet', async (req, res) => {
+const firebase = require('../middlewares/firebase');
+router.get('/buffet', firebase.verifyToken,async (req, res) => {
   try {
     var restaurant = await Restaurant.findOne({
       name: req.body.name
@@ -23,7 +23,7 @@ router.get('/buffet', async (req, res) => {
   }
 });
 
-router.patch('/buffet', async (req, res) => {
+router.patch('/buffet', firebase.verifyToken, async (req, res) => {
   try {
     var user = await User.findOne({
       uid: req.uid
@@ -69,7 +69,7 @@ router.patch('/buffet', async (req, res) => {
 
 //Slot type
 //Slot Time
-router.patch('/buffet/reset', async (req, res) => {
+router.patch('/buffet/reset', firebase.verifyToken, async (req, res) => {
   try {
     var buffets = Buffet.find({});
     buffets.foreach((buffet) => {
@@ -89,7 +89,7 @@ router.patch('/buffet/reset', async (req, res) => {
 //Buffet Id
 //Slot Type
 //Slot Time
-router.patch('/buffet/cancel', async (req, res) => {
+router.patch('/buffet/cancel', firebase.verifyToken, async (req, res) => {
   try {
     var buffet = Buffet.findById({
       _id: req.body.bid

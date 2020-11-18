@@ -24,7 +24,7 @@ const bookingSchema = new mongoose.Schema({
 
   total_bill: {
     type: Number,
-    required: true
+    required: false
   },
 
   check_out: {

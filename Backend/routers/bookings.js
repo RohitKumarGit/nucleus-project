@@ -3,9 +3,9 @@ const Booking = require('../models/Bookings');
 const Room = require('../models/Room');
 const User = require('../models/Users');
 const router = new express.Router();
-
+const firebase = require('../middlewares/firebase');
 //Gets all the bookings made by an user and returns an array.
-router.get('/booking', async (req, res) => {
+router.get('/booking',firebase.verifyToken, async (req, res) => {
   try {
     var user = await User.findOne({
       uid: req.uid
@@ -20,7 +20,7 @@ router.get('/booking', async (req, res) => {
 });
 
 //Creates a new booking
-router.post('/booking', async (req, res) => {
+router.post('/booking', firebase.verifyToken, async (req, res) => {
   try {
     var user = await User.findOne({
       uid: req.uid
