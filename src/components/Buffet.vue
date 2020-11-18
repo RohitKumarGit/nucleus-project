@@ -124,7 +124,7 @@ export default{
             this.restaurant=event.target.value;
             axios.get('/buffet', {
               headers: {
-                authorization: 'token'
+                authorization: this.token
               }
             }, {
               params: {

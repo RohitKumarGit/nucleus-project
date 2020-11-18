@@ -55,13 +55,15 @@
 import SignupLogin from '../views/SignupLogin'
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import {mapState} from  'vuex'
 import { mapGetters } from "vuex";
 export default{
   computed : {
       ...mapGetters(["user"]),
       nextRoute() {
         return  this.$route.query.redirect || "/user";
-      }
+      },
+      ...mapState(['token'])
     },
     data () {
         return {
@@ -80,6 +82,7 @@ export default{
         }).catch(function() {
           // Handle error
         });
+        console.log(this.token);
           this.$router.replace(this.nextRoute);
         }
       }
