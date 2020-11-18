@@ -6,8 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user:null,
-    signup:null,
-    token:null,
+    signup:null
   },
   mutations: {
     updateUser(state,{user}){
@@ -15,9 +14,6 @@ export default new Vuex.Store({
     },
     signupflow(state,data){
       state.signup = {...state.signup,...data}
-    },
-    tokenChange(state,data){
-      state.taken= {...state.token,...data}
     }
   },
   getters:{
