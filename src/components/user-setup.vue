@@ -63,11 +63,7 @@ export default{
         else{
           try {
             const resp = await firebase.auth().createUserWithEmailAndPassword(email,password)
-           console.log(resp)
-            firebase.auth().onAuthStateChanged(async function(user) {
-        if (user) {
-    // User is signed in.
-    const {data} =await  axios.post('/signup/setup',{
+            const {data} =await  axios.post('/signup/setup',{
                 firstname:p.$store.state.fname ,// lastname, uid , phone dateOfBirth email 
                 lastname:p.$store.state.lname,
                 uid:user.uid,
@@ -75,18 +71,13 @@ export default{
                 dateOfBirth:p.$store.state.dob,
                 email:p.$store.state.email,
             })
-           
-            console.log(data)
-       //     this.$router.push('/login')
-        } else {
-    // No user is signed in.
-          }
-              });
-            
-
-          } catch (error) {
+            } catch (error) {
             this.error = error.message
           }
+           
+            
+
+          
           
         } 
       }

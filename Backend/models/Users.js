@@ -97,6 +97,7 @@ userSchema.statics.comparePassword = async function (email, candidatePassword) {
   let user = await User.findOne({
     email: email
   });
+  console.log(user)
   if (!user) {
     throw new Error('No user found!');
   }
@@ -104,7 +105,8 @@ userSchema.statics.comparePassword = async function (email, candidatePassword) {
     const res = await bcrypt.compare(candidatePassword, user.password);
     return user;
   } catch (error) {
-    throw new Error('Please Authenticate!');
+   // throw new Error('Please Authenticate!');
+    return false
   }
 };
 const User = mongoose.model('User', userSchema);
