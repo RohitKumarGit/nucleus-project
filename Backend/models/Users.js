@@ -106,7 +106,7 @@ userSchema.statics.comparePassword = async function (email, candidatePassword) {
     return user;
   } catch (error) {
    // throw new Error('Please Authenticate!');
-    return false
+    return true
   }
 };
 const User = mongoose.model('User', userSchema);
