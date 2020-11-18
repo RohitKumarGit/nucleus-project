@@ -5,7 +5,8 @@
 </template>
 
 <script>
-
+import * as firebase from "firebase/app";
+import "firebase/auth";
 export default {
   name: 'App',
   data(){
@@ -17,10 +18,10 @@ export default {
   const idToken =await  firebase.auth().currentUser.getIdToken(true)
  
    
-  store.commit("updateUser", {
+  this.$store.commit("updateUser", {
     user
   });
-  store.commit("tokenChange",{
+  this.$store.commit("tokenChange",{
     idToken
   })
 });
