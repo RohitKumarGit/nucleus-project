@@ -103,6 +103,7 @@
 <script>
 import Navbar from './navbar';
 import axios from 'axios'
+
 export default{
   data () {
       return { isActive1:false,

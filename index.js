@@ -390,8 +390,11 @@ app.post('/signup/setup', async (req, res) => {
     res.status(400).send(e);
   }
 });
-app.use(verifyToken)
+const BuffetRouter = require('./Backend/routers/buffet')
+
 // put all routers which need authentication below this
+app.use(BuffetRouter)
+
 app.listen(port, function (err) {
   if (!err) {
     console.log("server is running at ", port)

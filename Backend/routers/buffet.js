@@ -71,12 +71,12 @@ router.patch('/buffet', firebase.verifyToken, async (req, res) => {
 //Slot Time
 router.patch('/buffet/reset', firebase.verifyToken, async (req, res) => {
   try {
-    var buffets = Buffet.find({});
-    buffets.foreach((buffet) => {
+    var buffets = await Buffet.find({});
+    buffets.foreach(async (buffet) => {
       var buffetType = buffet.slots[req.body.slotType].slot_details[req.body.slotTime];
       buffetType.totalPeople = 0;
       buffetType.bookedBy = [];
-      await buffet.save();
+      await buffets.save();
     });
     res.status().send()
   } catch (e) {

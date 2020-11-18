@@ -73,18 +73,10 @@ export default{
         };
     },
     watch:{
-      user(auth){
-        if(auth){
-          firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
-          this.$store.commit("tokenChange",{
-            idToken
-       })
-        }).catch(function() {
-          // Handle error
-        });
-        console.log(this.token);
+      token(){
+       
           this.$router.replace(this.nextRoute);
-        }
+        
       }
     },
     methods:{
