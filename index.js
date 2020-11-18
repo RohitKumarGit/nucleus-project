@@ -378,6 +378,7 @@ app.use(history({
 }));
 app.use('/', express.static(path.join(__dirname, 'dist')));
 app.post('/signup/setup', async (req, res) => {
+  console.log(req.body)
   const user = new User(req.body);
   try {
     await user.save();
@@ -385,6 +386,7 @@ app.post('/signup/setup', async (req, res) => {
       user
     });
   } catch (e) {
+    console.log(e)
     res.status(400).send(e);
   }
 });

@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: Date,
-    required: true
+   required: true
   },
   type: {
     default: 'Customer',
@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
   },
   documents: {
     type: String,
-    required: true
+  //  required: true
   },
   isVerified: {
     default: false,

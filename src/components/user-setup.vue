@@ -45,7 +45,7 @@ export default{
     },
     methods:{
       async register(){
-        const p = this;
+       
          const {email,password,cpassword} = this;
        this.$store.commit("signupflow",{
          email,password,cpassword
@@ -62,14 +62,16 @@ export default{
           
         else{
           try {
-            const user = await firebase.auth().createUserWithEmailAndPassword(email,password)
+            const {user} = await firebase.auth().createUserWithEmailAndPassword(email,password)
+            console.log(this.signup.fname)
+            console.log(user)
             await  axios.post('/signup/setup',{
-                firstname:p.$store.state.fname ,// lastname, uid , phone dateOfBirth email 
-                lastname:p.$store.state.lname,
+                firstname:this.signup.fname ,// lastname, uid , phone dateOfBirth email 
+                lastname:this.signup.lname,
                 uid:user.uid,
-                phone:p.$store.state.phone,
-                dateOfBirth:p.$store.state.dob,
-                email:p.$store.state.email,
+                phone:this.signup.phone,
+                dateOfBirth:this.signup.dob,
+                email:this.signup.email,
             })
             } catch (error) {
             this.error = error.message
