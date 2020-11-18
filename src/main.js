@@ -2,7 +2,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Vue from 'vue'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import {
+  BootstrapVue,
+  IconsPlugin
+} from 'bootstrap-vue'
 import './assets/app.scss'
 import 'bootstrap';
 import * as firebase from "firebase/app";
@@ -19,15 +22,14 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.auth().onAuthStateChanged(user=>{
-  store.commit("updateUser",{user});
+firebase.auth().onAuthStateChanged(user => {
+  store.commit("updateUser", {
+    user
+  });
 });
 Vue.use(BootstrapVue)
-
 Vue.use(IconsPlugin)
-
 Vue.config.productionTip = false
-
 new Vue({
   router,
   store,

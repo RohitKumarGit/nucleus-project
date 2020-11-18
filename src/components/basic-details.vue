@@ -41,6 +41,7 @@ for it then redirect to /signup/setup for authentication-->
 </div>
 </template>
 <script>
+
 export default {
    data(){
      return {

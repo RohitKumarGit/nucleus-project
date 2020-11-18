@@ -16,6 +16,7 @@ const Room = require('./Backend/models/Room');
 const Table_reserve = require('./Backend/models/Table_reserve');
 const Users = require('./Backend/models/Users');
 const AdminBro = require('admin-bro')
+const UserRouter = require('./Backend/routers/user')
 const AdminBroMongoose = require('@admin-bro/mongoose')
 const AdminBroExpressjs = require('@admin-bro/express');
 const User = require("./Backend/models/Users");
@@ -374,6 +375,17 @@ app.use(history({
   disableDotRule: false
 }));
 app.use('/', express.static(path.join(__dirname, 'dist')));
+app.post('/signup/setup', async (req, res) => {
+  const user = new User(req.body);
+  try {
+    await user.save();
+    res.status(201).send({
+      user
+    });
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
 app.use(verifyToken)
 // put all routers which need authentication below this
 app.listen(port, function (err) {

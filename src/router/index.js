@@ -14,7 +14,7 @@ import Table from '../components/table-reserve'
 import Table2 from '../components/table-reserve2'
 import Table3 from '../components/table-reserve3'
 import Room from '../components/room-service-main'
-import Error from '../components/error'
+
 import Buffet from '../components/Buffet'
 import store from '../store'
 
@@ -23,7 +23,7 @@ Vue.use(VueRouter)
 
 const routes = [{
     path: '/',
-    name: 'landing',
+    name: 'HelloWorld',
     component: Landing
   },
   {
