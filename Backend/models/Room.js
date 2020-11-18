@@ -12,10 +12,16 @@ const roomSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  vacant: {
-    type: Boolean,
-    default: false
-  },
+  Isvacant: [{
+    Date:{
+      type:Date,
+      default:Date.now,
+      required:true
+    },
+    vacant:
+    {type: Boolean,
+    default: false}
+  }],
 
 });
 const Room = mongoose.model('Room', roomSchema);
