@@ -73,6 +73,13 @@ export default{
     watch:{
       user(auth){
         if(auth){
+          firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
+          this.$store.commit("tokenChange",{
+            idToken
+       })
+        }).catch(function() {
+          // Handle error
+        });
           this.$router.replace(this.nextRoute);
         }
       }

@@ -48,7 +48,7 @@ export default{
        
          const {email,password,cpassword} = this;
        this.$store.commit("signupflow",{
-         email,password,cpassword
+         email
        })
        console.log(email,cpassword,password);
         if(this.password.length<6){
