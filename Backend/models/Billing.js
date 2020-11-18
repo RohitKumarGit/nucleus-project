@@ -11,10 +11,10 @@ const billingSchema = new mongoose.Schema({
       type: Schema.Types.ObjectId,
       ref: 'Order'
     }],
-    totalBill:{
-      type:Number,
-      default:0,
-      max:10000
+    totalBill: {
+      type: Number,
+      default: 0,
+      max: 10000
     }
   }
 

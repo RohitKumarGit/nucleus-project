@@ -2,8 +2,8 @@ const express = require('express');
 const Billing = require('../models/Billing');
 const User = require('../models/Users');
 const router = new express.Router();
-
-router.get('/bills', async (req, res) => {
+const firebase = require('../middlewares/firebase');
+router.get('/bills', firebase.verifyToken, async (req, res) => {
   try {
     var user = await User.findOne({
       uid: req.uid
