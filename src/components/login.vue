@@ -73,10 +73,10 @@ export default{
         };
     },
     watch:{
-      user(){
-       
+      user(auth){
+        if(auth){
           this.$router.replace(this.nextRoute);
-        
+        }
       }
     },
     methods:{

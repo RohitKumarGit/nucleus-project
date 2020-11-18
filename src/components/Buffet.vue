@@ -124,10 +124,6 @@ export default{
     onChange(event) {
             this.restaurant=event.target.value;
             axios.get('/buffet', {
-              headers: {
-                authorization: this.token
-              }
-            }, {
               params: {
                 name:this.restaurant,
               }
