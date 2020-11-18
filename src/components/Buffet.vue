@@ -16,9 +16,9 @@
       <div class="form-column col-12 col-md-7">
         <div>
           <label name="restaurant" class="chooseRest">Select your favorite restaurant</label>
-  <select name="restaurant" @change="onChange($event)" class="form-control" v-model="Restaurant" >
-   <option value="ABC">ABC</option>
-   <option value="XYZ">XYZ</option>
+  <select name="restaurant" @change="onChange($event)" class="form-control" v-model="restaurant" >
+   <option value="Hidden Mist">Hidden Mist</option>
+   <option value="Greem Papaya">Green Papaya</option>
 </select>
 </div>
   <div v-if="restaurant">
@@ -102,6 +102,7 @@
 
 <script>
 import Navbar from './navbar';
+import axios from 'axios'
 export default{
   data () {
       return { isActive1:false,
@@ -110,6 +111,7 @@ export default{
       restaurant: "",
       people:"",
       slots:"",
+      buffet:"",
       }
     },
     components:{
@@ -120,6 +122,17 @@ export default{
   methods: {
     onChange(event) {
             this.restaurant=event.target.value;
+            axios.get('/user', {
+              params: {
+                name:this.restaurant,
+              }
+            })
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+              console.log(error);
+            }); 
         }
   }
 }

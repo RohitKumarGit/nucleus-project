@@ -196,7 +196,6 @@ export default {
     font-weight: 700;
     background-image: linear-gradient(to right,$color-primary-light,$color-primary-dark);
     display:inline-block;
-    -webkit-background-clip:text;
     color:transparent;
     letter-spacing: 0.2rem;
     transition:all .2s;
@@ -524,7 +523,7 @@ export default {
     margin-top:1rem;
 }
 .numberpeople{
-    postion:absolute;
+    position:absolute;
     top:40rem;
     left:20rem;
 }
