@@ -73,7 +73,7 @@ export default{
         };
     },
     watch:{
-      token(){
+      user(){
        
           this.$router.replace(this.nextRoute);
         

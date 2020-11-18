@@ -22,16 +22,7 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.auth().onAuthStateChanged(async user => {
-  const idToken =await  firebase.auth().currentUser.getIdToken(true)
-  store.commit("tokenChange",{
-    idToken
-  })
-   
-  store.commit("updateUser", {
-    user
-  });
-});
+
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.config.productionTip = false
