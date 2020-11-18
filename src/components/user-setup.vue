@@ -3,7 +3,7 @@
           <h4 class="title text-center mt-4">
             User Setup
           </h4>
-          <form class="form-box px-3" >
+          <div class="form-box px-3" >
             <div class="form-input">
             <span><i class="far fa-user"></i></span>
               <input type="email"  placeholder="Enter your Email-id" v-model="email" required>
@@ -19,18 +19,17 @@
             <p v-if="error">{{error}}</p>
             <hr class="my-4">
               <div class="mb-3">
-                <button class="btn btn-block text-uppercase" @click="register()">
+                <b-button class="btn btn-block text-uppercase" @click.prevent="register">
                     Proceed
-                </button>
+                </b-button>
             </div>
-          </form>
+          </div>
 </div>
 </template>
 
 <script>
 import {mapState} from  'vuex'
-import * as firebase from "firebase/app";
-import "firebase/auth";
+import firebase from 'firebase'
 import axios from 'axios'
 export default{
     data () {
@@ -52,18 +51,23 @@ export default{
          email,password,cpassword
        })
        console.log(email,cpassword,password);
-        if(this.password.length<6)
+        if(this.password.length<6){
           this.error="Password length > 6";
-        else if(this.password!=this.cpassword)
-          this.error="Passwords don't match";
+        }
+          
+        else if(this.password!=this.cpassword){
+            this.error="Passwords don't match";
+        }
+          
+          
         else{
           try {
-            await firebase.auth().createUserWithEmailAndPassword(email,password)
-            this.$router.push('/login')
-            firebase.auth().onAuthStateChanged(function(user) {
+            const resp = await firebase.auth().createUserWithEmailAndPassword(email,password)
+           console.log(resp)
+            firebase.auth().onAuthStateChanged(async function(user) {
         if (user) {
     // User is signed in.
-    const {data} = axios.post('/signup/setup',{
+    const {data} =await  axios.post('/signup/setup',{
                 firstname:p.$store.state.fname ,// lastname, uid , phone dateOfBirth email 
                 lastname:p.$store.state.lname,
                 uid:user.uid,
@@ -71,7 +75,9 @@ export default{
                 dateOfBirth:p.$store.state.dob,
                 email:p.$store.state.email,
             })
+           
             console.log(data)
+       //     this.$router.push('/login')
         } else {
     // No user is signed in.
           }

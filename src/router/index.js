@@ -66,9 +66,9 @@ const routes = [{
     path: '/user',
     name: 'User',
     component: User,
-    meta: {
-      authRequired: true
-    }
+    // meta: {
+    //   authRequired: true
+    // }
   },
   {
     path: '/local',
@@ -79,9 +79,9 @@ const routes = [{
     path: '/buffet',
     name: 'Buffet',
     component: Buffet,
-    meta: {
-      authRequired: true
-    }
+    // meta: {
+    //   authRequired: true
+    // }
   },
   {
     path: '/setup',
