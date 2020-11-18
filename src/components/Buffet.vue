@@ -15,12 +15,13 @@
       
       <div class="form-column col-12 col-md-7">
         <div>
-  <select name="Restaurant" @change="onChange($event)" class="form-control" v-model="Restaurant">
+          <label name="restaurant" class="chooseRest">Select your favorite restaurant</label>
+  <select name="restaurant" @change="onChange($event)" class="form-control" v-model="Restaurant" >
    <option value="ABC">ABC</option>
    <option value="XYZ">XYZ</option>
 </select>
-  <button v-on:click="Search">Populate List</button>
-</div>',
+</div>
+  <div v-if="restaurant">
         <div class="subscribtion free"  v-on:click="isActive3 = !isActive3,isActive2 = !isActive2" v-bind:class="{ hidden: isActive1 }">
             <h2>Morning Mania</h2>
             <p>Food to energize you for the day</p>
@@ -79,7 +80,7 @@
               <h1>7-8 pm</h1>
             </label>
             <input class="hidden radio-label" type="radio" name="2" id="7"/>
-            <label class="button-label" for="6">
+            <label class="button-label" for="7">
               <h1>8-9 pm</h1>
             </label>
             <input class="hidden radio-label" type="radio" name="2" id="8"/>
@@ -91,6 +92,7 @@
         <div class="next free-form btn"><i class="fas fa-glass-cheers"></i> Book Slot   </div>
         </form>
       </div>
+    </div>
     </div>
     </div>
   </div>
@@ -105,7 +107,7 @@ export default{
       return { isActive1:false,
       isActive2:false,
       isActive3:false,
-      restaurant: "ABC",
+      restaurant: "",
       people:"",
       slots:"",
       }
@@ -199,7 +201,7 @@ export default{
 .form-column {
   width: 100%;
   height: 40rem;
-  padding: 2rem;
+  padding: 1rem 2rem 0 2rem;
   float: right;
   background: #006a71;
   background: linear-gradient(45deg, #02929c 0%, #015c63 54%, #006a71 100%);
@@ -243,6 +245,11 @@ export default{
 }
 .subscribtion.active:nth-child(1) {
   margin-top: 0px;
+}
+.chooseRest{
+  font-size: 1.3rem;
+  letter-spacing: 0.3rem;
+  text-align: center;
 }
 .form {
   width: 100%;
@@ -350,7 +357,6 @@ export default{
 form div .button-label {
   display: inline-block;
   padding: 0.8em 2rem;
-  margin: 0.5em;
   cursor: pointer;
   border-radius: 0.25em;
   background: white;

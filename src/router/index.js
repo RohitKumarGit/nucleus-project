@@ -21,26 +21,20 @@ import store from '../store'
 
 Vue.use(VueRouter)
 
-  const routes = [
-    {
-      path: '/',
-      name: 'land',
-      component: Landing
-    },
-    {
-      path: '/book',
-      name: 'Book',
-      component: Book
-    },
-    {
-      path: '/edit',
-      name: 'EditProfile',
-      component: EditProfile
-    },
 const routes = [{
     path: '/',
     name: 'landing',
     component: Landing
+  },
+  {
+    path: '/book',
+    name: 'Book',
+    component: Book
+  },
+  {
+    path: '/edit',
+    name: 'EditProfile',
+    component: EditProfile
   },
   {
     path: '/login',
