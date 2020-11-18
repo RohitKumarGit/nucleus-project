@@ -265,53 +265,7 @@
                 </div>
             </section>
 
-            <section class="section-book">
-                <div class="row">
-                    <div class="book">
-                        <div class="book__form">
-                            <form action="#" class="form">
-                                <div class="u-margin-bottom-small">
-                                    <h2 class="heading-secondary booking-heading">
-                                        Start booking now
-                                    </h2>
-                                </div>
-
-                                <div class="form__group">
-                                    <input type="text" class="form__input" placeholder="Full name" id="name" required>
-                                    <label for="name" class="form__label">Full name</label>
-                                </div>
-
-                                <div class="form__group">
-                                    <input type="email" class="form__input" placeholder="Email address" id="email" required>
-                                    <label for="email" class="form__label">Email address</label>
-                                </div>
-
-                                <div class="form__group u-margin-bottom-medium">
-                                    <div class="form__radio-group">
-                                        <input type="radio" class="form__radio-input" id="small" name="size">
-                                        <label for="small" class="form__radio-label">
-                                            <span class="form__radio-button"></span>
-                                            Small tour group
-                                        </label>
-                                    </div>
-
-                                    <div class="form__radio-group">
-                                        <input type="radio" class="form__radio-input" id="large" name="size">
-                                        <label for="large" class="form__radio-label">
-                                            <span class="form__radio-button"></span>
-                                            Large tour group
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="form__group">
-                                    <button class="btn btn--blue">Next step &rarr;</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
+           
     </main>
     <footer class="footer">
             <div class="footer__logo-box">
@@ -412,11 +366,6 @@ export default {
     position: relative;
     padding: 15rem 0;
 }
-.section-book {
-    padding: 10rem 0;
-    background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
-}
-
 .book {
     background-image: linear-gradient(105deg, 
                                     rgba($color-white, .9) 0%,
@@ -813,103 +762,6 @@ animation-timing-function: ease-out;
     &:hover &__img {
         transform: translateX(-4rem) scale(1);
         filter: blur(3px) brightness(80%);
-    }
-}
-
-.form {
-    &__group:not(:last-child) {
-        margin-bottom: 1rem;
-    }
-
-    &__input {
-        font-size: 1rem;
-        font-family: inherit;
-        color: inherit;
-        padding: 1rem 1.5rem;
-        border-radius: 2px;
-        background-color: rbga($color-white, .5);
-        border: none;
-        border-bottom: 3px solid transparent;
-        width: 90%;
-        display: block;
-        transition: all .3s;
-
-        &:focus {
-            outline: none;
-            box-shadow: 0 1rem 2rem rgba($color-black, .1);
-            border-bottom: 3px solid $color-primary-dark;
-        }
-
-        &:focus:invalid {
-            border-bottom: 3px solid $color-secondary-dark;
-        }
-
-        &::-webkit-input-placeholder {
-            color: $color-grey-dark-2;
-        }
-    }
-
-
-    &__label {
-        font-size: 1rem;
-        font-weight: 700;
-        margin-left: 1.5rem;
-        margin-top: .5rem;
-        display: block;
-        transition: all .3s;
-    }
-
-    &__input:placeholder-shown + &__label {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-4rem);
-    }
-
-
-    &__radio-group {
-        width: 45%;
-        display: inline-block;
-    }
-
-    &__radio-input {
-        display: none;
-    }
-    
-    &__radio-label {
-        font-size: $default-font-size;
-        cursor: pointer;
-        position: relative;
-        padding-left: 2.5rem;
-    }
-
-    &__radio-button {
-        height: 2rem;
-        width: 2rem;
-        border: 5px solid $color-primary-dark;
-        border-radius: 50%;
-        display: inline-block;
-        position: absolute;
-        left: 0;
-        top: 0.25rem;
-
-        &::after {
-            content: "";
-            display: block;
-            height: 1.3rem;
-            width: 1.3rem;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: $color-primary-dark;
-            opacity: 0;
-            transition: opacity .2s;
-        }
-    }
-
-    &__radio-input:checked ~ &__radio-label &__radio-button::after {
-        opacity: 1;
     }
 }
 .card {

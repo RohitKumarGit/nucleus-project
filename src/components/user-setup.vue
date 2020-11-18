@@ -51,6 +51,7 @@ export default{
        this.$store.commit("signupflow",{
          email,password,cpassword
        })
+       console.log(email,cpassword,password);
         if(this.password.length<6)
           this.error="Password length > 6";
         else if(this.password!=this.cpassword)
