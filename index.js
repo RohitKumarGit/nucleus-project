@@ -4,6 +4,8 @@ const port = process.env.PORT || 8082;
 const mongoose = require("mongoose")
 const history = require('connect-history-api-fallback')
 var morgan = require('morgan')
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
 const {
   verifyToken
 } = require('./Backend/middlewares/firebase');
