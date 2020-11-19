@@ -392,9 +392,13 @@ app.post('/signup/setup', async (req, res) => {
 });
 const BuffetRouter = require('./Backend/routers/buffet')
 const RestaurantRouter = require('./Backend/routers/restaurant')
+const TableRouter = require('./Backend/routers/table')
+const RoomRouter = require('./Backend/routers/room')
 // put all routers which need authentication below this
 app.use(BuffetRouter)
 app.use(RestaurantRouter)
+app.use(TableRouter)
+app.use(RoomRouter)
 app.listen(port, function (err) {
   if (!err) {
     console.log("server is running at ", port)
