@@ -103,7 +103,7 @@
 <script>
 import Navbar from './navbar';
 import axios from 'axios'
-
+import {mapGetters} from  'vuex'
 export default{
   data () {
       return { isActive1:false,
@@ -120,10 +120,16 @@ export default{
   },
   mounted(){
   },
+  computed:{
+      ...mapGetters(["user"]),
+    },
   methods: {
     onChange(event) {
             this.restaurant=event.target.value;
             axios.get('/buffet', {
+              headers:{
+                token:this.user.ya,
+              },
               params: {
                 name:this.restaurant,
               }

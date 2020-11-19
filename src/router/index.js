@@ -34,7 +34,10 @@ const routes = [{
   {
     path: '/edit',
     name: 'EditProfile',
-    component: EditProfile
+    component: EditProfile,
+    meta: {
+      authRequired: true
+    }
   },
   {
     path: '/login',
@@ -66,42 +69,49 @@ const routes = [{
     path: '/user',
     name: 'User',
     component: User,
-    // meta: {
-    //   authRequired: true
-    // }
+    meta: {
+      authRequired: true
+    }
   },
   {
     path: '/local',
     name: 'Local',
     component: Local,
+    meta: {
+      authRequired: true
+    }
   },
   {
     path: '/buffet',
     name: 'Buffet',
     component: Buffet,
-    // meta: {
-    //   authRequired: true
-    // }
-  },
-  {
-    path: '/setup',
-    name: 'setup',
-    component: Setup,
-  },
-  {
-    path: '/table',
-    name: 'Table',
-    component: Table,
+    meta: {
+      authRequired: true
+    }
   },
   {
     path: '/table2',
+    name: 'Table',
+    component: Table,
+    meta: {
+      authRequired: true
+    }
+  },
+  {
+    path: '/table',
     name: 'Table2',
     component: Table2,
+    meta: {
+      authRequired: true
+    }
   },
   {
     path: '/table3',
     name: 'Table3',
     component: Table3,
+    meta: {
+      authRequired: true
+    }
   },
   {
     path: '/room',

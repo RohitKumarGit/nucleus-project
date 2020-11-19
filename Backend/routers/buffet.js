@@ -3,7 +3,7 @@ const Buffet = require('../models/Buffet');
 const Restaurant = require('../models/Restaurant');
 const router = new express.Router();
 const firebase = require('../middlewares/firebase');
-router.get('/buffet', firebase.verifyToken,async (req, res) => {
+router.get('/buffet', firebase.verifyToken, async (req, res) => {
   try {
     var restaurant = await Restaurant.findOne({
       name: req.body.name
@@ -76,7 +76,7 @@ router.patch('/buffet/reset', firebase.verifyToken, async (req, res) => {
       var buffetType = buffet.slots[req.body.slotType].slot_details[req.body.slotTime];
       buffetType.totalPeople = 0;
       buffetType.bookedBy = [];
-      await buffets.save();
+      await buffet.save();
     });
     res.status().send()
   } catch (e) {

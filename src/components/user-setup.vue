@@ -58,10 +58,9 @@ export default{
     methods:{
       async register(){
        
-         const {email,password,cpassword} = this;
+         const {email,password} = this;
        this.$store.commit("signupflow",{
          email       })
-       console.log(email,cpassword,password);
         if(this.password.length<6){
           this.error="Password length > 6";
         }

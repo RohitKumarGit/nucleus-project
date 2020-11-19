@@ -28,18 +28,6 @@ export default{
       ...mapGetters(["user"])
     },
     methods:{
- getCookie(cname) {
-  var name = cname + "=";
-  var c = decodeURIComponent(document.cookie);
-  //var ca = decodedCookie.split(';');
-  //console.log("what");
-    while (c.indexOf(name) != 0 ) {
-      c = c.substring(1);
-    }//console.log("what is happening");
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }return "";
-  }
   
 }
     ,
