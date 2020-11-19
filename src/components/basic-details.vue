@@ -28,10 +28,6 @@ for it then redirect to /signup/setup for authentication-->
               <span><i class="fas fa-phone-square"></i></span>
               <input v-model="phone" type="text" placeholder="Phone number" required>
               </div>
-               <div class="form-input">
-                 <span><i class="far fa-envelope"></i></span>
-              <input  v-model="email" type="email" placeholder="Enter your email" required>
-              </div>
          <div>
               <button type="submit" class="btn btn-block text-uppercase proceed" @click="proceed" >
                 Proceed
@@ -46,7 +42,6 @@ export default {
    data(){
      return {
        fname:"",
-      email:"",
       gender:"male",
       lname:"",
       phone:"",
@@ -58,10 +53,9 @@ export default {
    methods:{
      proceed(){
        // save to vuex
-       const {fname,email,gender,lname,phone,dob,} = this;
+       const {fname,gender,lname,phone,dob,} = this;
        this.$store.commit("signupflow",{
          fname,
-         email,
          gender,
          lname,
          dob,
