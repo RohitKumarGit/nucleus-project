@@ -23,9 +23,9 @@
             </div>
             <p v-if="error">{{error}}</p>
             <div class="mb-3">
-              <button class="text-uppercase" @click="login()">
+              <b-button class="text-uppercase" @click="login()">
                 Login
-              </button>
+              </b-button>
             </div>
 
             <div class="text-right">
@@ -55,15 +55,14 @@
 import SignupLogin from '../views/SignupLogin'
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import {mapState} from  'vuex'
 import { mapGetters } from "vuex";
+//import {mapState} from  'vuex'
 export default{
-  computed : {
+    computed : {
       ...mapGetters(["user"]),
       nextRoute() {
         return  this.$route.query.redirect || "/user";
-      },
-      ...mapState(['token'])
+      }
     },
     data () {
         return {
@@ -73,24 +72,48 @@ export default{
         };
     },
     watch:{
-      user(auth){
+       user(auth){
         if(auth){
           this.$router.replace(this.nextRoute);
         }
       }
     },
     methods:{
-      login(){
+      login(){var token;
           firebase
           .auth()
           .signInWithEmailAndPassword(this.email, this.password)
           .then( user =>{
             console.log(user);
+            console.log(this.email);
+document.cookie = "token ="+token+", email="+this.email;
+console.log(document.cookie);
+            //console.log(firebase.auth().currentUser);
           })
           .catch(error=>{
             this.error=error.message;
           });
+          firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+  // Send token to your backend via HTTPS
+token=idToken;
+       //document.cookie = {token:idToken, email:this.email};
+       //this.$store.commit("token",token);
+       //console.log(token);
+      console.log("hi");
+     //console.log(firebase.auth().currentUser.email);
+}).catch(function(error) {
+  // Handle error
+  console.log(error);
+});
+  } else {
+    // No user is signed in.
+  }
+});
       }
+    
     },
     components:{
     SignupLogin,

@@ -123,7 +123,7 @@ export default{
   methods: {
     onChange(event) {
             this.restaurant=event.target.value;
-            axios.get('/user', {
+            axios.get('/buffet', {
               params: {
                 name:this.restaurant,
               }

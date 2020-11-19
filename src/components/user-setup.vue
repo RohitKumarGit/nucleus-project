@@ -48,8 +48,7 @@ export default{
        
          const {email,password,cpassword} = this;
        this.$store.commit("signupflow",{
-         email,password,cpassword
-       })
+         email       })
        console.log(email,cpassword,password);
         if(this.password.length<6){
           this.error="Password length > 6";
@@ -73,6 +72,7 @@ export default{
                 dateOfBirth:this.signup.dob,
                 email:this.signup.email,
             })
+            
             } catch (error) {
             this.error = error.message
           }
