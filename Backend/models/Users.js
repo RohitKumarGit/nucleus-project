@@ -23,14 +23,14 @@ const userSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: Date,
-   required: true
+    required: true
   },
   type: {
     default: 'Customer',
     type: String,
     enum: ['Customer', 'Reception', 'Manager', 'Restaurant Owner']
   },
- 
+
   email: {
     type: String,
     validate: {
@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
   },
   documents: {
     type: String,
-  //  required: true
+    //  required: true
   },
   isVerified: {
     default: false,
@@ -105,7 +105,7 @@ userSchema.statics.comparePassword = async function (email, candidatePassword) {
     const res = await bcrypt.compare(candidatePassword, user.password);
     return user;
   } catch (error) {
-   // throw new Error('Please Authenticate!');
+    // throw new Error('Please Authenticate!');
     return false
   }
 };
