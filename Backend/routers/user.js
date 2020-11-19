@@ -23,7 +23,7 @@ router.get('/user', async (req, res) => {
 });
 
 router.patch('/editprofile', async (req, res) => {
-  const user = await User.findOne({
+  var user = await User.findOne({
     uid: req.uid
   });
   const updates = Object.keys(req.body)
@@ -45,7 +45,7 @@ router.patch('/editprofile', async (req, res) => {
 
 router.delete('/checkout', async (req, res) => {
   try {
-    const user = await User.findOne({
+    var user = await User.findOne({
       uid: req.uid
     });
     await user.remove();
