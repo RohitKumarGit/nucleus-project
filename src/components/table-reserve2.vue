@@ -18,7 +18,7 @@
                   <h5 class="select">Select your favourite Restaurant to dine from : </h5>
                   <b-form class="form-box px-3">
                   <div class="form-input">
-                    <select name="restaurant"  class="form-control" v-model="restaurant" placeholder="Select restaurant">
+                    <select name="restaurant"  class="form-control" v-model="restaurantName" placeholder="Select restaurant">
                       <option value="Hidden Mist">Hidden Mist</option>
                       <option value="Green Papaya">Green Papaya</option>
                     </select>
@@ -51,7 +51,8 @@ Navbar
 	},
   data(){
     return {
-      restaurant:null,
+      restaurantName:"",
+      location:null,
       error:null,
     };
   },
@@ -61,28 +62,31 @@ Navbar
   methods:{
     submit(){
       
-      if(this.restaurant)
-      { 
-        console.log(this.restaurant);
-        axios.get("/vacancy", {
+      if(this.restaurantName)
+      { const helper=this.restaurantName;
+      const helper2=this;
+        console.log(this.restaurantName);
+        axios.get("/location", {
           headers: {
             authorization: this.user.ya,
           },
           params: {
-            name: this.restaurant,
+            name: this.restaurantName,
           },
         })
         .then(function (response) {
-          console.log(response);
-      //  this.$store.commit("restaurantStore",{
-      //    restaurant:restaurant
-      //  })
-      console.log("1");
+        console.log(response);
+        var location=response.data.location;
+        console.log(helper2);
+        helper2.$store.commit("restaurantStore",{
+         helper,
+         location,
+       })
         })
         .catch(function (error) {
-          console.log("2");
           console.log(error);
         });
+        console.log(this.restaurant);
         this.$router.push("/table2");
       }
       else{
