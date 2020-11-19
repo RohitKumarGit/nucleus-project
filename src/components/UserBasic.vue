@@ -4,7 +4,7 @@
       <Navbar></Navbar>
       <br>
       <div class="contents">
-        <span>Welcome {{user.email}} !</span>
+        <span>Welcome {{getCookie("email")}} !</span>
       <div class="row">
         <div class="box col-12 col-lg-6 ">
       <Services></Services>
@@ -26,6 +26,22 @@ export default{
   computed : {
       ...mapGetters(["user"])
     },
+    methods:{
+ getCookie(cname) {
+  var name = cname + "=";
+  var c = decodeURIComponent(document.cookie);
+  //var ca = decodedCookie.split(';');
+  //console.log("what");
+    while (c.indexOf(name) != 0 ) {
+      c = c.substring(1);
+    }//console.log("what is happening");
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }return "";
+  }
+  
+}
+    ,
     components:{
     "Services" :Services,
     "Navbar" :Navbar,
