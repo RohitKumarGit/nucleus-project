@@ -1,13 +1,15 @@
 const express = require('express');
 const Buffet = require('../models/Buffet');
 const Restaurant = require('../models/Restaurant');
-const router = new express.Router();
+const router =  express.Router();
 const firebase = require('../middlewares/firebase');
 router.get('/buffet', firebase.verifyToken,async (req, res) => {
   try {
+    
     var restaurant = await Restaurant.findOne({
-      name: req.body.name
+      name: req.query.name
     });
+    
     if (!restaurant) {
       throw new Error();
     }
@@ -17,6 +19,7 @@ router.get('/buffet', firebase.verifyToken,async (req, res) => {
     });
     res.send(buffet);
   } catch (error) {
+    console.log(error)
     res.send({
       error: "Cannot GET"
     });
