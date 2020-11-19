@@ -1,148 +1,214 @@
 <template>
-<div>
-  <Navbar></Navbar>
-  <div class="basic">
-   <div id="wrapper">
-    <div id="container">
-      <div class="row">
-      <div class="information-column col-12 col-md-5">
-        <div class="content">
+  <div>
+    <Navbar></Navbar>
+    <div class="basic">
+      <div id="wrapper">
+        <div id="container">
+          <div class="row">
+            <div class="information-column col-12 col-md-5">
+              <div class="content">
+                <h1>Choose a slot that suits you the best</h1>
+                <p>Avoid the Hassle in Buffets</p>
+              </div>
+            </div>
 
-          <h1>Choose a slot that suits you the best</h1>
-          <p>Avoid the Hassle in Buffets</p>
+            <div class="form-column col-12 col-md-7">
+              <div>
+                <label name="restaurant" class="chooseRest"
+                  >Select your favorite restaurant</label
+                >
+                <select name="restaurant"  @change="onChange($event)"  class="form-control" v-model="restaurant" >
+                  <option value="Hidden Mist">Hidden Mist</option>
+                  <option value="Green Papaya">Green Papaya</option>
+                </select>
+              </div>
+              <div v-if="restaurant">
+                <div class="subscribtion free" v-on:click="(isActive3 = !isActive3), (isActive2 = !isActive2)"  v-bind:class="{ hidden: isActive1 }">
+                  <h2>Morning Mania</h2>
+                  <p>Food to energize you for the day</p>
+                </div>
+
+                <div
+                  class="subscribtion family"
+                  v-on:click="
+                    (isActive3 = !isActive3), (isActive1 = !isActive1)
+                  "
+                  v-bind:class="{ hidden: isActive2 }"
+                >
+                  <h2>Lovely Lunch</h2>
+                  <p>Enjoy multi-cuisine food</p>
+                </div>
+
+                <div
+                  class="subscribtion premium"
+                  v-on:click="
+                    (isActive1 = !isActive1), (isActive2 = !isActive2)
+                  "
+                  v-bind:class="{ hidden: isActive3 }"
+                >
+                  <h2>Delightful Dinner</h2>
+                  <p>Authentic dishes from all over the world</p>
+                </div>
+
+                <form
+                  class="form"
+                  v-bind:class="{ active: isActive3 || isActive1 || isActive2 }"
+                >
+                  <label>Number of people</label>
+                  <input type="number" placeholder="0" v-model="people" />
+
+                  <label class="payment free-form">Slot timing</label>
+                  <br />
+
+                  <div class="container">
+                    <div class="bform" v-bind:class="{ hidden: isActive1 }">
+                      <input
+                        class="hidden radio-label"
+                        type="radio"
+                        name="0"
+                        id="0"
+                        checked="checked"
+                      />
+                      <label class="button-label" for="0">
+                        <h1>8-9 am</h1>
+                      </label>
+                      <input
+                        class="hidden radio-label"
+                        type="radio"
+                        name="0"
+                        id="1"
+                      />
+                      <label class="button-label" for="1">
+                        <h1>9-10 am</h1>
+                      </label>
+                      <input
+                        class="hidden radio-label"
+                        type="radio"
+                        name="0"
+                        id="2"
+                      />
+                      <label class="button-label" for="2">
+                        <h1>10-11 am</h1>
+                      </label>
+                    </div>
+                    <div class="lform" v-bind:class="{ hidden: isActive2 }">
+                      <input
+                        class="hidden radio-label"
+                        type="radio"
+                        name="1"
+                        id="3"
+                        checked="checked"
+                      />
+                      <label class="button-label" for="3">
+                        <h1>12-1 pm</h1>
+                      </label>
+                      <input
+                        class="hidden radio-label"
+                        type="radio"
+                        name="1"
+                        id="4"
+                      />
+                      <label class="button-label" for="4">
+                        <h1>1-2 pm</h1>
+                      </label>
+                      <input
+                        class="hidden radio-label"
+                        type="radio"
+                        name="1"
+                        id="5"
+                      />
+                      <label class="button-label" for="5">
+                        <h1>2-3 pm</h1>
+                      </label>
+                    </div>
+                    <div class="dform" v-bind:class="{ hidden: isActive3 }">
+                      <input
+                        class="hidden radio-label"
+                        type="radio"
+                        name="2"
+                        id="6"
+                        checked="checked"
+                      />
+                      <label class="button-label" for="6">
+                        <h1>7-8 pm</h1>
+                      </label>
+                      <input
+                        class="hidden radio-label"
+                        type="radio"
+                        name="2"
+                        id="7"
+                      />
+                      <label class="button-label" for="7">
+                        <h1>8-9 pm</h1>
+                      </label>
+                      <input
+                        class="hidden radio-label"
+                        type="radio"
+                        name="2"
+                        id="8"
+                      />
+                      <label class="button-label" for="8">
+                        <h1>9-10 pm</h1>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="next free-form btn">
+                    <i class="fas fa-glass-cheers"></i> Book Slot
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      
-      <div class="form-column col-12 col-md-7">
-        <div>
-          <label name="restaurant" class="chooseRest">Select your favorite restaurant</label>
-  <select name="restaurant" @change="onChange($event)" class="form-control" v-model="restaurant" >
-   <option value="Hidden Mist">Hidden Mist</option>
-   <option value="Greem Papaya">Green Papaya</option>
-</select>
-</div>
-  <div v-if="restaurant">
-        <div class="subscribtion free"  v-on:click="isActive3 = !isActive3,isActive2 = !isActive2" v-bind:class="{ hidden: isActive1 }">
-            <h2>Morning Mania</h2>
-            <p>Food to energize you for the day</p>
-        </div>
-
-        <div class="subscribtion family" v-on:click="isActive3 = !isActive3,isActive1 = !isActive1" v-bind:class="{ hidden: isActive2 }">
-            <h2>Lovely Lunch</h2>
-            <p>Enjoy multi-cuisine food</p>
-        </div>
-
-        <div class="subscribtion premium" v-on:click="isActive1 = !isActive1,isActive2 = !isActive2 " v-bind:class="{ hidden: isActive3 }">
-            <h2>Delightful Dinner</h2>
-            <p>Authentic dishes from all over the world </p>
-        </div>
-        
-      <form class="form" v-bind:class="{ active: isActive3||isActive1||isActive2}">
-          
-          <label>Number of people</label>
-          <input type="number" placeholder="0" v-model="people">
-        
-          <label class="payment free-form">Slot timing</label>
-          <br>
-
-        <div class="container">
-          <div class="bform"  v-bind:class="{ hidden: isActive1}"> 
-            <input class="hidden radio-label" type="radio" name="0" id="0" checked="checked"/>
-            <label class="button-label" for="0">
-              <h1>8-9 am</h1>
-            </label>
-            <input class="hidden radio-label" type="radio" name="0" id="1"/>
-            <label class="button-label" for="1">
-              <h1>9-10 am</h1>
-            </label>
-            <input class="hidden radio-label" type="radio" name="0" id="2"/>
-            <label class="button-label" for="2">
-              <h1>10-11 am</h1>
-            </label>
-          </div>
-          <div class="lform"  v-bind:class="{ hidden: isActive2}"> 
-            <input class="hidden radio-label" type="radio" name="1" id="3" checked="checked"/>
-            <label class="button-label" for="3">
-              <h1>12-1 pm</h1>
-            </label>
-            <input class="hidden radio-label" type="radio" name="1" id="4"/>
-            <label class="button-label" for="4">
-              <h1>1-2 pm</h1>
-            </label>
-            <input class="hidden radio-label" type="radio" name="1" id="5"/>
-            <label class="button-label" for="5">
-              <h1>2-3 pm</h1>
-            </label>
-          </div>
-          <div class="dform"  v-bind:class="{ hidden: isActive3}"> 
-            <input class="hidden radio-label" type="radio" name="2" id="6" checked="checked"/>
-            <label class="button-label" for="6">
-              <h1>7-8 pm</h1>
-            </label>
-            <input class="hidden radio-label" type="radio" name="2" id="7"/>
-            <label class="button-label" for="7">
-              <h1>8-9 pm</h1>
-            </label>
-            <input class="hidden radio-label" type="radio" name="2" id="8"/>
-            <label class="button-label" for="8">
-              <h1>9-10 pm</h1>
-            </label>
-          </div>
-        </div>
-        <div class="next free-form btn"><i class="fas fa-glass-cheers"></i> Book Slot   </div>
-        </form>
-      </div>
-    </div>
-    </div>
     </div>
   </div>
-  </div>
-</div>
 </template>
 
 <script>
-import Navbar from './navbar';
-import axios from 'axios'
-import {mapGetters} from  'vuex'
-export default{
-  data () {
-      return { isActive1:false,
-      isActive2:false,
-      isActive3:false,
+import Navbar from "./navbar";
+import axios from "axios";
+import { mapGetters } from "vuex";
+export default {
+  data() {
+    return {
+      isActive1: false,
+      isActive2: false,
+      isActive3: false,
       restaurant: "",
-      people:"",
-      slots:"",
-      buffet:"",
-      }
-    },
-    components:{
-    "Navbar" :Navbar,
+      people: "",
+      slots: "",
+      buffet: "",
+    };
   },
-  mounted(){
+  components: {
+    Navbar: Navbar,
   },
-  computed:{
-      ...mapGetters(["user"]),
-    },
+  mounted() {},
+  computed: {
+    ...mapGetters(["user"]),
+  },
   methods: {
     onChange(event) {
-            this.restaurant=event.target.value;
-            axios.get('/buffet', {
-              headers:{
-                authorization:this.user.ya,
-              },
-              params: {
-                name:this.restaurant,
-              }
-            })
-            .then(function (response) {
-              console.log(response);
-            })
-            .catch(function (error) {
-              console.log(error);
-            }); 
-        }
-  }
-}
+      this.restaurant = event.target.value;
+      axios
+        .get("/buffet", {
+          headers: {
+           authorization: this.user.ya,
+          },
+          params: {
+            name: this.restaurant,
+          },
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -163,14 +229,14 @@ export default{
 }
 
 #wrapper {
-  margin-top:5rem;
+  margin-top: 5rem;
   width: 90%;
-  max-width:80rem;
-} 
+  max-width: 80rem;
+}
 
 #container {
   width: 85%;
-  height:40rem ;
+  height: 40rem;
   margin: 0 auto;
   box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.2);
   -webkit-border-radius: 5px;
@@ -181,7 +247,7 @@ export default{
 .information-column {
   width: 100%;
   max-height: 40rem;
-  min-height:20rem;
+  min-height: 20rem;
   overflow: hidden;
   float: left;
   position: relative;
@@ -189,14 +255,19 @@ export default{
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  padding:0;
+  padding: 0;
 }
 
 .content {
   width: 100%;
   height: 100%;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(3, 118, 153, 0.5) 0%, rgba(227, 228, 232, 0.3) 0%, rgba(214, 215, 219, 0.8) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(3, 118, 153, 0.5) 0%,
+    rgba(227, 228, 232, 0.3) 0%,
+    rgba(214, 215, 219, 0.8) 100%
+  );
 }
 .content h1 {
   width: 100%;
@@ -229,7 +300,7 @@ export default{
 
 .subscribtion {
   width: 100%;
-  font-size:1.1rem;
+  font-size: 1.1rem;
   overflow: hidden;
   padding: 12px;
   margin-bottom: 24px;
@@ -266,7 +337,7 @@ export default{
 .subscribtion.active:nth-child(1) {
   margin-top: 0px;
 }
-.chooseRest{
+.chooseRest {
   font-size: 1.3rem;
   letter-spacing: 0.3rem;
   text-align: center;
@@ -294,7 +365,7 @@ export default{
   margin-bottom: 12px;
   font-size: 0.8em;
   letter-spacing: 1px;
-  color:white;
+  color: white;
 }
 .form input::-webkit-input-placeholder {
   color: #70e1e9;
@@ -304,14 +375,14 @@ export default{
   transition: 0.2s ease-in-out;
 }
 .form input::-moz-placeholder {
-  color:#70e1e9;
+  color: #70e1e9;
   -webkit-transition: 0.2s ease-in-out;
   -moz-transition: 0.2s ease-in-out;
   -o-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
 }
 .form input:-ms-input-placeholder {
-  color:#70e1e9;
+  color: #70e1e9;
   -webkit-transition: 0.2s ease-in-out;
   -moz-transition: 0.2s ease-in-out;
   -o-transition: 0.2s ease-in-out;
@@ -356,9 +427,9 @@ export default{
   cursor: pointer;
   width: 100%;
 }
-.btn:hover{
+.btn:hover {
   box-shadow: 0px 5px 10px 5px rgb(34, 77, 85);
-  color:#006a71;
+  color: #006a71;
 }
 .free-form.hidden {
   height: 0;
@@ -384,14 +455,14 @@ form div .button-label {
   -webkit-transition: 0.3s;
   transition: 0.3s;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .button-label h1 {
   font-size: 1em;
   font-weight: 530;
-  color:#006a71;
+  color: #006a71;
   font-family: "Lato", sans-serif;
 }
 .button-label:hover {
@@ -400,16 +471,17 @@ form div .button-label {
 }
 .button-label:active {
   -webkit-transform: translateY(2px);
-          transform: translateY(2px);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0px -1px 0 rgba(0, 0, 0, 0.22);
+  transform: translateY(2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2),
+    inset 0px -1px 0 rgba(0, 0, 0, 0.22);
 }
 
-input[type="radio"]:checked+ .button-label{
+input[type="radio"]:checked + .button-label {
   background: #0c5155;
-  color:white;
+  color: white;
 }
-input[type="radio"]:checked + .button-label h1{
-  color:white;
+input[type="radio"]:checked + .button-label h1 {
+  color: white;
 }
 input[type="radio"]:checked + .button-label:hover {
   background: #056d72;
@@ -417,5 +489,4 @@ input[type="radio"]:checked + .button-label:hover {
 .hidden {
   display: none;
 }
-
 </style>

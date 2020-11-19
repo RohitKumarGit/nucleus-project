@@ -16,7 +16,7 @@ router.get('/menu', async (req, res) => {
 router.get('/vacancy', async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({
-      name: req.body.name,
+      name: req.query.name,
     });
     res.status(200).send({
       vacancy: restaurant.vacancy
