@@ -7,7 +7,6 @@ export default new Vuex.Store({
   state: {
     user:null,
     signup:null,
-    token:null
   },
   mutations: {
     updateUser(state,{user}){

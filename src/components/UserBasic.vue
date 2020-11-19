@@ -4,7 +4,8 @@
       <Navbar></Navbar>
       <br>
       <div class="contents">
-        <span>Welcome {{getCookie("email")}} !</span>
+        <span>Welcome {{user.email}} !</span>
+        <p>Token {{user.ya}} !</p>
       <div class="row">
         <div class="box col-12 col-lg-6 ">
       <Services></Services>

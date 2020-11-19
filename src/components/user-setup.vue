@@ -31,6 +31,7 @@
 import {mapState} from  'vuex'
 import firebase from 'firebase'
 import axios from 'axios'
+import { mapGetters } from "vuex";
 export default{
     data () {
         return {
@@ -41,7 +42,18 @@ export default{
         };
     },
     computed:{
-      ...mapState(['signup'])
+      ...mapState(['signup']),
+      ...mapGetters(["user"]),
+      nextRoute() {
+        return  this.$route.query.redirect || "/user";
+      }
+    },
+    watch:{
+       user(auth){
+        if(auth){
+          this.$router.replace(this.nextRoute);
+        }
+      }
     },
     methods:{
       async register(){

@@ -22,7 +22,9 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+firebase.auth().onAuthStateChanged((user)=>{
+  store.commit("updateUser",{user});
+});
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.config.productionTip = false
