@@ -88,6 +88,7 @@
 import Navbar from "./navbar.vue";
 import axios from "axios";
 import {mapState} from "vuex";
+import { mapGetters } from "vuex";
 export default {
   components: {
     Navbar,
@@ -101,6 +102,7 @@ export default {
   },
   computed:{
     ...mapState(["restaurant"]),
+    ...mapGetters(["user"]),
   },
   methods:{
     submit(){
@@ -108,13 +110,14 @@ export default {
       {
         console.log(this.restaurant);
         const helper2=this;
-        axios.get("/vacancy", {
+        axios.get("/location", {
           headers: {
             authorization: this.user.ya,
           },
           params: {
             name: this.restaurant.restaurantName,
-            
+            time:this.datetime
+
           },
         })
         .then(function (response) {

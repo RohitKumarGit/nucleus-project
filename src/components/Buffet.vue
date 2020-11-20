@@ -27,7 +27,7 @@
                           Check Slot
                         </b-button>
               </div>
-              <p v-if="error">{{error}}</p>
+              
               <div v-if="buffet">
                 <p>Checking Buffet Availability for {{restaurantName}} </p>
                 <div class="subscribtion free" v-on:click="(isActive3 = !isActive3), (isActive2 = !isActive2)"  v-bind:class="{ hidden: isActive1 }">
@@ -63,19 +63,20 @@
                 >
                   <label name="people" class="chooseRest">Number of people</label>
                 <br>
-                  <input type="number" name="people" placeholder="1" min="1" max="50" v-model="people" width="100%"  default="1" />
+                  <input type="number" name="people" placeholder="Select value" min="1" max="50" v-model="people" width="100%" />
 
                   <label class="payment free-form">Slot timing</label>
                   <br />
 
                   <div class="container">
-                    <div class="bform" v-bind:class="{ hidden: isActive1 }">
+                    <div class="bform" v-bind:class="{ hidden: isActive1}" >
                       <input
                         class="hidden radio-label"
                         type="radio"
                         name="0"
                         id="0"
                         @change="onChange($event)"
+                        :disabled="Number(buffet.data.slots[0].slot_details[0].Limit) < Number(buffet.data.slots[0].slot_details[0].totalPeople) +Number(people)"
                       />
                       <label class="button-label" for="0">
                         <h1>8-9 am</h1>
@@ -86,6 +87,7 @@
                         name="0"
                         id="1"
                         @change="onChange($event)"
+                         :disabled="Number(buffet.data.slots[0].slot_details[1].Limit) < Number(buffet.data.slots[0].slot_details[1].totalPeople) +Number(people)"
                       />
 
                       <label class="button-label" for="1">
@@ -96,6 +98,7 @@
                         type="radio"
                         name="0"
                         id="2"
+                         :disabled="Number(buffet.data.slots[0].slot_details[2].Limit) < Number(buffet.data.slots[0].slot_details[2].totalPeople) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="2">
@@ -108,6 +111,7 @@
                         type="radio"
                         name="1"
                         id="3"
+                         :disabled="Number(buffet.data.slots[1].slot_details[0].Limit) < Number(buffet.data.slots[1].slot_details[0].totalPeople) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="3">
@@ -118,6 +122,7 @@
                         type="radio"
                         name="1"
                         id="4"
+                         :disabled="Number(buffet.data.slots[1].slot_details[1].Limit) < Number(buffet.data.slots[1].slot_details[1].totalPeople) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="4">
@@ -128,6 +133,7 @@
                         type="radio"
                         name="1"
                         id="5"
+                         :disabled="Number(buffet.data.slots[1].slot_details[2].Limit) < Number(buffet.data.slots[1].slot_details[2].totalPeople) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="5">
@@ -140,6 +146,7 @@
                         type="radio"
                         name="2"
                         id="6"
+                         :disabled="Number(buffet.data.slots[2].slot_details[0].Limit) < Number(buffet.data.slots[2].slot_details[0].totalPeople) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="6">
@@ -150,6 +157,7 @@
                         type="radio"
                         name="2"
                         id="7"
+                         :disabled="Number(buffet.data.slots[2].slot_details[1].Limit) < Number(buffet.data.slots[2].slot_details[1].totalPeople) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="7">
@@ -160,6 +168,7 @@
                         type="radio"
                         name="2"
                         id="8"
+                         :disabled="Number(buffet.data.slots[2].slot_details[2].Limit) < Number(buffet.data.slots[2].slot_details[2].totalPeople) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="8">
@@ -172,6 +181,7 @@
                   </div>
                 </b-form>
               </div>
+              <p v-if="error">{{error}}</p>
             </div>
           </div>
         </div>
@@ -191,7 +201,7 @@ export default {
       isActive2: false,
       isActive3: false,
       restaurantName: "",
-      people: "",
+      people:"1",
       slots: "",
       buffet: null,
       error:null,
@@ -224,8 +234,7 @@ export default {
         })
         .then(function (response) {
           console.log(response);
-          helper.buffet = response;
-          console.log(helper.buffet);
+          helper.buffet=response;
           helper.morning =helper.buffet.data.slots;
         })
         .catch(function (error) {
@@ -238,32 +247,26 @@ export default {
     },
     onChange(event) {
               this.selected= event.target;
-              console.log(this.selected);
           },
     submit(){
       const helper =this;
         try {
-          
-            console.log(helper.selected.name)
-            console.log(helper.selected.id)
-            console.log(this)
-            console.log(helper)
+            const val=helper.selected.id - helper.selected.name*3;
+            console.log(val);
               axios.post('/buffet',{
                 uid:this.user.uid,
                 name:this.restaurantName,
                 slotType:this.selected.name,
-                slotTime:this.selected.id,
+                slotTime:val,
                 number:this.people,
             }, {
                 headers: {
                         authorization: this.user.ya,
                         },
                     })
+                  helper.error ="Request Submitted Successfully";
+                  helper.buffet=null;
             } catch (error) {
-              console.log(helper.selected.name)
-            console.log(helper.selected.id)
-            console.log(helper.restaurantName)
-            console.log(helper.people)
             this.error = error.message
           }
     }
