@@ -16,16 +16,8 @@ const buffetSchema = new mongoose.Schema({
     },
     slot_details: [{
       time: {
-
-        starting: {
-          type: Date,
-          required: true
-        },
-
-        ending: {
-          type: Date,
-          required: true
-        },
+   type:Number,
+   required:true
       },
       Limit: {
         type: Number,
