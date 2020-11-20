@@ -19,7 +19,7 @@ router.get('/location', async (req, res) => {
       name: req.query.name,
     });
     res.status(200).send({
-      location: restaurant.location
+      location: restaurant.time_details[req.query.time].vacancy
     });
   } catch (e) {
     res.status(404).send();

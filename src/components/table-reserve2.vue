@@ -51,7 +51,8 @@ Navbar
 	},
   data(){
     return {
-      restaurantName:null,
+      restaurantName:"",
+      location:null,
       error:null,
     };
   },

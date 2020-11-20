@@ -60,7 +60,9 @@ import { mapGetters } from "vuex";
 export default{
     computed : {
       ...mapGetters(["user"]),
+  
       nextRoute() {
+        console.log("Hello");
         return  this.$route.query.redirect || "/user";
       }
     },
