@@ -18,7 +18,7 @@
                   <h5 class="select">Select your favourite Restaurant to dine from : </h5>
                   <b-form class="form-box px-3">
                   <div class="form-input">
-                    <select name="restaurant"  class="form-control" v-model="restaurant" placeholder="Select restaurant">
+                    <select name="restaurant"  class="form-control" v-model="restaurantName" placeholder="Select restaurant">
                       <option value="Hidden Mist">Hidden Mist</option>
                       <option value="Green Papaya">Green Papaya</option>
                     </select>
@@ -43,7 +43,7 @@
 
 <script>
 import Navbar from "./navbar.vue";
-import axios from "axios";
+// import axios from "axios";
 import { mapGetters } from "vuex";
 export default {
 components: {
@@ -51,7 +51,7 @@ Navbar
 	},
   data(){
     return {
-      restaurant:null,
+      restaurantName:null,
       error:null,
     };
   },
@@ -61,33 +61,38 @@ Navbar
   methods:{
     submit(){
       
-      if(this.restaurant)
-      { 
-        console.log(this.restaurant);
-        axios.get("/vacancy", {
-          headers: {
-            authorization: this.user.ya,
-          },
-          params: {
-            name: this.restaurant,
-          },
-        })
-        .then(function (response) {
-          console.log(response);
-      //  this.$store.commit("restaurantStore",{
-      //    restaurant:restaurant
+      // if(this.restaurantName)
+      // { const helper=this.restaurantName;
+      // const helper2=this;
+      //   console.log(this.restaurantName);
+      //   axios.get("/location", {
+      //     headers: {
+      //       authorization: this.user.ya,
+      //     },
+      //     params: {
+      //       name: this.restaurantName,
+      //     },
+      //   })
+      //   .then(function (response) {
+      //   console.log(response);
+      //   var location=response.data.location;
+      //   console.log(helper2);
+      //   helper2.$store.commit("restaurantStore",{
+      //    helper,
+      //    location,
       //  })
-      console.log("1");
-        })
-        .catch(function (error) {
-          console.log("2");
-          console.log(error);
-        });
-        this.$router.push("/table2");
-      }
-      else{
-        this.error="Please select a restaurant";
-      }
+      //  helper2.$router.push("/table2");
+      //   })
+      // }
+      // else{
+      //   this.error="Please select a restaurant";
+      // }
+      const {restaurantName} = this;
+       this.$store.commit("restaurantStore",{
+         restaurantName
+       })
+       console.log(this.restaurantName);
+       this.$router.push('/table2') 
     }
   }
 }

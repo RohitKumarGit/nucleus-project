@@ -86,6 +86,7 @@ export default{
           .then( user =>{
             console.log(user);
             //console.log(firebase.auth().currentUser);
+            this.$router.push("/user");
           })
           .catch(error=>{
             this.error=error.message;

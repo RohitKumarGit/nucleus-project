@@ -15,14 +15,14 @@
                 >
                   <div class="card-body">
                     <h3 class="title text-center mt-4">Table Reserve</h3>
-                    <form class="form-box px-3">
+                    <b-form class="form-box px-3">
                       <div class="form-input">
                         <span><i class="far fa-calendar-check"></i></span>
                         <input
                           placeholder="datetime"
                           class="textbox-n"
-                          type="datetime"
-                          onfocus="(this.type='date')"
+                          type="datetime-local"
+                          onfocus="(this.type='datetime-local')"
                           onfocusout="(this.type='text')"
                           id="date"
                           v-model="datetime"
@@ -34,7 +34,7 @@
                         <input
                           type="number"
                           name="person"
-                          placeholder="No. of persons"
+                          placeholder="No. of people"
                           min="1"
                           max="16"
                           v-model="people"
@@ -50,18 +50,29 @@
                           onfocus="(this.type='time')"
                           onfocusout="(this.type='text')"
                           id="duration"
+                          v-model="duration"
+                          min="01:00"
+                          max="04:00"
                           required
                         />
+                        <p>Duration ranges from 1 to 4 hrs</p>
                       </div>
+                      
                       <div class="mb-3">
-                        <button
-                          type="submit"
+                        <b-button
                           class="btn btn-block text-uppercase"
+                          @click="submit"
+                        >
+                          Check Availability
+                        </b-button>
+                        <b-button
+                          class="btn btn-block text-uppercase"
+                           @click="submit2"
                         >
                           Proceed
-                        </button>
+                        </b-button>
                       </div>
-                    </form>
+                    </b-form>
                   </div>
                 </div>
               </div>
@@ -75,6 +86,8 @@
 
 <script>
 import Navbar from "./navbar.vue";
+import axios from "axios";
+import {mapState} from "vuex";
 export default {
   components: {
     Navbar,
@@ -82,9 +95,48 @@ export default {
   data() {
     return {
       people:"",
-      time:"",
+      datetime:"",
+      duration:"",
     };
   },
+  computed:{
+    ...mapState(["restaurant"]),
+  },
+  methods:{
+    submit(){
+      if(this.people && this.duration && this.datetime)
+      {
+        console.log(this.restaurant);
+        const helper2=this;
+        axios.get("/vacancy", {
+          headers: {
+            authorization: this.user.ya,
+          },
+          params: {
+            name: this.restaurant.restaurantName,
+            
+          },
+        })
+        .then(function (response) {
+        console.log(response);
+        var location=response.data.location;
+        console.log(helper2);
+        helper2.$store.commit("restaurantStore",{
+         location,
+       })
+       helper2.$router.push("/table2");
+        })
+      }
+      else{
+        console.log(this.restaurant);
+        this.error="Please select all the fields restaurant";
+      }
+    },
+    submit2(){
+      console.log(this.restaurant.restaurantName);
+    }
+
+  }
 };
 </script>
 

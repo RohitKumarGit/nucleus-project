@@ -12,17 +12,24 @@
               </div>
             </div>
 
-            <div class="form-column col-12 col-md-7">
-              <div>
+            <div class="form-column col-12 col-md-7" >
+              <div v-if="!buffet">
                 <label name="restaurant" class="chooseRest"
-                  >Select your favorite restaurant</label
-                >
-                <select name="restaurant"  @change="onChange($event)"  class="form-control" v-model="restaurant" >
+                  >Select your favorite restaurant</label>
+                <select name="restaurant"   class="form-control" v-model="restaurantName" placeholder="Restaurant ">
                   <option value="Hidden Mist">Hidden Mist</option>
                   <option value="Green Papaya">Green Papaya</option>
                 </select>
+                  <b-button
+                          class="btn btn-block text-uppercase"
+                          @click="check"
+                        >
+                          Check Slot
+                        </b-button>
               </div>
-              <div v-if="restaurant">
+              <p v-if="error">{{error}}</p>
+              <div v-if="buffet">
+                <p>Checking Buffet Availability for {{restaurantName}} </p>
                 <div class="subscribtion free" v-on:click="(isActive3 = !isActive3), (isActive2 = !isActive2)"  v-bind:class="{ hidden: isActive1 }">
                   <h2>Morning Mania</h2>
                   <p>Food to energize you for the day</p>
@@ -50,12 +57,13 @@
                   <p>Authentic dishes from all over the world</p>
                 </div>
 
-                <form
+                <b-form
                   class="form"
                   v-bind:class="{ active: isActive3 || isActive1 || isActive2 }"
                 >
-                  <label>Number of people</label>
-                  <input type="number" placeholder="0" v-model="people" />
+                  <label name="people" class="chooseRest">Number of people</label>
+                <br>
+                  <input type="number" name="people" placeholder="1" min="1" max="50" v-model="people" width="100%"  default="1" />
 
                   <label class="payment free-form">Slot timing</label>
                   <br />
@@ -67,7 +75,7 @@
                         type="radio"
                         name="0"
                         id="0"
-                        checked="checked"
+                        @change="onChange($event)"
                       />
                       <label class="button-label" for="0">
                         <h1>8-9 am</h1>
@@ -77,7 +85,9 @@
                         type="radio"
                         name="0"
                         id="1"
+                        @change="onChange($event)"
                       />
+
                       <label class="button-label" for="1">
                         <h1>9-10 am</h1>
                       </label>
@@ -86,6 +96,7 @@
                         type="radio"
                         name="0"
                         id="2"
+                        @change="onChange($event)"
                       />
                       <label class="button-label" for="2">
                         <h1>10-11 am</h1>
@@ -97,7 +108,7 @@
                         type="radio"
                         name="1"
                         id="3"
-                        checked="checked"
+                        @change="onChange($event)"
                       />
                       <label class="button-label" for="3">
                         <h1>12-1 pm</h1>
@@ -107,6 +118,7 @@
                         type="radio"
                         name="1"
                         id="4"
+                        @change="onChange($event)"
                       />
                       <label class="button-label" for="4">
                         <h1>1-2 pm</h1>
@@ -116,6 +128,7 @@
                         type="radio"
                         name="1"
                         id="5"
+                        @change="onChange($event)"
                       />
                       <label class="button-label" for="5">
                         <h1>2-3 pm</h1>
@@ -127,7 +140,7 @@
                         type="radio"
                         name="2"
                         id="6"
-                        checked="checked"
+                        @change="onChange($event)"
                       />
                       <label class="button-label" for="6">
                         <h1>7-8 pm</h1>
@@ -137,6 +150,7 @@
                         type="radio"
                         name="2"
                         id="7"
+                        @change="onChange($event)"
                       />
                       <label class="button-label" for="7">
                         <h1>8-9 pm</h1>
@@ -146,16 +160,17 @@
                         type="radio"
                         name="2"
                         id="8"
+                        @change="onChange($event)"
                       />
                       <label class="button-label" for="8">
                         <h1>9-10 pm</h1>
                       </label>
                     </div>
                   </div>
-                  <div class="next free-form btn">
+                  <div class="next free-form btn" @click="submit">
                     <i class="fas fa-glass-cheers"></i> Book Slot
                   </div>
-                </form>
+                </b-form>
               </div>
             </div>
           </div>
@@ -175,10 +190,13 @@ export default {
       isActive1: false,
       isActive2: false,
       isActive3: false,
-      restaurant: "",
+      restaurantName: "",
       people: "",
       slots: "",
-      buffet: "",
+      buffet: null,
+      error:null,
+      selected:null,
+      morning:"",
     };
   },
   components: {
@@ -189,24 +207,66 @@ export default {
     ...mapGetters(["user"]),
   },
   methods: {
-    onChange(event) {
-      this.restaurant = event.target.value;
-      axios
+    check(){
+      if(this.restaurantName)
+      {
+        const helper=this;
+        this.error=null;
+        console.log(this.restaurantName);
+        axios
         .get("/buffet", {
           headers: {
            authorization: this.user.ya,
           },
           params: {
-            name: this.restaurant,
+            name: this.restaurantName,
           },
         })
         .then(function (response) {
           console.log(response);
+          helper.buffet = response;
+          console.log(helper.buffet);
+          helper.morning =helper.buffet.data.slots;
         })
         .catch(function (error) {
           console.log(error);
         });
+      }
+      else{
+        this.error="Please Fill All the fields";
+      }
     },
+    onChange(event) {
+              this.selected= event.target;
+              console.log(this.selected);
+          },
+    submit(){
+      const helper =this;
+        try {
+          
+            console.log(helper.selected.name)
+            console.log(helper.selected.id)
+            console.log(this)
+            console.log(helper)
+              axios.post('/buffet',{
+                uid:this.user.uid,
+                name:this.restaurantName,
+                slotType:this.selected.name,
+                slotTime:this.selected.id,
+                number:this.people,
+            }, {
+                headers: {
+                        authorization: this.user.ya,
+                        },
+                    })
+            } catch (error) {
+              console.log(helper.selected.name)
+            console.log(helper.selected.id)
+            console.log(helper.restaurantName)
+            console.log(helper.people)
+            this.error = error.message
+          }
+    }
   },
 };
 </script>

@@ -17,7 +17,7 @@ export default new Vuex.Store({
       state.signup = {...state.signup,...data}
     },
     restaurantStore(state,data){
-      state.restaurant= {...state.restaurant,...data}
+      state.restaurant = {...state.restaurant,...data}
     }
   },
   getters:{

@@ -5,7 +5,6 @@
       <br>
       <div class="contents">
         <span>Welcome {{user.email}} !</span>
-        <p>Token {{user.ya}} !</p>
       <div class="row">
         <div class="box col-12 col-lg-6 ">
       <Services></Services>

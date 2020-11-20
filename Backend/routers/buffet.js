@@ -26,7 +26,7 @@ router.get('/buffet', firebase.verifyToken, async (req, res) => {
   }
 });
 
-router.patch('/buffet', firebase.verifyToken, async (req, res) => {
+router.post('/buffet', firebase.verifyToken, async (req, res) => {
   try {
     var user = await User.findOne({
       uid: req.uid
