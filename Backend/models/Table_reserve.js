@@ -17,11 +17,8 @@ const table_reserveSchema = new mongoose.Schema({
             required: true
         },
         Time: {
-            type: Date,
+            type: Number,
             required: true,
-            default: Date.now,
-            max: +new Date() + 1 * 24 * 60 * 60 * 1000,
-            min: Date.now
         },
         Duration: {
             type: Number,

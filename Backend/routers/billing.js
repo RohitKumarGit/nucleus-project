@@ -6,7 +6,7 @@ const firebase = require('../middlewares/firebase');
 router.get('/bills', firebase.verifyToken, async (req, res) => {
   try {
     var user = await User.findOne({
-      uid: req.uid
+      uid: req.query.uid
     });
     var bill = await Billing.findOne({
       user_id: user._id

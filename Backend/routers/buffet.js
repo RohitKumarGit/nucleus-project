@@ -33,7 +33,7 @@ router.post('/buffet', firebase.verifyToken, async (req, res) => {
   try {
 
     var user = await User.findOne({
-      uid: req.uid
+      uid: req.body.uid
     });
     var restaurant = await Restaurant.findOne({
       name: req.body.name

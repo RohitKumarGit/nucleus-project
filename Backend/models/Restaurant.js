@@ -33,31 +33,32 @@ const RestaurantSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  time_details:[{
-  time_now:{
-    type:Number
-  },
-  table: [{
-    table_num: {
-      type: Number,
-      required: true
+  time_details: [{
+    time_now: {
+      type: Number
     },
-    table_size: {
+    table: [{
+      table_num: {
+        type: Number,
+        required: true
+      },
+      table_size: {
+        type: Number,
+        required: true,
+        min: 1
+      },
+      Is_reserved: {
+        type: Boolean,
+        required: true,
+        default: false
+      }
+    }],
+    vacancy: {
       type: Number,
       required: true,
-      min: 1
-    },
-    Is_reserved: {
-      type: Boolean,
-      required:true,
-      default:false
+      default: 100
     }
   }],
-  vacancy: {
-    type: Number,
-    required: true,
-    default:100
-  }}],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
@@ -70,9 +71,12 @@ var schedule = require('node-schedule');
 var rule = new schedule.RecurrenceRule();
 rule.hour = 0 // hour 0-23
 rule.minute = 0 // minute 0 - 59
-var j = schedule.scheduleJob(rule,async function(){
+var j = schedule.scheduleJob(rule, async function () {
   // do the reset here @Sujal :) Thanks - done
-  await Restaurant.updateMany({},{'time_details.table.Is_reserved':false,'time_details.vacancy':100})
+  await Restaurant.updateMany({}, {
+    'time_details.table.Is_reserved': false,
+    'time_details.vacancy': 100
+  })
   console.log("Reset of Restaurant done")
 })
 

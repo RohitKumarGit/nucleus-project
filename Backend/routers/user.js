@@ -17,7 +17,7 @@ router.post('/signup/setup', async (req, res) => {
 
 router.get('/user', async (req, res) => {
   const user = await User.findOne({
-    uid: req.uid
+    uid: req.query.uid
   });
   res.send(user);
 });
@@ -25,7 +25,7 @@ router.get('/user', async (req, res) => {
 router.delete('/checkout', async (req, res) => {
   try {
     var user = await User.findOne({
-      uid: req.uid
+      uid: req.body.uid
     });
     await user.remove();
     res.send(user);

@@ -5,10 +5,10 @@ const User = require('../models/Users');
 const router = new express.Router();
 const firebase = require('../middlewares/firebase');
 //Gets all the bookings made by an user and returns an array.
-router.get('/booking',firebase.verifyToken, async (req, res) => {
+router.get('/booking', firebase.verifyToken, async (req, res) => {
   try {
     var user = await User.findOne({
-      uid: req.uid
+      uid: req.query.uid
     });
     var booking = await Booking.find({
       user_id: user._id,
@@ -24,7 +24,7 @@ router.get('/booking',firebase.verifyToken, async (req, res) => {
 router.post('/booking', firebase.verifyToken, async (req, res) => {
   try {
     var user = await User.findOne({
-      uid: req.uid
+      uid: req.body.uid
     });
     var price = 0;
     var booking = new Booking(req.body);
