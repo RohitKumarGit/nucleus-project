@@ -33,30 +33,31 @@ const RestaurantSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  time_details:[{
-  time_now:{
-    type:Number
-  },
-  table: [{
-    table_num: {
+  time_details: [{
+    time_now: {
+      type: Number
+    },
+    table: [{
+      table_num: {
+        type: Number,
+        required: true
+      },
+      table_size: {
+        type: Number,
+        required: true,
+        min: 1
+      },
+      Is_reserved: {
+        type: Boolean,
+        required: true,
+        default: false
+      }
+    }],
+    vacancy: {
       type: Number,
       required: true
-    },
-    table_size: {
-      type: Number,
-      required: true,
-      min: 1
-    },
-    Is_reserved: {
-      type: Boolean,
-      required:true,
-      default:false
     }
   }],
-  vacancy: {
-    type: Number,
-    required: true
-  }}],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
