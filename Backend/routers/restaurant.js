@@ -13,7 +13,7 @@ router.get('/menu', async (req, res) => {
   }
 });
 
-router.get('/vacancy', async (req, res) => {
+router.get('/location', async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({
       name: req.query.name,
