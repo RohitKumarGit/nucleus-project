@@ -1,72 +1,100 @@
-<template><div>
+<template>
+<div>
 	<navbar/>
-<div id="maindiv">
-        <div class="container">
+    <div id="maindiv">
+      <div class="container">
         <div class="row">
-                <div class="col-lg-4 d-none d-lg-block left-div">
-               <!--  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                        <img class="d-block w-100" src="../assets/resort3.jpg" alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                        <img class="d-block w-100" src="../assets/resort5.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                        <img class="d-block w-100" src="../assets/resort6.jpg" alt="Third slide">
-                        </div>
-                    </div>
-                    </div> -->
-                    <img src="../assets/table.jpg">
+          <div class="col-lg-4 d-none d-lg-block left-div">
+            <img src="../assets/table.jpg">
+          </div>
+          <div class="col-lg-8 right-div">
+          <div class="outer-login">
+            <div class="row px-3">
+              <div class="col-sm-9 col-md-9 col-lg-10 card flex-row mx-auto px-0 form">
+                <div class="card-body">
+                  <h3 class="title text-center mt-4">
+                    Table Reserve
+                  </h3>
+                  <h5 class="select">Select your favourite Restaurant to dine from : </h5>
+                  <b-form class="form-box px-3">
+                  <div class="form-input">
+                    <select name="restaurant"  class="form-control" v-model="restaurantName" placeholder="Select restaurant">
+                      <option value="Hidden Mist">Hidden Mist</option>
+                      <option value="Green Papaya">Green Papaya</option>
+                    </select>
+                  </div>
+                  </b-form>
                 </div>
-                <div class="col-lg-8 right-div">
-                    <div class="outer-login">
-                             <div class="row px-3">
-                                <div class="col-sm-9 col-md-9 col-lg-10 card flex-row mx-auto px-0 form">
-<div class="card-body">
-          <h3 class="title text-center mt-4">
-            Table Reserve
-          </h3>
-          <h5 class="select">Select your favourite Restaurant to dine from : </h5>
-          <form class="form-box px-3">
-            <div class="form-input">
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Select Restaurant
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
+                <p v-if="error">{{error}}</p>
+                <div class="mb-3">
+                  <b-button type="submit" class="btn btn-block text-uppercase" @click="submit">
+                    Proceed
+                  </b-button>
+                </div>
+              </div>
             </div>
-            <div class="mb-3">
-              <button type="submit" class="btn btn-block text-uppercase">
-                Proceed
-              </button>
-            </div>
-          </form>
+          </div>
         </div>
- </div>
- </div>
- </div>
- </div>
- </div>
- </div>
- </div>
+      </div>
+    </div>
+  </div>
  </div>
 </template>
 
 <script>
 import Navbar from "./navbar.vue";
+// import axios from "axios";
+import { mapGetters } from "vuex";
 export default {
 components: {
 Navbar
 	},
   data(){
     return {
+      restaurantName:"",
+      location:null,
+      error:null,
     };
+  },
+  computed: {
+    ...mapGetters(["user"]),
+  },
+  methods:{
+    submit(){
+      
+      // if(this.restaurantName)
+      // { const helper=this.restaurantName;
+      // const helper2=this;
+      //   console.log(this.restaurantName);
+      //   axios.get("/location", {
+      //     headers: {
+      //       authorization: this.user.ya,
+      //     },
+      //     params: {
+      //       name: this.restaurantName,
+      //     },
+      //   })
+      //   .then(function (response) {
+      //   console.log(response);
+      //   var location=response.data.location;
+      //   console.log(helper2);
+      //   helper2.$store.commit("restaurantStore",{
+      //    helper,
+      //    location,
+      //  })
+      //  helper2.$router.push("/table2");
+      //   })
+      // }
+      // else{
+      //   this.error="Please select a restaurant";
+      // }
+      const {restaurantName} = this;
+       this.$store.commit("restaurantStore",{
+         restaurantName
+       })
+       console.log(this.restaurantName);
+       this.$router.push('/table2') 
+    }
   }
 }
 </script>

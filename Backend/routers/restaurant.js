@@ -5,7 +5,7 @@ const router = new express.Router();
 router.get('/menu', async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({
-      name: req.body.name,
+      name: req.query.name,
     });
     res.status(200).send(restaurant);
   } catch (e) {
@@ -16,10 +16,17 @@ router.get('/menu', async (req, res) => {
 router.get('/vacancy', async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({
-      name: req.body.name,
+      name: req.query.name,
     });
+    let x = "";
+    console.log(restaurant.time_details);
+    restaurant.time_details.forEach((y) => {
+      if (y.time_now == req.query.time) {
+        x = y.vacancy;
+      }
+    })
     res.status(200).send({
-      vacancy: restaurant.vacancy
+      vacancy: x
     });
   } catch (e) {
     res.status(404).send();

@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     user:null,
     signup:null,
+    restaurant:null,
   },
   mutations: {
     updateUser(state,{user}){
@@ -15,8 +16,8 @@ export default new Vuex.Store({
     signupflow(state,data){
       state.signup = {...state.signup,...data}
     },
-    storeToken(state,idToken){
-      state.token = {...state.token,...idToken}
+    restaurantStore(state,data){
+      state.restaurant = {...state.restaurant,...data}
     }
   },
   getters:{

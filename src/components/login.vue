@@ -60,7 +60,9 @@ import { mapGetters } from "vuex";
 export default{
     computed : {
       ...mapGetters(["user"]),
+  
       nextRoute() {
+        console.log("Hello");
         return  this.$route.query.redirect || "/user";
       }
     },
@@ -86,6 +88,7 @@ export default{
           .then( user =>{
             console.log(user);
             //console.log(firebase.auth().currentUser);
+            this.$router.push("/user");
           })
           .catch(error=>{
             this.error=error.message;

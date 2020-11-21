@@ -10,7 +10,7 @@
 			<div class="col-1-of-2 left-pane">
 				<img src="../assets/pic1.jpg" class="profile-pic">
 				<h1 class="heading-secondary name">
-					Ananya Kapoor
+				{{user.email}}
 				</h1>
 			</div>
 			<div class="col-1-of-2 right-pane">
@@ -21,19 +21,20 @@
           <form class="form-box px-3" >
             <div class="form-input">
             <span><i class="far fa-user"></i></span>
-              <input type="password"  placeholder="Current Password" v-model="email" required>
+              <input type="password"  placeholder="Current Password" v-model="password" required>
             </div>
             <div class="form-input">
               <span><i class="fa fa-key"></i></span>
-              <input type="password"  placeholder="New Password" required>
+              <input type="password"  placeholder="New Password" v-model="npassword" required>
             </div>
             <div class="form-input">
               <span><i class="fa fa-key"></i></span>
-              <input type="password" placeholder="Confirm Password" required>
+              <input type="password" placeholder="Confirm Password" v-model="cpassword" required>
             </div>
             <hr class="my-4">
+            <p v-if="error"></p>
               <div class="mb-3">
-                <button class="btn btn-block text-uppercase">
+                <button class="btn btn-block text-uppercase" @click="changePass">
                     Apply
                 </button>
             </div>
@@ -48,14 +49,50 @@
 
 <script>
 import Navbar from "./navbar.vue";
+import { mapGetters } from "vuex";
+// import firebase from 'firebase'
 export default {
 	components: {
 Navbar
 	},
   data(){
     return {
+      password:null,
+      npassword:null,
+      cpassword:null,
+      error:null,
     };
-  }
+  },
+  computed : {
+      ...mapGetters(["user"])
+    },
+    method:{
+      async changePass(){
+      //  const helper=this;
+        if(!(this.password.length && this.cpassword && this.npassword)){
+          this.error="Fill all the fields";
+        }
+        else if(this.npassword!=this.cpassword){
+            this.error="New Passwords don't match";
+        }
+        else{
+          try {
+        //     AuthCredential credentials = EmailAuthProvider
+        // .getCredential(helper2.user.email, helper2.);
+        //     console.log(user)
+            
+            } catch (error) {
+            this.error = error.message
+          }
+           
+            
+
+          
+          
+        } 
+    }
+    
+      }
 }
 </script>
 

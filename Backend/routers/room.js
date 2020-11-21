@@ -5,7 +5,7 @@ const router = new express.Router();
 router.get('/rooms', async (req, res) => {
   try {
     const room = await Room.findOne({
-      number: req.body.number,
+      number: req.query.number,
     });
     res.send(room);
   } catch (e) {
