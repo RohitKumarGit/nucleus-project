@@ -16,9 +16,6 @@ const table_reserveSchema = new mongoose.Schema({
             type: Number,
             required: true
         },
-        Children: {
-            type: Number
-        },
         Time: {
             type: Date,
             required: true,

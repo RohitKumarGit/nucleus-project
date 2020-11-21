@@ -36,9 +36,15 @@ router.post('/tablereserve', async (req, res) => {
     var restaurant = await Restaurant.findOne({
       name: req.body.restaurant_name
     });
-    var reserve = new Table(req.body);
+    var x = {
+      Adults: req.body.Adults,
+      Time: req.body.Time,
+      restaurant_id: restaurant_id,
+      Duration: req.body.Duration,
+      user_id: user._id
+    }
+    var reserve = new Table(x);
     reserve[user_id] = user._id;
-    reserve[restaurant_id] = restaurant._id;
     await reserve.save();
     res.send(reserve);
   } catch (e) {

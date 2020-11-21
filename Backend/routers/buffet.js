@@ -1,16 +1,16 @@
 const express = require('express');
 const Buffet = require('../models/Buffet');
 const Restaurant = require('../models/Restaurant');
-const User=require('../models/Users');
-const router =  express.Router();
+const User = require('../models/Users');
+const router = express.Router();
 const firebase = require('../middlewares/firebase');
 router.get('/buffet', firebase.verifyToken, async (req, res) => {
   try {
-    
+
     var restaurant = await Restaurant.findOne({
       name: req.query.name
     });
-    
+
     if (!restaurant) {
       throw new Error();
     }
@@ -31,7 +31,7 @@ router.get('/buffet', firebase.verifyToken, async (req, res) => {
 
 router.post('/buffet', firebase.verifyToken, async (req, res) => {
   try {
-    
+
     var user = await User.findOne({
       uid: req.uid
     });
@@ -47,12 +47,12 @@ router.post('/buffet', firebase.verifyToken, async (req, res) => {
     });
     //0 for 1st slot 1 for 2nd and 2 for 3rd --> slotTime
     var buffetType = buffet.slots[req.body.slotType].slot_details[req.body.slotTime];
- 
+
     if (buffetType.isAvailable) {
       var x = req.body.number;
       var y = buffetType.totalPeople;
       if (Number(y) + Number(x) <= Number(buffetType.Limit)) {
-       
+
         buffetType.bookedBy.push({
           user_id: user._id,
           number: req.body.number
@@ -69,8 +69,7 @@ router.post('/buffet', firebase.verifyToken, async (req, res) => {
     }
 
   } catch (e) {
-    console.log(e);
-    ;
+    console.log(e);;
   }
 });
 

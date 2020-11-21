@@ -27,7 +27,7 @@
           <h3 class="title text-center mt-4">
             Welcome to Desi Addicts
           </h3>
-          <form class="form-box px-3">
+          <b-form class="form-box px-3">
             <button type="button" class="btn btn-secondary">Show Food Menu</button>
             <h6 class="ques">Do You want to pre-order food as well?</h6>
             <label>&nbsp;&nbsp;<input type="radio" name="optradio" v-model="x" value="yes">&nbsp;&nbsp;Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -35,11 +35,11 @@
             <br>
             <button type="button" v-show="x==='yes'" class="btn btn-secondary">Select Food items</button>
             <div class="mb-3">
-              <button type="submit" class="btn btn-block text-uppercase">
+              <b-button type="submit" class="btn btn-block text-uppercase" @click.prevent="Book">
                 Reserve Table
-              </button>
+              </b-button>
             </div>
-          </form>
+          </b-form>
         </div>
  </div>
  </div>
@@ -53,6 +53,9 @@
 
 <script>
 import Navbar from "./navbar.vue";
+import axios from "axios";
+import { mapGetters } from "vuex";
+import {mapState} from  'vuex'
 export default {
 components: {
 Navbar
@@ -61,7 +64,34 @@ Navbar
     return {
       x:'no'
     };
-  }
+  },
+  methods:{
+    Book(){
+      const helper =this;
+          try {
+              axios.post('/tablereserve',{
+                uid:this.user.uid,
+                restaurant_name:this.restaurant.restaurantName,
+                Adults:this.restaurant.people,
+                Time:this.restaurant.time,
+                Duration:this.restaurant.duration,
+            }, {
+                headers: {
+                        authorization: this.user.ya,
+                        },
+                    })
+                  helper.error ="Request Submitted Successfully";
+                  helper.restaurant=null;
+            } catch (error) {
+            this.error = error.message
+          }
+        
+    }
+  },
+  computed: {
+    ...mapGetters(["user"]),
+    ...mapState(["restaurant"]),
+  },
 }
 </script>
 

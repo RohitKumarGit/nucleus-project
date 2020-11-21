@@ -19,10 +19,10 @@
                       <div class="form-input">
                         <span><i class="far fa-calendar-check"></i></span>
                         <input
-                          placeholder="datetime"
+                          placeholder="Select any time today in 24hr format"
                           class="textbox-n"
                           type="datetime-local"
-                          onfocus="(this.type='datetime-local')"
+                          onfocus="(this.type='number')"
                           onfocusout="(this.type='text')"
                           id="date"
                           v-model="datetime"
@@ -119,16 +119,27 @@ export default {
           },
           params: {
             name: this.restaurant.restaurantName,
-            time:this.duration
+            time:this.datetime
           },
         })
         .then(function (response) {
         console.log(response);
-        var location=response.data.location;
-        console.log(helper2);
-        helper2.$store.commit("restaurantStore",{
-         location,
+        var vacancy=response.data.vacancy;
+        console.log(vacancy);
+        console.log(helper2.people);
+        if(Number(vacancy)>Number(helper2.people)){
+          helper2.error="Table is Available";
+          helper2.$store.commit("restaurantStore",{
+        time:helper2.datetime,
+        people:helper2.people,
+        duration:helper2.duration
        })
+       console.log(helper2.restaurant);
+       helper2.$router.push("/table3");
+        }
+        else{
+          helper2.error="Tables are not vacant";
+        }
         })
       }
       else{
