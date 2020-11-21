@@ -7,7 +7,14 @@ var morgan = require('morgan')
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 const routers = require('./adminbro');
-
+// schedules
+var schedule = require('node-schedule');
+var rule = new schedule.RecurrenceRule();
+rule.hour = 0 // hour 0-23
+rule.minute = 0 // minute 0 - 59
+var j = schedule.scheduleJob(rule,function(){
+  // do the reset here @Sujal :) Thanks
+})
 
 
 
