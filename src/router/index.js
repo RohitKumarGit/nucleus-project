@@ -14,6 +14,7 @@ import Table from '../components/table-reserve'
 import Table2 from '../components/table-reserve2'
 import Table3 from '../components/table-reserve3'
 import Room from '../components/room-service-main'
+import checkout from '../components/checkout'
 
 import Buffet from '../components/Buffet'
 import store from '../store'
@@ -25,6 +26,11 @@ const routes = [{
     path: '/',
     name: 'HelloWorld',
     component: Landing
+  },
+  {
+    path: '/checkout',
+    name: 'checkout',
+    component: checkout
   },
   {
     path: '/book',

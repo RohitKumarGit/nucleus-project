@@ -47,10 +47,10 @@
 </template>
 
 <script>
-import Navbar from "./navbar.vue";
+import navbar from "./navbar.vue";
 export default {
 	components: {
-Navbar
+navbar
 	},
   data(){
     return {

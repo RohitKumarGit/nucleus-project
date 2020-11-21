@@ -143,7 +143,7 @@ export default{
 }
 
 #wrapper {
-  margin-top:5rem;
+  margin-top:1.5rem;
   width: 90%;
   max-width:80rem;
 } 

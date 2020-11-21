@@ -75,6 +75,9 @@ i {
 .navbar-mainbg{
 	background-color: #006a71;
 	padding: 0px;
+	/*position:fixed;
+	width:100vw;
+	z-index:9999;*/
 }
 #navbarSupportedContent{
 	position: relative;

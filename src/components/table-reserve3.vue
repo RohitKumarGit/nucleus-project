@@ -1,4 +1,5 @@
-<template><div>
+<template>
+  <div>
 	<navbar/>
 <div id="maindiv">
         <div class="container">
@@ -28,7 +29,7 @@
             Welcome to Desi Addicts
           </h3>
           <form class="form-box px-3">
-            <button type="button" class="btn btn-secondary">Show Food Menu</button>
+            <a href="#popup" class="btn btn-secondary" id="food-menu-button">Show Food Menu</a>
             <h6 class="ques">Do You want to pre-order food as well?</h6>
             <label>&nbsp;&nbsp;<input type="radio" name="optradio" v-model="x" value="yes">&nbsp;&nbsp;Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <label>&nbsp;&nbsp;<input type="radio" name="optradio" v-model="x" value="no">&nbsp;&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -46,6 +47,26 @@
  </div>
  </div>
  </div>
+ </div>
+ <div class="popup" id="popup">
+   <div class="popup__content">
+    <div class="container my-container">
+      <div class="row my-row">
+        <div class="col-lg-6 d-none d-lg-block my-col left-popup">
+        </div>
+        <div class="col-lg-6 col-md-12 my-col right-popup">
+        <div class="menu-card">
+          <h1 class="menu-heading">FOOD MENU</h1>
+          <h3 class="menu-card-content">MAIN DISHES</h3>
+          <h3 class="menu-card-content">SALADS</h3>
+          <h3 class="menu-card-content">DESSERTS</h3>
+          <h3 class="menu-card-content">DRINKS</h3>
+        </div>
+      <a href="#food-menu-button" class="popup__close">&times;</a>
+    </div>
+      </div>
+    </div>
+   </div>
  </div>
  </div>
  </div>
@@ -65,7 +86,7 @@ Navbar
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .ques
 {
   margin-top: 1.5rem;
@@ -211,5 +232,124 @@ img{
     justify-content: center;
     align-items: center;
     padding-bottom: 2rem;
+}
+
+.popup {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black, .8);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+
+    &__content {
+        @include absCenter;
+        width:80%;
+        height:40rem;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        border-radius: 3px;
+        display: table;
+        overflow: hidden;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.25);
+        transition: all .5s .2s;
+          background-image:linear-gradient(to right bottom,#cc2b5e ,#753a88);
+          padding:0.5rem;
+    }
+
+    &__text {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+
+        -moz-column-count: 2;
+        -moz-column-gap: 1rem; //1em = 14px;
+        -moz-column-rule: 1px solid $color-grey-light-2;
+
+        column-count: 2;
+        column-gap: 1rem; //1em = 14px;
+        column-rule: 1px solid $color-grey-light-2;
+
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+
+    //Open states
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    &__close {
+        &:link,
+        &:visited {
+            color: $color-grey-dark;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .2s;
+            line-height: 1;
+        }
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}
+.my-container
+{
+  height:90vh;
+  margin:2rem auto;
+  border-radius:5px;
+  overflow:hidden;
+  padding-left:1.1rem;;
+  background-image:linear-gradient(to right bottom,#ddd6f3,#faaca8);
+}
+.my-row
+{
+  width:100%;
+  height:100%;
+}
+.left-popup{
+  background-image:url(../assets/food.jpg);
+  background-size:cover;
+  background-position:center;
+  border-radius:5px;
+  box-shadow: 0 1rem 2rem rgba($color-black,.2);
+}
+.menu-card{
+  height:95%;
+  opacity:0.7;
+  background-color:white;
+  margin:1rem 0.75rem;
+  margin-left:1.2rem;
+  border-radius:5px;
+  box-shadow: 1rem 1rem 4rem #002225;
+  overflow-y:auto;
+}
+.my-col{
+padding:0.2rem;;
+height:100%;
+}
+.menu-heading
+{
+  margin-left:8rem;
+}
+.menu-card-content{
+  margin-left:1rem;
 }
 </style>

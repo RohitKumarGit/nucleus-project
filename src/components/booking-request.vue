@@ -15,45 +15,29 @@
                                     <label for="email" class="form__label">Email address</label>
                                 </div>
                              
-                                    <div class="u-center-text">
-                    <a href="#popup" class="btn-text">See all rooms &rarr;</a>
-                </div>
-                               <div class="row roomsrow">
+                                  <div class="row roomsrow">
                                 <div class="form__group col-1-of-4">
-                                    <input type="number" class="form__input" placeholder="Number of people" id="number" required min="1" max="3" v-model="rooms">
+                                    <input type="number" class="form__input roomno" placeholder="Number of rooms" required min="1" max="3" v-model="rooms" id="numberofrooms">
                                 </div>
-                                <div class="form__group roomtype col-1-of-4">
-                                    <select class="room-types" v-if="rooms==1||rooms==2||rooms==3" required>
-                                        <option value="0">R-1</option>
-                                        <option value="1">Queen</option>
-                                        <option value="2">King</option>
-                                        <option value="3">Executive Suite</option>
-                                        <option value="4">Cabana</option>
-                                    </select>
-                                </div>
-                                <div class="form__group roomtype col-1-of-4">
-                                    <select class="room-types" v-if="rooms==2||rooms==3" required>
-                                        <option value="0">R-2</option>
-                                        <option value="1">Queen</option>
-                                        <option value="2">King</option>
-                                        <option value="3">Executive Suite</option>
-                                        <option value="4">Cabana</option>
-                                    </select>
-                                </div>
-                                <div class="form__group roomtype col-1-of-4 thirdroom">
-                                    <select class="room-types" v-if="rooms==3" required>
-                                        <option value="0">R-3</option>
-                                        <option value="1">Queen</option>
-                                        <option value="2">King</option>
-                                        <option value="3">Executive Suite</option>
-                                        <option value="4">Cabana</option>
-                                    </select>
-                                </div>
-</div>
+                                   </div>
+                <div class="roomdetails">
+                    <a href="#popup" class="btn-text">See all rooms &rarr;</a>
+                    <a href="#popup" class="btn-text">Book room(s) &rarr;</a>
+                </div>
+
 
                                 <div class="form__group numberpeople">
-                                    <input type="number" class="form__input" placeholder="Number of people" id="number" required min="1" max="20">
-                                    <label for="number" class="form__label">Number of people</label>
+                                    <input type="number" class="form__input" placeholder="Number of adults" id="number1" required min="1" max="20">
+                                    <label for="number1" class="form__label">Number of adults</label>
+                                </div>
+                                <div class="form__group numberpeople">
+                                    <input type="number" class="form__input" placeholder="Number of children" id="number2" required min="1" max="20">
+                                    <label for="number2" class="form__label">Number of children</label>
+                                </div>
+                                <div class="form_group">
+                                    <input placeholder="Check-in Date" class="textbox-n" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')" id="date1" required>
+                                    <input placeholder="Check-out Date" class="textbox-n" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')" id="date2" required>
+
                                 </div>
                                 <div class="form__group">
                                     <button class="btn btn--blue">Next step &rarr;</button>
@@ -119,8 +103,9 @@ export default {
 
 <style lang="scss" scoped>
 .section-book {
-    padding: 4.5rem 0;
+    padding: 1.4rem 0;
     background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+    background-size:cover;
 }
 
 .book {
@@ -133,12 +118,12 @@ export default {
     border-radius: 3px;
     box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
     margin: 0 auto;
-    height: 38rem;
-    width:80rem;
+    height: 44.5rem;
+    width:90rem;
 
     &__form {
         width: 50%;
-        padding: 6rem;
+        padding: 3rem;
     }
 }
 .booking-heading{
@@ -208,8 +193,8 @@ export default {
 
 .form {
     &__group:not(:last-child) {
-        margin-bottom: 2rem;
-        margin-top:1rem;
+        margin-bottom: 0.5rem;
+        margin-top:0.7rem;
         padding:0;
     }
 
@@ -247,6 +232,7 @@ export default {
         font-weight: 700;
         margin-left: 1.5rem;
         margin-top: .5rem;
+        margin-bottom:0.5rem;
         display: block;
         transition: all .3s;
     }
@@ -350,9 +336,8 @@ export default {
 
     &--blue {
         background-color: $color-primary;
+        margin-top:1rem;
         color: $color-white;
-        margin-top:-2rem;
-
         &::after {
             background-color: $color-primary;
         }
@@ -376,21 +361,10 @@ export default {
         animation-fill-mode: backwards;
     }
 }
-.room-types{
-    border:none;
-    padding:1rem;
-    color:$color-grey-dark-2;
-    width:35%;
-    &:focus{
-        outline:none;
-    }
-}
 .btn-text {
     &:link,
     &:visited {
-        position:absolute;
-        top:20rem;
-        left:14.5rem;
+        margin: 0.7rem auto 0.7rem auto;
         font-size: $default-font-size;
         color: $color-primary;
         display: inline-block;
@@ -398,6 +372,7 @@ export default {
         border-bottom: 1px solid $color-primary;
         padding: 3px;
         transition: all .2s;
+        margin-right:2rem;
     }
 
     &:hover {
@@ -515,10 +490,6 @@ export default {
 .roomsrow{
     padding:0;
 }
-.room-types{
-    width:90%;
-    height:3.7rem;
-}
 .thirdroom
 {
     margin-top:1rem;
@@ -528,9 +499,22 @@ export default {
     top:40rem;
     left:20rem;
 }
+.textbox-n{
+    margin-right:0.8rem;
+    width:35%;
+    padding:0.8rem;
+      border:none;
+    &:focus{
+        border:none;
+    }
+}
+.roomno{
+    width:15rem;
+}
 .u-center-text { text-align: center; }
 
 .u-margin-bottom-small { margin-bottom: 1.5rem; }
 .u-margin-bottom-medium { margin-bottom: 4rem; }
 .u-margin-bottom-big { margin-bottom: 8rem; }
+
 </style>
