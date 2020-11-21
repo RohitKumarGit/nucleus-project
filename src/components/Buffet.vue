@@ -63,8 +63,8 @@
                 >
                   <label name="people" class="chooseRest">Number of people</label>
                 <br>
-                  <input type="number" name="people" placeholder="Select value" min="1" max="50" v-model="people" width="100%" />
-
+                  <input type="number" name="people" placeholder="1" min="1" max="50" v-model="people" width="100%"/>
+                    {{people.value}}
                   <label class="payment free-form">Slot timing</label>
                   <br />
 
@@ -242,7 +242,7 @@ export default {
         });
       }
       else{
-        this.error="Please Fill All the fields";
+        this.error="Please Select A Restaurant";
       }
     },
     onChange(event) {
@@ -250,7 +250,8 @@ export default {
           },
     submit(){
       const helper =this;
-        try {
+      if(helper.selected){
+          try {
             const val=helper.selected.id - helper.selected.name*3;
             console.log(val);
               axios.post('/buffet',{
@@ -266,9 +267,15 @@ export default {
                     })
                   helper.error ="Request Submitted Successfully";
                   helper.buffet=null;
+                  helper.people="1";
             } catch (error) {
             this.error = error.message
           }
+      }
+      else{
+        this.error="Please Select A Slot";
+      }
+        
     }
   },
 };
@@ -551,5 +558,8 @@ input[type="radio"]:checked + .button-label:hover {
 }
 .hidden {
   display: none;
+}
+input[type="radio"]:disabled + .button-label{
+  background-color: grey;
 }
 </style>
