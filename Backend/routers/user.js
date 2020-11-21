@@ -22,27 +22,6 @@ router.get('/user', async (req, res) => {
   res.send(user);
 });
 
-router.patch('/editprofile', async (req, res) => {
-  var user = await User.findOne({
-    uid: req.uid
-  });
-  const updates = Object.keys(req.body)
-  const allowedUpdates = ['password']
-  const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
-  if (!isValidOperation) {
-    return res.status(400).send({
-      error: 'Invalid updates!'
-    })
-  }
-  try {
-    updates.forEach((update) => user[update] = req.body[update])
-    await user.save()
-    res.send(user)
-  } catch (e) {
-    res.status(400).send(e)
-  }
-});
-
 router.delete('/checkout', async (req, res) => {
   try {
     var user = await User.findOne({
