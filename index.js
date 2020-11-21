@@ -6,8 +6,6 @@ const history = require('connect-history-api-fallback')
 var morgan = require('morgan')
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
-const routers = require('./adminbro');
-
 
 
 
