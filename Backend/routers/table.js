@@ -34,7 +34,7 @@ router.post('/tablereserve', async (req, res) => {
       uid: req.uid
     });
     var restaurant = await Restaurant.findOne({
-      name: req.body.restaurant_name
+      name: req.query.restaurant_name
     });
     var reserve = new Table(req.body);
     reserve[user_id] = user._id;
