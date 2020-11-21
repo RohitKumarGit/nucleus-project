@@ -13,16 +13,16 @@ router.get('/menu', async (req, res) => {
   }
 });
 
-router.get('/location', async (req, res) => {
+router.get('/vacancy', async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({
       name: req.query.name,
     });
-    var x = "";
+    let x = "";
+    console.log(restaurant.time_details);
     restaurant.time_details.forEach((y) => {
-      if (y.time_now === req.query.time) {
+      if (y.time_now == req.query.time) {
         x = y.vacancy;
-        break;
       }
     })
     res.status(200).send({

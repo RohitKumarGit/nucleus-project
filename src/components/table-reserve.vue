@@ -47,12 +47,12 @@
                           placeholder="Duration"
                           class="textbox-n"
                           type="text"
-                          onfocus="(this.type='time')"
+                          onfocus="(this.type='number')"
                           onfocusout="(this.type='text')"
                           id="duration"
                           v-model="duration"
-                          min="01:00"
-                          max="04:00"
+                          min="01"
+                          max="04"
                           required
                         />
                         <p>Duration ranges from 1 to 4 hrs</p>
@@ -108,16 +108,18 @@ export default {
     submit(){
       if(this.people && this.duration && this.datetime)
       {
+        
         console.log(this.restaurant);
         const helper2=this;
-        axios.get("/location", {
+        console.log(helper2.datetime);
+        console.log(helper2.duration);
+        axios.get("/vacancy", {
           headers: {
             authorization: this.user.ya,
           },
           params: {
             name: this.restaurant.restaurantName,
-            time:this.datetime
-
+            time:this.duration
           },
         })
         .then(function (response) {
@@ -127,7 +129,6 @@ export default {
         helper2.$store.commit("restaurantStore",{
          location,
        })
-       helper2.$router.push("/table2");
         })
       }
       else{
