@@ -5,7 +5,7 @@ var serviceAccount = require("./key.json")
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://resort1234.firebaseio.com"
+    databaseURL: process.env.FB_URI
 });
 const verifyToken = async function (req, res, next) {
     try {

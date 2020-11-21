@@ -63,14 +63,14 @@ const RestaurantSchema = new mongoose.Schema({
     ref: "User"
   }
 });
-const routers = require('./adminbro');
+
 // schedules
 var schedule = require('node-schedule');
 
 var rule = new schedule.RecurrenceRule();
 rule.hour = 0 // hour 0-23
 rule.minute = 0 // minute 0 - 59
-var j = schedule.scheduleJob(rule,function(){
+var j = schedule.scheduleJob(rule,async function(){
   // do the reset here @Sujal :) Thanks - done
   await Restaurant.updateMany({},{'time_details.table.Is_reserved':false,'time_details.vacancy':100})
   console.log("Reset of Restaurant done")

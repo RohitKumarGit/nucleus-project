@@ -11,7 +11,7 @@ import 'bootstrap';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 var firebaseConfig = {
-  apiKey: "AIzaSyB4fI0N4OgXzEXdsioGfAbu_xZvAM7xO_Q",
+  apiKey: process.env.API_KEY,
   authDomain: "resort1234.firebaseapp.com",
   databaseURL: "https://resort1234.firebaseio.com",
   projectId: "resort1234",

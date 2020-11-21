@@ -7,12 +7,13 @@ var morgan = require('morgan')
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 
+require('dotenv').config()
 
 
 
 const User = require("./Backend/models/Users");
 
-const uri = "mongodb+srv://user:uvOyX5UA6I2mjplk@cluster0.azmit.mongodb.net/NUCLEUS?retryWrites=true&w=majority"
+const uri = process.env.MONGO_URI
 mongoose.connect(uri, {
   useNewUrlParser: "true",
 })
@@ -25,7 +26,7 @@ mongoose.connection.on("connected", (err, res) => {
 app.use(morgan('tiny'))
 
 
-
+const routers = require('./adminbro')
 app.use('/admin', routers)
 const path = require("path")
 app.use(history({
