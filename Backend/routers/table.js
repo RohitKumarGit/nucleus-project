@@ -7,7 +7,7 @@ const express = require('express');
 const router = new express.Router();
 const Table = require('../models/Table_reserve');
 const User = require('../models/Users');
-const Restaurant = require('../models/Table_reserve');
+const Restaurant = require('../models/Restaurant');
 
 router.get('/tablereserve', async (req, res) => {
   try {
@@ -31,22 +31,29 @@ router.get('/tablereserve', async (req, res) => {
 router.post('/tablereserve', async (req, res) => {
   try {
     var user = await User.findOne({
-      uid: req.uid
+      uid: req.body.uid
     });
     var restaurant = await Restaurant.findOne({
       name: req.body.restaurant_name
     });
+
+    
     var x = {
       Adults: req.body.Adults,
       Time: req.body.Time,
-      restaurant_id: restaurant_id,
+      restaurant_id: restaurant._id,
       Duration: req.body.Duration,
       user_id: user._id
     }
+    
     var reserve = new Table(x);
-    reserve[user_id] = user._id;
+    console.log(user._id);
+    console.log(reserve);
+    console.log(x);
     await reserve.save();
+    console.log("bye");
     res.send(reserve);
+    console.log(restaurant._id);
   } catch (e) {
     res.status(500).send(e);
   }

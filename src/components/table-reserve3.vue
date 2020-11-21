@@ -69,20 +69,24 @@ Navbar
     Book(){
       const helper =this;
           try {
+            console.log(helper.restaurant);
+            console.log(helper.user);
               axios.post('/tablereserve',{
-                uid:this.user.uid,
-                restaurant_name:this.restaurant.restaurantName,
-                Adults:this.restaurant.people,
-                Time:this.restaurant.time,
-                Duration:this.restaurant.duration,
+                uid:helper.user.uid,
+                restaurant_name:helper.restaurant.restaurantName,
+                Adults:helper.restaurant.people,
+                Time:helper.restaurant.time,
+                Duration:helper.restaurant.duration,
             }, {
                 headers: {
                         authorization: this.user.ya,
                         },
                     })
+                     console.log(helper.restaurant);
                   helper.error ="Request Submitted Successfully";
                   helper.restaurant=null;
             } catch (error) {
+             
             this.error = error.message
           }
         
@@ -90,7 +94,7 @@ Navbar
   },
   computed: {
     ...mapGetters(["user"]),
-    ...mapState(["restaurant"]),
+    ...mapState(['restaurant']),
   },
 }
 </script>
