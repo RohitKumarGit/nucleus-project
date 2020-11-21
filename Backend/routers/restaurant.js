@@ -18,8 +18,15 @@ router.get('/vacancy', async (req, res) => {
     const restaurant = await Restaurant.findOne({
       name: req.query.name,
     });
+    var x = "";
+    restaurant.time_details.forEach((y) => {
+      if (y.time_now === req.query.time) {
+        x = y.vacancy;
+        break;
+      }
+    })
     res.status(200).send({
-      location: restaurant.time_details[req.query.time].vacancy
+      vacancy: x
     });
   } catch (e) {
     res.status(404).send();
