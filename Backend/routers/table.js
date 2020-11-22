@@ -44,8 +44,14 @@ router.post('/tablereserve', async (req, res) => {
       Duration: req.body.Duration,
       user_id: user._id
     });
+    restaurant.time_details.forEach((y) => {
+      if (y.time_now == req.body.Time) {
+        y.vacancy -= Number(req.body.Adults);
+      }
+    })
     var reserve = await new Table(x);
     await reserve.save();
+    await restaurant.save();
     res.send(reserve);
   } catch (e) {
     res.status(500).send(e);
