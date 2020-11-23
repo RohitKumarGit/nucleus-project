@@ -49,14 +49,14 @@ router.post('/tablereserve', async (req, res) => {
       if (y.time_now == req.body.Time) {
         if (y.vacancy >= Number(req.body.Adults)) {
           y.vacancy -= Number(req.body.Adults);
-          await restaurant.save();
-          var reserve = await new Table(x);
-          await reserve.save();
           flag = true;
         }
       }
     })
     if (flag) {
+      await reserve.save();
+      var reserve = await new Table(x);
+      await restaurant.save();
       res.send(reserve);
     } else {
       throw new Error();
