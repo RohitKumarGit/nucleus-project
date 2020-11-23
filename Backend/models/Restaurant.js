@@ -56,7 +56,8 @@ const RestaurantSchema = new mongoose.Schema({
     vacancy: {
       type: Number,
       required: true,
-      default: 100
+      default: 100,
+      min: 0
     }
   }],
   owner: {
