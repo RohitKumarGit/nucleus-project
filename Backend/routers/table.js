@@ -44,15 +44,23 @@ router.post('/tablereserve', async (req, res) => {
       Duration: req.body.Duration,
       user_id: user._id
     });
+    var flag = false;
     restaurant.time_details.forEach((y) => {
       if (y.time_now == req.body.Time) {
-        y.vacancy -= Number(req.body.Adults);
+        if (y.vacancy >= Number(req.body.Adults)) {
+          y.vacancy -= Number(req.body.Adults);
+          await restaurant.save();
+          var reserve = await new Table(x);
+          await reserve.save();
+          flag = true;
+        }
       }
     })
-    var reserve = await new Table(x);
-    await reserve.save();
-    await restaurant.save();
-    res.send(reserve);
+    if (flag) {
+      res.send(reserve);
+    } else {
+      throw new Error();
+    }
   } catch (e) {
     res.status(500).send(e);
   }
