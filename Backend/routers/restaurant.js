@@ -18,6 +18,7 @@ router.get('/vacancy', async (req, res) => {
     const restaurant = await Restaurant.findOne({
       name: req.query.name,
     });
+    console.log(restaurant);
     let x = "";
     console.log(restaurant.time_details);
     restaurant.time_details.forEach((y) => {
@@ -25,6 +26,7 @@ router.get('/vacancy', async (req, res) => {
         x = y.vacancy;
       }
     })
+    console.log(x);
     res.status(200).send({
       vacancy: x
     });

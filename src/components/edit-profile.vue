@@ -32,11 +32,11 @@
               <input type="password" placeholder="Confirm Password" v-model="cpassword" required>
             </div>
             <hr class="my-4">
-            <p v-if="error"></p>
+            <p v-if="error">{{error}}</p>
               <div class="mb-3">
-                <button class="btn btn-block text-uppercase" @click="changePass">
+                <b-button class="btn btn-block text-uppercase" @click.prevent="changePass">
                     Apply
-                </button>
+                </b-button>
             </div>
           </form>
 </div>
@@ -50,7 +50,7 @@
 <script>
 import Navbar from "./navbar.vue";
 import { mapGetters } from "vuex";
-// import firebase from 'firebase'
+import firebase from 'firebase'
 export default {
 	components: {
 Navbar
@@ -66,20 +66,37 @@ Navbar
   computed : {
       ...mapGetters(["user"])
     },
-    method:{
+  methods:{
       async changePass(){
-      //  const helper=this;
+       const helper=this;
         if(!(this.password.length && this.cpassword && this.npassword)){
           this.error="Fill all the fields";
         }
-        else if(this.npassword!=this.cpassword){
-            this.error="New Passwords don't match";
-        }
         else{
+          console.log(helper.password);
+          console.log(helper.npassword);
+          console.log(helper.cpassword);
           try {
-        //     AuthCredential credentials = EmailAuthProvider
-        // .getCredential(helper2.user.email, helper2.);
-        //     console.log(user)
+            const credential = firebase.auth.EmailAuthProvider.credential(
+                  helper.user.email, 
+                  helper.password
+              );
+            helper.user.reauthenticateWithCredential(credential).then(function() {
+                if(helper.cpassword != helper.npassword){
+                  helper.error = "New Passwords don't match";
+                }
+                else{
+                  helper.user.updatePassword(helper.npassword).then(function() {
+                      helper.error = "Password  Updated";
+                    }).catch(function(error) {
+                      console.log(error);
+                      helper.error = "Password  was not Updated";
+                    });
+                }
+              }).catch(function(error) {
+                console.log(error);
+                helper.error = "Old Pasword doesn't match";
+              });
             
             } catch (error) {
             this.error = error.message
@@ -92,7 +109,7 @@ Navbar
         } 
     }
     
-      }
+  }
 }
 </script>
 

@@ -61,7 +61,7 @@ Navbar
   },
   methods:{
     submit(){
-      
+      const helper=this;
       // if(this.restaurantName)
       // { const helper=this.restaurantName;
       // const helper2=this;
@@ -92,8 +92,8 @@ Navbar
        this.$store.commit("restaurantStore",{
          restaurantName
        })
-       console.log(this.restaurantName);
-       this.$router.push('/table2') 
+       console.log(helper.restaurantName);
+       helper.$router.push('/table2') 
     }
   }
 }

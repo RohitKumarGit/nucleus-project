@@ -34,7 +34,8 @@
             <label>&nbsp;&nbsp;<input type="radio" name="optradio" v-model="x" value="no">&nbsp;&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <br>
             <button type="button" v-show="x==='yes'" class="btn btn-secondary">Select Food items</button>
-            <div class="mb-3">
+            <p v-if="error">{{error}}</p>
+            <div class="mb-3" v-if="!error">
               <b-button type="submit" class="btn btn-block text-uppercase" @click.prevent="Book">
                 Reserve Table
               </b-button>
@@ -62,7 +63,8 @@ Navbar
 	},
   data(){
     return {
-      x:'no'
+      x:'no',
+      error:"",
     };
   },
   methods:{
@@ -84,7 +86,9 @@ Navbar
                     })
                      console.log(helper.restaurant);
                   helper.error ="Request Submitted Successfully";
+                  helper.restaurant.restaurantName=null;
                   helper.restaurant=null;
+                  helper.$router.push("/table");
             } catch (error) {
              
             this.error = error.message
