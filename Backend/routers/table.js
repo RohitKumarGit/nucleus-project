@@ -30,11 +30,9 @@ router.get('/tablereserve', async (req, res) => {
 
 router.post('/tablereserve', async (req, res) => {
   try {
-    console.log("1");
     var user = await User.findOne({
       uid: req.body.uid
     });
-    console.log("2");
     var restaurant = await Restaurant.findOne({
       name: req.body.restaurant_name
     });
