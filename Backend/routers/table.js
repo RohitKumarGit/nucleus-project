@@ -51,6 +51,8 @@ router.post('/tablereserve', async (req, res) => {
     })
     var reserve = await new Table(x);
     await reserve.save();
+    user.forDashboard.tableReserve.push(reserve._id);
+    await user.save();
     await restaurant.save();
     res.send(reserve);
   } catch (e) {
@@ -63,9 +65,16 @@ router.delete('/tablereserve', async (req, res) => {
     var user = await User.findOne({
       uid: req.body.uid
     });
-    var reserve = Table.findOneAndDelete({
+    var reserve = Table.findOne({
       user_id: user._id
     });
+    var r_id = reserve._id;
+    reserve.remove();
+    var idx = user.forDashboard.tableReserve.indexOf(r_id);
+    if (idx > -1) {
+      user.splice(idx, -1);
+    }
+    await user.save();
     res.send(reserve);
   } catch (e) {
     res.send(e);

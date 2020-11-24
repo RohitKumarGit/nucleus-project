@@ -17,9 +17,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  password:{
-type:String,
-required:false
+  password: {
+    type: String,
+    required: false
   },
   phone: {
     type: String,
@@ -52,22 +52,22 @@ required:false
     default: false,
     type: Boolean
   },
-  For_Dashboard:{
-   Orders:{
-    type:Schema.Types.ObjectId,
-    default:[],
-    ref:'Order'
-   },
-   Buffets:{
-    type:Schema.Types.ObjectId,
-    default:[],
-    ref:'Buffet'
-   },
-   Table_reserves:{
-    type:Schema.Types.ObjectId,
-    default:[],
-    ref:'Table_reserve'
-   }
+  forDashboard: {
+    order: {
+      type: mongoose.Schema.Types.ObjectId,
+      default: [],
+      ref: 'Order'
+    },
+    buffet: {
+      type: mongoose.Schema.Types.ObjectId,
+      default: [],
+      ref: 'Buffet'
+    },
+    tableReserve: {
+      type: mongoose.Schema.Types.ObjectId,
+      default: [],
+      ref: 'Table_reserve'
+    }
   }
 }, {
   timestamps: true

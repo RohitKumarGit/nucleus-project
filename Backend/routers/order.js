@@ -60,6 +60,21 @@ router.post('/roomservice', async (req, res) => {
       number: body.roomnumber
     });
 
+
+  } catch (e) {
+    res.status(500).send(e);
+  }
+});
+
+router.post('/selfservice', async (req, res) => {
+  try {
+    const user = await User.findOne({
+      uid: req.body.uid
+    });
+    const restaurant = await Restaurant.findOne({
+      name: req.body.restaurant_name
+    });
+
   } catch (e) {
     res.status(500).send(e);
   }

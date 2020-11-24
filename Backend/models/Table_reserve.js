@@ -9,9 +9,6 @@ const table_reserveSchema = new mongoose.Schema({
             type: Schema.Types.ObjectId,
             ref: 'Restaurant'
         },
-        // table_num: [{
-        //     type: Number,
-        // }],
         Adults: {
             type: Number,
             required: true
@@ -27,6 +24,8 @@ const table_reserveSchema = new mongoose.Schema({
         }
     }
 
-,{timestamps:true});
+    , {
+        timestamps: true
+    });
 const Table_reserve = mongoose.model('Table_reserve', table_reserveSchema);
 module.exports = Table_reserve;

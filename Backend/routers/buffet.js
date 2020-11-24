@@ -5,25 +5,30 @@ const User = require('../models/Users');
 const router = express.Router();
 const firebase = require('../middlewares/firebase');
 const TableR = require('../models/Table_reserve')
-router.get('/allbookings',firebase.verifyToken,async function(req,res){
+router.get('/allbookings', firebase.verifyToken, async function (req, res) {
   console.log(req.query.user_id)
   try {
-   
     const buffets = await Buffet.find({
-      'slots.slot_details.bookedBy.user_id':{
-        $in:[req.query.user_id]
+      'slots.slot_details.bookedBy.user_id': {
+        $in: [req.query.user_id]
       }
-    },"restaurant_id slots.slot_type slots.slot_details.time createdAt")
+    }, "restaurant_id slots.slot_type slots.slot_details.time createdAt")
     const t = await TableR.find({})
     const tables = await TableR.find({
-      'user_id':{
-        $in:[req.query.user_id]
+      'user_id': {
+        $in: [req.query.user_id]
       }
     })
-    res.send({buffets,tables,t})
+    res.send({
+      buffets,
+      tables,
+      t
+    })
   } catch (error) {
     console.log(error)
-    res.send({error})
+    res.send({
+      error
+    })
   }
 })
 router.get('/buffet', firebase.verifyToken, async (req, res) => {
@@ -41,6 +46,7 @@ router.get('/buffet', firebase.verifyToken, async (req, res) => {
     var buffet = await Buffet.findOne({
       restaurant_id: id
     });
+    z
     console.log(buffet)
     res.send(buffet);
   } catch (error) {
@@ -84,12 +90,13 @@ router.post('/buffet', firebase.verifyToken, async (req, res) => {
         }
         buffetType.totalPeople += Number(x);
         await buffet.save();
+        user.forDashboard.buffet.push(buffet._id);
+        await user.save();
       }
       res.send(buffet);
     } else {
       throw new Error('Slot Full');
     }
-
   } catch (e) {
     console.log(e);;
   }
@@ -120,6 +127,9 @@ router.patch('/buffet/reset', firebase.verifyToken, async (req, res) => {
 //Slot Time
 router.patch('/buffet/cancel', firebase.verifyToken, async (req, res) => {
   try {
+    var user = User.findOne({
+      uid: req.body.uid
+    });
     var buffet = Buffet.findById({
       _id: req.body.bid
     });
@@ -128,9 +138,17 @@ router.patch('/buffet/cancel', firebase.verifyToken, async (req, res) => {
     var y = buffetType.bookedBy.findIndex((z) => {
       return z.user_id === req.body.uid;
     });
+    //y return the index at which we find the required userID
     var z = buffetType.bookedBy[y];
     x -= z.number;
     buffetType.totalPeople = x;
+
+    var k = user.forDashboard.buffet.indexOf(req.body.bid);
+    if (k > -1) {
+      user.forDashboard.buffet.splice(k, 1);
+    }
+    buffetType.bookedBy.splice(y, 1);
+    await user.save()
     await buffet.save();
     res.send(buffet);
   } catch (e) {
