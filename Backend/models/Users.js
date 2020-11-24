@@ -4,6 +4,9 @@ const bcrypt = require("bcrypt");
 const Room = require('./Room');
 const Booking = require('./Bookings');
 const Billing = require('./Billing');
+const Buffet = require('./Buffet');
+const Order = require('./Order');
+const Table_reserve = require('./Table_reserve');
 const userSchema = new mongoose.Schema({
   firstname: {
     type: String,
@@ -53,15 +56,15 @@ const userSchema = new mongoose.Schema({
     type: Boolean
   },
   forDashboard: {
-    order:[ {
+    order: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Order'
     }],
-    buffet:[ {
+    buffet: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Buffet'
     }],
-    tableReserve:[ {
+    tableReserve: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Table_reserve'
     }],

@@ -46,7 +46,6 @@ router.get('/buffet', firebase.verifyToken, async (req, res) => {
     var buffet = await Buffet.findOne({
       restaurant_id: id
     });
-    z
     console.log(buffet)
     res.send(buffet);
   } catch (error) {
