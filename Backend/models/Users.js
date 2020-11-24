@@ -51,6 +51,23 @@ required:false
   isVerified: {
     default: false,
     type: Boolean
+  },
+  For_Dashboard:{
+   Orders:{
+    type:Schema.Types.ObjectId,
+    default:[],
+    ref:'Order'
+   },
+   Buffets:{
+    type:Schema.Types.ObjectId,
+    default:[],
+    ref:'Buffet'
+   },
+   Table_reserves:{
+    type:Schema.Types.ObjectId,
+    default:[],
+    ref:'Table_reserve'
+   }
   }
 }, {
   timestamps: true
