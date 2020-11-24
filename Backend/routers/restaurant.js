@@ -7,7 +7,10 @@ router.get('/menu', async (req, res) => {
     const restaurant = await Restaurant.findOne({
       name: req.query.name,
     });
-    res.status(200).send(restaurant);
+    var menu = new Object({
+      menu: restaurant.menu_items
+    });
+    res.status(200).send(menu);
   } catch (e) {
     res.status(404).send();
   }
