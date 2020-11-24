@@ -27,6 +27,6 @@ const table_reserveSchema = new mongoose.Schema({
         }
     }
 
-);
+,{timestamps:true});
 const Table_reserve = mongoose.model('Table_reserve', table_reserveSchema);
 module.exports = Table_reserve;

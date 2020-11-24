@@ -27,7 +27,7 @@
   <i class="fas fa-user"></i>
   </button>
   <div class="dropdown-menu">
-    <router-link class="dropdown-item" to="./edit">Edit Profile</router-link>
+    <router-link class="dropdown-item" to="./edit">Edit Password</router-link>
     <button id="signout" @click="logout()">Sign Out</button>
   </div>
 </div>

@@ -4,6 +4,8 @@ const port = process.env.PORT || 8082;
 const mongoose = require("mongoose")
 const history = require('connect-history-api-fallback')
 var morgan = require('morgan')
+//const Buffet = require('./Backend/models/buffet')
+//const TableReserve = require('./Backend/models/Table_reserve');
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 
@@ -29,10 +31,9 @@ app.use(morgan('tiny'))
 const routers = require('./adminbro')
 app.use('/admin', routers)
 const path = require("path")
-app.use(history({
-  verbose: false,
-  disableDotRule: false
-}));
+
+
+
 app.use('/', express.static(path.join(__dirname, 'dist')));
 app.post('/signup/setup', async (req, res) => {
   console.log(req.body)
@@ -56,6 +57,12 @@ app.use(BuffetRouter)
 app.use(RestaurantRouter)
 app.use(TableRouter)
 app.use(RoomRouter)
+
+
+app.use(history({
+  verbose: false,
+  disableDotRule: false
+}));
 app.listen(port, function (err) {
   if (!err) {
     console.log("server is running at ", port)
