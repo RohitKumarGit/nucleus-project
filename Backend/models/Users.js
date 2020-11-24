@@ -53,21 +53,18 @@ const userSchema = new mongoose.Schema({
     type: Boolean
   },
   forDashboard: {
-    order: {
+    order:[ {
       type: mongoose.Schema.Types.ObjectId,
-      default: [],
       ref: 'Order'
-    },
-    buffet: {
+    }],
+    buffet:[ {
       type: mongoose.Schema.Types.ObjectId,
-      default: [],
       ref: 'Buffet'
-    },
-    tableReserve: {
+    }],
+    tableReserve:[ {
       type: mongoose.Schema.Types.ObjectId,
-      default: [],
       ref: 'Table_reserve'
-    }
+    }],
   }
 }, {
   timestamps: true

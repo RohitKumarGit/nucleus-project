@@ -30,9 +30,11 @@ router.get('/tablereserve', async (req, res) => {
 
 router.post('/tablereserve', async (req, res) => {
   try {
+    console.log("1");
     var user = await User.findOne({
       uid: req.body.uid
     });
+    console.log("2");
     var restaurant = await Restaurant.findOne({
       name: req.body.restaurant_name
     });
@@ -44,16 +46,21 @@ router.post('/tablereserve', async (req, res) => {
       Duration: req.body.Duration,
       user_id: user._id
     });
+    
     restaurant.time_details.forEach((y) => {
       if (y.time_now == req.body.Time) {
         y.vacancy -= Number(req.body.Adults);
       }
     })
+    
     var reserve = await new Table(x);
     await reserve.save();
-    user.forDashboard.tableReserve.push(reserve._id);
-    await user.save();
     await restaurant.save();
+    consoel.log("1");
+    user.forDashboard.tableReserve.push(reserve._id);
+    console.log("2");
+    await user.save();
+    console.log("3");
     res.send(reserve);
   } catch (e) {
     res.status(500).send(e);

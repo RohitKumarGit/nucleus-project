@@ -59,17 +59,12 @@
                       </div>
                       
                       <div class="mb-3">
+                        <p v-if="error">{{error}}</p>
                         <b-button
                           class="btn btn-block text-uppercase"
                           @click="submit"
                         >
                           Check Availability
-                        </b-button>
-                        <b-button
-                          class="btn btn-block text-uppercase"
-                           @click="submit2"
-                        >
-                          Proceed
                         </b-button>
                       </div>
                     </b-form>
@@ -98,6 +93,7 @@ export default {
       people:"",
       datetime:"",
       duration:"",
+      error:"",
     };
   },
   computed:{
