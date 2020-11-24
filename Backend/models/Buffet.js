@@ -56,7 +56,7 @@ rule.hour = 0 // hour 0-23
 rule.minute = 0 // minute 0 - 59
 var j = schedule.scheduleJob(rule,async function(){
   // do the reset here @Sujal :) Thanks - done
-  await Restaurant.updateMany({},{'slots.slot_details.isAvailable':true})
+  await Buffet.updateMany({},{'slots.slot_details.isAvailable':true})
 })
 
 const Buffet = mongoose.model('Buffet', buffetSchema);

@@ -29,6 +29,38 @@
           </div>
         </div>
 </template>
+<script>
+import {mapState} from 'vuex'
+import axios from 'axios'
+export default {
+  watch:{
+    user(){
+      this.getData()
+    }
+  },
+  data(){
+    return {
+      bookings:{}
+    }
+  },
+  methods:{
+    async getData(){
+      const {data} = await axios.get('/allbookings',{
+        params:{
+          user_id:this.user._id
+        }
+      })
+      this.bookings = data
+    }
+  },
+  created(){
+    this.getData()
+  },
+  computed:{
+    ...mapState(['user'])
+  }
+}
+</script>
 <style  scoped>  
 .rightdiv{
   text-align:center;
