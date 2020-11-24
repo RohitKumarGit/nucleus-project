@@ -1,8 +1,8 @@
 const express = require('express');
 const Restaurant = require('../models/Restaurant');
 const router = new express.Router();
-
-router.get('/menu', async (req, res) => {
+const firebase = require('../middlewares/firebase');
+router.get('/menu', firebase.verifyToken,async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({
       name: req.query.name,
@@ -16,7 +16,7 @@ router.get('/menu', async (req, res) => {
   }
 });
 
-router.get('/vacancy', async (req, res) => {
+router.get('/vacancy',firebase.verifyToken, async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({
       name: req.query.name,

@@ -6,7 +6,7 @@ const Restaurant = require('../models/Restaurant');
 const router = new express.Router();
 const firebase = require('../middlewares/firebase');
 
-router.get('/roomservice', async (req, res) => {
+router.get('/roomservice',firebase.verifyToken, async (req, res) => {
   try {
     const user = await User.findOne({
       uid: req.query.uid
@@ -29,7 +29,7 @@ router.get('/roomservice', async (req, res) => {
   }
 });
 
-router.get('/selfservice', async (req, res) => {
+router.get('/selfservice', firebase.verifyToken,async (req, res) => {
   try {
     const user = await User.findOne({
       uid: req.query.uid
@@ -48,7 +48,7 @@ router.get('/selfservice', async (req, res) => {
   }
 });
 
-router.post('/roomservice', async (req, res) => {
+router.post('/roomservice', firebase.verifyToken,async (req, res) => {
   try {
     const user = await User.findOne({
       uid: req.body.uid
@@ -66,7 +66,7 @@ router.post('/roomservice', async (req, res) => {
   }
 });
 
-router.post('/selfservice', async (req, res) => {
+router.post('/selfservice', firebase.verifyToken,async (req, res) => {
   try {
     const user = await User.findOne({
       uid: req.body.uid
