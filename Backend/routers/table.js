@@ -9,7 +9,7 @@ const Table = require('../models/Table_reserve');
 const User = require('../models/Users');
 const Restaurant = require('../models/Restaurant');
 const firebase = require('../middlewares/firebase');
-router.get('/tablereserve', firebase.verifyToken,async (req, res) => {
+router.get('/tablereserve', firebase.verifyToken, async (req, res) => {
   try {
     var user = await User.findOne({
       uid: req.query.uid
@@ -28,7 +28,7 @@ router.get('/tablereserve', firebase.verifyToken,async (req, res) => {
   }
 });
 
-router.post('/tablereserve', firebase.verifyToken,async (req, res) => {
+router.post('/tablereserve', firebase.verifyToken, async (req, res) => {
   try {
     var user = await User.findOne({
       uid: req.body.uid
@@ -60,7 +60,7 @@ router.post('/tablereserve', firebase.verifyToken,async (req, res) => {
   }
 });
 
-router.delete('/tablereserve',firebase.verifyToken, async (req, res) => {
+router.delete('/tablereserve', firebase.verifyToken, async (req, res) => {
   try {
     var user = await User.findOne({
       uid: req.body.uid
@@ -72,7 +72,7 @@ router.delete('/tablereserve',firebase.verifyToken, async (req, res) => {
     reserve.remove();
     var idx = user.forDashboard.tableReserve.indexOf(r_id);
     if (idx > -1) {
-      user.splice(idx, -1);
+      user.splice(idx, 1);
     }
     await user.save();
     res.send(reserve);

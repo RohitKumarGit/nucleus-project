@@ -6,7 +6,10 @@ router.get('/menu', firebase.verifyToken,async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({
       name: req.query.name,
+    },{
+      'menu_items.is_available':true
     });
+    console.log(restaurant)
     var menu = new Object({
       menu: restaurant.menu_items
     });

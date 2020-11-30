@@ -24,12 +24,13 @@
                     </select>
                   </div>
                   </b-form>
-                </div>
+                <br>
                 <p v-if="error">{{error}}</p>
                 <div class="mb-3">
                   <b-button type="submit" class="btn btn-block text-uppercase" @click="submit">
                     Proceed
                   </b-button>
+                </div>
                 </div>
               </div>
             </div>
@@ -62,32 +63,6 @@ Navbar
   methods:{
     submit(){
       const helper=this;
-      // if(this.restaurantName)
-      // { const helper=this.restaurantName;
-      // const helper2=this;
-      //   console.log(this.restaurantName);
-      //   axios.get("/location", {
-      //     headers: {
-      //       authorization: this.user.ya,
-      //     },
-      //     params: {
-      //       name: this.restaurantName,
-      //     },
-      //   })
-      //   .then(function (response) {
-      //   console.log(response);
-      //   var location=response.data.location;
-      //   console.log(helper2);
-      //   helper2.$store.commit("restaurantStore",{
-      //    helper,
-      //    location,
-      //  })
-      //  helper2.$router.push("/table2");
-      //   })
-      // }
-      // else{
-      //   this.error="Please select a restaurant";
-      // }
       const {restaurantName} = this;
        this.$store.commit("restaurantStore",{
          restaurantName
@@ -157,7 +132,7 @@ padding-top: 6rem;
   border: 0px;
 }
 
-.form-box button[type="submit"]{
+button[type="submit"]{
   margin-top: 0.7rem;
   border: none;
   cursor: pointer;
@@ -166,13 +141,14 @@ padding-top: 6rem;
   color: #fff !important;
   font-size: 90%;
   font-weight: bold;
+  width:50%;
   letter-spacing: .1rem;
   transition: 0.5s;
   padding: 12px;
 }
 
-.form-box button[type="submit"]:hover{
-  background: #0069d9;
+button[type="submit"]:hover{
+  background: #055055;
 }
 
 .forget-link, .register-link{
@@ -235,9 +211,6 @@ img{
 }
 .form
 {
-    display:flex;
-    justify-content: center;
-    align-items: center;
     padding-bottom: 2rem;
 }
 .select{

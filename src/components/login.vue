@@ -42,9 +42,9 @@
 
             <div class="text-center mb-2">
               Don't have an account?
-              <a href="#" class="register-link">
+              <router-link to="/signup/basic" class="register-link">
                 Register here
-              </a>
+              </router-link>
             </div>
           </form>
         </div>
