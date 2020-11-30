@@ -14,6 +14,9 @@ import Table from '../components/table-reserve'
 import Table2 from '../components/table-reserve2'
 import Table3 from '../components/table-reserve3'
 import Room from '../components/room-service-main'
+import About from '../components/about'
+import Gallery from '../components/gallery'
+import Rooms from '../components/rooms'
 
 import Buffet from '../components/Buffet'
 import store from '../store'
@@ -25,6 +28,21 @@ const routes = [{
     path: '/',
     name: 'HelloWorld',
     component: Landing
+  },
+  {
+    path: '/gallery',
+    name: 'Gallery',
+    component: Gallery
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
+  },
+  {
+    path: '/rooms',
+    name: 'Rooms',
+    component: Rooms
   },
   {
     path: '/book',
@@ -90,7 +108,7 @@ const routes = [{
     }
   },
   {
-    path: '/table2',
+    path: '/table',
     name: 'Table',
     component: Table,
     meta: {
@@ -98,7 +116,7 @@ const routes = [{
     }
   },
   {
-    path: '/table',
+    path: '/table2',
     name: 'Table2',
     component: Table2,
     meta: {

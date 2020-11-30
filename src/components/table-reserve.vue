@@ -18,16 +18,7 @@
                     <b-form class="form-box px-3">
                       <div class="form-input">
                         <span><i class="far fa-calendar-check"></i></span>
-                        <input
-                          placeholder="Select any time today in 24hr format"
-                          class="textbox-n"
-                          type="datetime-local"
-                          onfocus="(this.type='number')"
-                          onfocusout="(this.type='text')"
-                          id="date"
-                          v-model="datetime"
-                          required
-                        />
+                        <input placeholder="Select any time today in 24hr format" class="textbox-n" type="datetime-local" onfocus="(this.type='number')" onfocusout="(this.type='text')" id="date" v-model="datetime" required/>
                       </div>
                       <div class="form-input">
                         <span><i class="fas fa-users"></i></span>

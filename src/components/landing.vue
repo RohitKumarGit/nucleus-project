@@ -11,11 +11,9 @@
 
             <nav class="navigation__nav">
                 <ul class="navigation__list">
-                    <li class="navigation__item"><a href="#" class="navigation__link"><span>01</span>About NUCLEUS</a></li>
-                    <li class="navigation__item"><a href="#" class="navigation__link"><span>02</span>Gallery</a></li>
-                    <li class="navigation__item"><a href="#" class="navigation__link"><span>03</span>Popular rooms</a></li>
-                    <li class="navigation__item"><a href="#" class="navigation__link"><span>04</span>Stories</a></li>
-                    <li class="navigation__item"><a href="#" class="navigation__link"><span>05</span>Book now</a></li>
+                    <li class="navigation__item"><a href="./about" class="navigation__link"><span>01</span>About NUCLEUS</a></li>
+                    <li class="navigation__item"><a href="./gallery" class="navigation__link"><span>02</span>Gallery</a></li>
+                    <li class="navigation__item"><a href="./rooms" class="navigation__link"><span>03</span>Popular rooms</a></li>
                     </ul>
             </nav>
         </div>

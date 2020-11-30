@@ -23,7 +23,7 @@
                     <div class="outer-login">
                              <div class="row px-3">
                                 <div class="col-sm-9 col-md-9 col-lg-10 card flex-row mx-auto px-0 form">
-<div class="card-body">
+<div class="card-body" id="tableres">
           <h3 class="title text-center mt-4">
             Welcome to Desi Addicts
           </h3>
@@ -53,7 +53,7 @@
     <div class="food-order-heading">
       <h1>ORDER FOOD</h1>
     </div>
-    
+    <a href="#tableres" class="popup__close">&times;</a>
     <div class="container food-order-container">
       <div class="row food-order-pane">
         <div class="col-lg-6 col-md-12 u-add-height u-made-scroll">
