@@ -4,19 +4,6 @@
         <div class="container">
         <div class="row">
                 <div class="col-lg-4 d-none d-lg-block left-div">
-               <!--  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                        <img class="d-block w-100" src="../assets/resort3.jpg" alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                        <img class="d-block w-100" src="../assets/resort5.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                        <img class="d-block w-100" src="../assets/resort6.jpg" alt="Third slide">
-                        </div>
-                    </div>
-                    </div> -->
                     <img src="../assets/table.jpg">
                 </div>
                 <div class="col-lg-8 right-div">
@@ -32,9 +19,9 @@
             <label>&nbsp;&nbsp;<input type="radio" name="optradio" v-model="x" value="yes">&nbsp;&nbsp;Yes</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <label>&nbsp;&nbsp;<input type="radio" name="optradio" v-model="x" value="no">&nbsp;&nbsp;No</label>&nbsp;&nbsp;&nbsp;&nbsp;
             <br>
-             <a href="#popup2" class="btn btn-secondary" v-if="x=='yes'">Select Food items</a>
+             <a href="#popup2" class="btn btn-secondary"  @click="Menu" v-if="x=='yes'">Select Food items</a>
             <p v-if="error">{{error}}</p>
-            <div class="mb-3" v-if="!error">
+            <div class="mb-3" v-if="!error||x=='no'">
               <b-button type="submit" class="btn btn-block text-uppercase" @click.prevent="Book">
                 Reserve Table
               </b-button>
@@ -49,7 +36,7 @@
  </div>
 
  <div class="popup" id="popup2">
-   <div class="popup__content food-order">
+   <div class="popup__content food-order" >
     <div class="food-order-heading">
       <h1>ORDER FOOD</h1>
     </div>
@@ -58,40 +45,27 @@
       <div class="row food-order-pane">
         <div class="col-lg-6 col-md-12 u-add-height u-made-scroll">
         <h3 class="food-order-pane-heading">FOOD ITEMS</h3>
-        
-          <h4 class="food-order-types">MAIN COURSE</h4>
-          <ul class="food-order-items">
-            <li class="custom">DAL MAKHANI<div class="hover-text">-->dal makhani is a veg food</div></li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">CHANA MASALA<div class="hover-text">-->chana masala is a veg food</div></li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">PANEER TIKKA BUTTER MASALA</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">PALAK PANEER</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">MUSHROOM MASALA</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-          </ul>
-          <h4 class="food-order-types">SALADS</h4>
-          <ul class="food-order-items">
-            <li class="custom">Vegetable Som Tam Salad</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">Compressed Melon Sliders</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">Mixed Beans Salad</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">Fruit Cube Salad</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-          </ul>
-          <h4 class="food-order-types">DRINKS</h4>
-          <ul class="food-order-items">
-            <li class="custom">vodka lemon</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">coke</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">orange juice</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-          </ul>
-          <h4 class="food-order-types">DESSERTS</h4>
-          <ul class="food-order-items">
-            <li class="custom">choco-lave cake</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">ras-malai</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">rice kheer</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
+        <ul class="food-order-items" v-if="menu">
+            <li class="custom" v-for="item in menu" :key="item._id" >
+              {{item.name}}&nbsp;{{item.price}}<br> {{item.category.cuisine}}&nbsp;{{item.category.FoodPreferences}}
+              <div class="hover-text">
+                Allergens : <span v-for="allergy in item.category.possibleAllergics" :key="allergy">{{allergy}}&nbsp;</span>
+              </div>
+              <b-form-spinbutton class="my-spin-button" min=0 @change="Insert($event,item)">
+              </b-form-spinbutton>
+            </li>
           </ul>
       </div>
         <div class="col-lg-6 col-md-12 u-add-height u-made-scroll">
           <h3 class="food-order-pane-heading">CART</h3>
-          <div class="food-order-cart"><h4 class="food-order-types">TOTAL</h4>        
-          </div>
-          <button class="btn btn--blue order-now-btn">order now&rarr;</button>
+          <ul class="food-order-items" v-if="order">
+            <li class="custom" v-for="item in order" :key="item._id" >
+              {{item.name}}&nbsp;<br> {{item.quantity}}&nbsp;
+            </li>
+          </ul>
+          <a class="btn btn--blue order-now-btn" @click="order1()" href="#tableres">
+            Order Food and Book Table&rarr;
+          </a>
       </div>
       </div>
     </div>
@@ -114,14 +88,15 @@ Navbar
     return {
       x:'no',
       error:"",
+      menu:"",
+      order:[],
+      val:""
     };
   },
   methods:{
     Book(){
       const helper =this;
           try {
-            console.log(helper.restaurant);
-            console.log(helper.user);
               axios.post('/tablereserve',{
                 uid:helper.user.uid,
                 restaurant_name:helper.restaurant.restaurantName,
@@ -133,21 +108,86 @@ Navbar
                         authorization: this.user.ya,
                         },
                     })
-                     console.log(helper.restaurant);
                   helper.error ="Request Submitted Successfully";
                   helper.restaurant.restaurantName=null;
                   helper.restaurant=null;
-                  helper.$router.push("/table");
             } catch (error) {
-             
             this.error = error.message
           }
-        
+    },
+    Menu(){
+      const helper =this;
+      axios.get("/menu", {
+          headers: {
+            authorization: this.user.ya,
+          },
+          params: {
+            name: this.restaurant.restaurantName,
+          },
+        })
+        .then(function (response) {
+        console.log(response);
+        helper.menu = response.data.menu;
+        console.log(helper.menu);
+        console.log(helper.menuAvailable);
+        });
+    },
+    order1(){
+      // const helper =this;
+      console.log(this.Orderfinal);
+      if(this.Orderfinal[0]!==undefined){
+        this.Book();
+        this.error="Your booking is done successfully";
+      }
+      else
+      {
+        this.error="No items were selected";
+      }
+    },
+    Insert(event,item){
+      this.val=event;
+      for (var i = 0; i < this.order.length; i++) {
+        if (this.order[i].id == item._id) {
+            this.order[i].quantity=this.val;
+            this.val=0;
+            break;
+        }
+    }
+      if(this.val!=0)
+      {
+        this.order.push({quantity:this.val,id:item._id,name:item.name});//How to add object to an existing array 
+      }
+      console.log(this.order);
     }
   },
   computed: {
     ...mapGetters(["user"]),
     ...mapState(['restaurant']),
+    menuAvailable(){
+      var menuAvailable= this.menu.map(product=>{
+        if(product.isAvaiable=="yes")
+        {
+          return {
+            _id:product._id,
+            name:product.name,
+            price:product.price
+          }
+        }
+      });
+      return menuAvailable;
+    },
+    Orderfinal(){
+      var Orderfinal= this.order.map(product=>{
+        if(product.quantity!=0)
+        {
+          return {
+            id:product.id,
+            quantity:product.quantity,
+          }
+        }
+      });
+      return  Orderfinal;
+    }
   },
 }
 </script>

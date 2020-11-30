@@ -98,6 +98,10 @@ span {
   box-shadow: 6px 11px 22px -5px rgba(0, 0, 0, 0.64);
   filter: brightness(1);
 }
+a:hover{
+  color:white;
+  font-size:1.6rem;
+}
 img {
   border-radius: 2rem;
   filter: brightness(0.7);
@@ -112,5 +116,8 @@ img {
   height: 90%;
   top: 40%;
   text-align: center;
+}
+a{
+  color:white;
 }
 </style>
