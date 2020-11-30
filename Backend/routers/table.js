@@ -65,11 +65,11 @@ router.delete('/tablereserve', firebase.verifyToken, async (req, res) => {
     var user = await User.findOne({
       uid: req.body.uid
     });
-    var reserve = Table.findOne({
+    var reserve = await Table.findOne({
       user_id: user._id
     });
     var r_id = reserve._id;
-    reserve.remove();
+    await reserve.remove();
     var idx = user.forDashboard.tableReserve.indexOf(r_id);
     if (idx > -1) {
       user.splice(idx, 1);

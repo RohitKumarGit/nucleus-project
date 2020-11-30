@@ -152,7 +152,7 @@ router.delete('/orders', firebase.verifyToken, async (req, res) => {
     var user = await User.findOne({
       uid: req.body.uid
     });
-    var order = Order.findOne({
+    var order = await Order.findOne({
       user_id: user._id
     });
     var o_id = order._id;
