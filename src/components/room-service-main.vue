@@ -103,7 +103,9 @@ Navbar
     laundry:false,
     clean:false,
     food:false,
-    others:false
+    others:false,
+    menu:"",
+    order:[],
     };
   },
   methods:
@@ -164,27 +166,6 @@ Navbar
   margin-bottom: 50px;
   transition: 0.3s;
 }
-/*.card2 {
-  width: 20%;
-  background: #fff;
-  border: 1px solid #ccc;
-  margin-bottom: 50px;
-  transition: 0.3s;
-}
-.card3 {
-  width: 20%;
-  background: #fff;
-  border: 1px solid #ccc;
-  margin-bottom: 50px;
-  transition: 0.3s;
-}
-.card4 {
-  width: 20%;
-  background: #fff;
-  border: 1px solid #ccc;
-  margin-bottom: 50px;
-  transition: 0.3s;
-}*/
 
 .card-header {
   text-align: center;

@@ -108,7 +108,7 @@ const routes = [{
     }
   },
   {
-    path: '/table',
+    path: '/table2',
     name: 'Table',
     component: Table,
     meta: {
@@ -116,7 +116,7 @@ const routes = [{
     }
   },
   {
-    path: '/table2',
+    path: '/table',
     name: 'Table2',
     component: Table2,
     meta: {
