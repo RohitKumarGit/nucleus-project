@@ -52,11 +52,13 @@ const BuffetRouter = require('./Backend/routers/buffet')
 const RestaurantRouter = require('./Backend/routers/restaurant')
 const TableRouter = require('./Backend/routers/table')
 const RoomRouter = require('./Backend/routers/room')
+const OrderRouter = require('./Backend/routers/order');
 // put all routers which need authentication below this
 app.use(BuffetRouter)
 app.use(RestaurantRouter)
 app.use(TableRouter)
 app.use(RoomRouter)
+app.use(OrderRouter);
 
 
 app.use(history({

@@ -56,6 +56,8 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
     const restaurant = await Restaurant.findOne({
       name: req.body.restaurant_name
     });
+    console.log(user._id);
+    console.log(restaurant._id);
     var x = new Object({
       user_id: user._id,
       restaurant_id: restaurant._id,
@@ -63,25 +65,34 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
       order_type: 'Room Service',
       order_detail: {
         is_preorder: req.body.preorder,
-        date_time: req.body.date
+        date_time: req.body.date,
+        special_note: req.body.note
       },
+      total_bill: 0
     });
+    console.log(x);
     var totalbill = 0;
     for (var i = 0; i < x.items.length; i++) {
       var name = x.items[i].name;
+      console.log(name);
       var count = x.items[i].count;
+      console.log(count);
       for (var j = 0; j < restaurant.menu_items.length; j++) {
         if (restaurant.menu_items[j].name == name) {
           totalbill = totalbill + Number((count * restaurant.menu_items[j].price));
+          console.log("TB", totalbill);
         }
       }
     }
-    x[total_bill] = totalbill;
+    console.log(totalbill);
+    x.total_bill = totalbill;
+    console.log(x);
     var order = await new Order(x);
     var id = order._id;
     user.forDashboard.order.push(id);
     await user.save();
     await order.save();
+    res.send(order);
   } catch (e) {
     res.status(500).send(e);
   }
@@ -95,32 +106,42 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
     const restaurant = await Restaurant.findOne({
       name: req.body.restaurant_name
     });
+    console.log(user._id);
+    console.log(restaurant._id);
     var x = new Object({
       user_id: user._id,
       restaurant_id: restaurant._id,
       items: req.body.items,
-      order_type: 'Restaurant Table Self HelpRoom Service',
+      order_type: 'Restaurant Table Self Help',
       order_detail: {
         is_preorder: req.body.preorder,
         date_time: req.body.date
       },
+      total_bill: 0
     });
+    console.log(x);
     var totalbill = 0;
     for (var i = 0; i < x.items.length; i++) {
       var name = x.items[i].name;
+      console.log(name);
       var count = x.items[i].count;
+      console.log(count);
       for (var j = 0; j < restaurant.menu_items.length; j++) {
         if (restaurant.menu_items[j].name == name) {
           totalbill = totalbill + Number((count * restaurant.menu_items[j].price));
+          console.log("TB", totalbill);
         }
       }
     }
-    x[total_bill] = totalbill;
+    console.log(totalbill);
+    x.total_bill = totalbill;
+    console.log(x);
     var order = await new Order(x);
     var id = order._id;
     user.forDashboard.order.push(id);
     await user.save();
     await order.save();
+    res.send(order);
   } catch (e) {
     res.status(500).send(e);
   }
