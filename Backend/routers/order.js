@@ -78,6 +78,9 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
     }
     x[total_bill] = totalbill;
     var order = await new Order(x);
+    var id = order._id;
+    user.forDashboard.order.push(id);
+    await user.save();
     await order.save();
   } catch (e) {
     res.status(500).send(e);
@@ -114,8 +117,33 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
     }
     x[total_bill] = totalbill;
     var order = await new Order(x);
+    var id = order._id;
+    user.forDashboard.order.push(id);
+    await user.save();
     await order.save();
   } catch (e) {
     res.status(500).send(e);
   }
 });
+
+router.delete('/orders', firebase.verifyToken, async (req, res) => {
+  try {
+    var user = await User.findOne({
+      uid: req.body.uid
+    });
+    var order = Order.findOne({
+      user_id: user._id
+    });
+    var o_id = order._id;
+    order.remove();
+    var idx = user.forDashboard.order.indexOf(o_id);
+    if (idx > -1) {
+      user.splice(idx, 1);
+    }
+    await user.save();
+    res.send(order);
+  } catch (e) {
+    res.send(e);
+  }
+});
+module.exports = router;
