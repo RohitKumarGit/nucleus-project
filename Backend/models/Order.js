@@ -46,7 +46,6 @@ const orderSchema = new mongoose.Schema({
     },
     date_time: {
       type: Date,
-      default: Date.now
     }
   },
   isCancelled: {
