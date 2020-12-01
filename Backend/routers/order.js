@@ -6,6 +6,25 @@ const Restaurant = require('../models/Restaurant');
 const router = new express.Router();
 const firebase = require('../middlewares/firebase');
 
+
+router.get('/allmenu', firebase.verifyToken, async (req, res) => {
+  try {
+    const itemArray = [];
+    const restaurants = await Restaurant.find({});
+    for (var i = 0; i < restaurants.length; i++) {
+      var restaurant = restaurants[i];
+      var x = new Object({
+        name: restaurant.name,
+        menu_items: restaurant.menu_items
+      });
+      itemArray.push(x);
+    }
+    res.send(itemArray);
+  } catch (e) {
+    res.send(e);
+  }
+});
+
 router.get('/roomservice', firebase.verifyToken, async (req, res) => {
   try {
     const user = await User.findOne({
