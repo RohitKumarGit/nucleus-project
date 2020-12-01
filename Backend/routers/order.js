@@ -66,7 +66,6 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
       order_detail: {
         is_preorder: req.body.preorder,
         date_time: req.body.date,
-        special_note: req.body.note
       },
       total_bill: 0
     });
@@ -116,7 +115,6 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
       order_detail: {
         is_preorder: req.body.preorder,
         date_time: req.body.date,
-        special_note: req.body.note
       },
       total_bill: 0
     });
