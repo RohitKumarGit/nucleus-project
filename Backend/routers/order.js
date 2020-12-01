@@ -115,7 +115,8 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
       order_type: 'Restaurant Table Self Help',
       order_detail: {
         is_preorder: req.body.preorder,
-        date_time: req.body.date
+        date_time: req.body.date,
+        special_note: req.body.note
       },
       total_bill: 0
     });
