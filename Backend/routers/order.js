@@ -69,12 +69,15 @@ router.get('/selfservice', firebase.verifyToken, async (req, res) => {
 
 router.post('/roomservice', firebase.verifyToken, async (req, res) => {
   try {
+    console.log(req.body.items);
     const user = await User.findOne({
       uid: req.body.uid
     });
+    console.log(1);
+    var itemArray = [];
     var x = new Object({
       user_id: user._id,
-      items: [],
+      items: itemArray,
       order_type: 'Room Service',
       order_detail: {
         is_preorder: req.body.preorder,
@@ -89,16 +92,21 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
       console.log(name);
       var count = req.body.items[i].count;
       console.log(count);
-      var price = req.body.item[i].price;
-      totalbill += Number(price);
-      var y = new Object({
+      var price = req.body.items[i].price;
+      console.log(price);
+      totalbill += Number(price) * count;
+      console.log(totalbill);
+      var y = {
         name: name,
         count: count
-      });
-      x.items.push(y);
+      };
+      console.log(y);
+      itemArray.push(y);
+      console.log(itemArray);
     }
     console.log(totalbill);
     x.total_bill = totalbill;
+    x.items = itemArray;
     console.log(x);
     var order = await new Order(x);
     var id = order._id;
