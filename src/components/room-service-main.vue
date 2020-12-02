@@ -161,6 +161,7 @@ Navbar
           return {
             name: product.name,
             count: product.quantity,
+            price:product.price,
           };
         }
       });
@@ -218,7 +219,7 @@ Navbar
         }
       }
       if (this.val != 0) {
-        this.order.push({ quantity: this.val, id: item._id, name: item.name }); //How to add object to an existing array
+        this.order.push({ quantity: this.val, id: item._id, name: item.name , price:item.price}); //How to add object to an existing array
       }
       console.log(this.order);
     },
