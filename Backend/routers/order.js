@@ -72,15 +72,9 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
     const user = await User.findOne({
       uid: req.body.uid
     });
-    const restaurant = await Restaurant.findOne({
-      name: req.body.restaurant_name
-    });
-    console.log(user._id);
-    console.log(restaurant._id);
     var x = new Object({
       user_id: user._id,
-      restaurant_id: restaurant._id,
-      items: req.body.items,
+      items: [],
       order_type: 'Room Service',
       order_detail: {
         is_preorder: req.body.preorder,
@@ -90,17 +84,18 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
     });
     console.log(x);
     var totalbill = 0;
-    for (var i = 0; i < x.items.length; i++) {
-      var name = x.items[i].name;
+    for (var i = 0; i < req.body.items.length; i++) {
+      var name = req.body.items[i].name;
       console.log(name);
-      var count = x.items[i].count;
+      var count = req.body.items[i].count;
       console.log(count);
-      for (var j = 0; j < restaurant.menu_items.length; j++) {
-        if (restaurant.menu_items[j].name == name) {
-          totalbill = totalbill + Number((count * restaurant.menu_items[j].price));
-          console.log("TB", totalbill);
-        }
-      }
+      var price = req.body.item[i].price;
+      totalbill += Number(price);
+      var y = new Object({
+        name: name,
+        count: count
+      });
+      x.items.push(y);
     }
     console.log(totalbill);
     x.total_bill = totalbill;
