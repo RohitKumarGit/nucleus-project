@@ -3,7 +3,7 @@
           <h1> Your Preorders and Registrations</h1>
           <div class="orders u-add-height u-made-scroll">
             <div class="courses-container ">
-              <div class="course"  v-for="buffet in bookings.buffet" :key="buffet._id">
+              <div class="course"  v-for="buffet in bookings.buffets" :key="buffet._id">
                 <div class="course-preview">
                   <i class="fas fa-pizza-slice fa-3x"></i>
                 </div>
@@ -15,13 +15,13 @@
               </div>
             </div>
             <div class="courses-container">
-              <div class="course" v-for="table in bookings.t" :key="table._id">
+              <div class="course" v-for="table in bookings.tables" :key="table._id">
                 <div class="course-preview">
                   <i class="fas fa-chair fa-3x"></i>
                 </div>
                 <div class="course-info" v-if="table.user_id!='cancel'">
                   <h2>Table reservations </h2>
-                  <p>At XYZ restaurant{{table.restaurant_id}}</p>
+                  <p>At XYZ restaurant{{" "+table.restaurant_id.name}}</p>
                   <span>for {{table.Duration}} hr/hrs &nbsp; <a href="#cancel" @click="Cancel(table)">Cancel</a></span>
                   <b-button class="btn">{{table.Time}}:00</b-button>
                 </div>
@@ -36,6 +36,7 @@
 <script>
 import {mapState} from 'vuex'
 import axios from 'axios'
+
 export default {
   watch:{
     user(){
@@ -50,12 +51,13 @@ export default {
   },
   methods:{
     async getData(){
+      console.log()
       const {data} = await axios.get('/allbookings',{
         headers: {
             authorization: this.user.ya,
           },
         params:{
-          user_id:this.user._id
+          uid:this.user.uid
         }
       })
       this.bookings = data
