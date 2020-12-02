@@ -34,7 +34,7 @@
                     <span class="sr-only">Next</span>
                   </a>
             </div>
-        <a href="./" class="btn btn--blue btn--animated my">GO BACK</a>
+        <router-link to="./" class="btn btn--blue btn--animated my">GO BACK</router-link>
     </div>
   </div>
 </template>

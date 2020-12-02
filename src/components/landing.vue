@@ -11,9 +11,9 @@
 
             <nav class="navigation__nav">
                 <ul class="navigation__list">
-                    <li class="navigation__item"><a href="./about" class="navigation__link"><span>01</span>About NUCLEUS</a></li>
-                    <li class="navigation__item"><a href="./gallery" class="navigation__link"><span>02</span>Gallery</a></li>
-                    <li class="navigation__item"><a href="./rooms" class="navigation__link"><span>03</span>Popular rooms</a></li>
+                    <li class="navigation__item"><router-link to="./about" class="navigation__link"><span>01</span>About NUCLEUS</router-link></li>
+                    <li class="navigation__item"><router-link to="./gallery" class="navigation__link"><span>02</span>Gallery</router-link></li>
+                    <li class="navigation__item"><router-link to="./rooms" class="navigation__link"><span>03</span>Popular rooms</router-link></li>
                     </ul>
             </nav>
         </div>
@@ -621,6 +621,7 @@ animation-timing-function: ease-out;
 	font-weight: 700;
 	background-image: linear-gradient(to right,$color-primary-light,$color-primary-dark);
     display:inline-block;
+    background-clip:text;
     -webkit-background-clip:text;
     color:transparent;
     letter-spacing: 0.2rem;
@@ -938,6 +939,7 @@ animation-timing-function: ease-out;
         display: inline-block;
         background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
         -webkit-background-clip: text;
+        background-clip: text;
         color: transparent;
     }
 

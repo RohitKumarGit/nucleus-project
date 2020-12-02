@@ -1,28 +1,32 @@
 <template>
-    <div class="container rightdiv">
+    <div class="container rightdiv ">
           <h1> Your Preorders and Registrations</h1>
-          <div class="orders">
-            <div class="courses-container">
-              <div class="course">
+          <div class="orders u-add-height u-made-scroll">
+            <div class="courses-container ">
+              <div class="course"  v-for="buffet in bookings.buffet" :key="buffet._id">
                 <div class="course-preview">
                   <i class="fas fa-pizza-slice fa-3x"></i>
                 </div>
                 <div class="course-info">
-                  <h2>Food Preordered</h2>
+                  <h2>Buffet Slot booked</h2>
                   <p>ABCNI</p>
                   <button class="btn">7:30pm</button>
                 </div>
               </div>
             </div>
             <div class="courses-container">
-              <div class="course">
+              <div class="course" v-for="table in bookings.t" :key="table._id">
                 <div class="course-preview">
                   <i class="fas fa-chair fa-3x"></i>
                 </div>
-                <div class="course-info">
-                  <h2>Table registration </h2>
-                  <p>At XYZ restaurant</p>
-                  <button class="btn">8:00pm</button>
+                <div class="course-info" v-if="table.user_id!='cancel'">
+                  <h2>Table reservations </h2>
+                  <p>At XYZ restaurant{{table.restaurant_id}}</p>
+                  <span>for {{table.Duration}} hr/hrs &nbsp; <a href="#cancel" @click="Cancel(table)">Cancel</a></span>
+                  <b-button class="btn">{{table.Time}}:00</b-button>
+                </div>
+                <div id="cancel" v-if="table.user_id=='cancel'">
+                  <p>Order cancelled</p>
                 </div>
               </div>
             </div>
@@ -40,17 +44,37 @@ export default {
   },
   data(){
     return {
-      bookings:{}
+      bookings:{},
+      cancel:false,
     }
   },
   methods:{
     async getData(){
       const {data} = await axios.get('/allbookings',{
+        headers: {
+            authorization: this.user.ya,
+          },
         params:{
           user_id:this.user._id
         }
       })
       this.bookings = data
+      console.log(this.bookings);
+    },
+    Cancel(table){
+      const helper= this;
+      console.log(table);
+      axios.delete("/tablereserve",
+      {
+        data:{
+          uid:helper.user.uid,
+          reserve:table,
+        },
+        headers: {
+            authorization: this.user.ya,
+          },
+      });
+      table.user_id="cancel";
     }
   },
   created(){
@@ -127,9 +151,15 @@ export default {
 	color: #fff;
 	font-size: 1rem;
 	padding: 1rem 1.5rem;
-	position: absolute;
+	position: absolute !important;
 	bottom: 1rem;
 	right: 1rem;
 	letter-spacing: 1px;
+}
+.u-add-height {
+  height: 35rem;
+}
+.u-made-scroll {
+  overflow-y: auto;
 }
 </style>

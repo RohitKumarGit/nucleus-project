@@ -82,6 +82,7 @@ export default{
                 phone:this.signup.phone,
                 dateOfBirth:this.signup.dob,
                 email:this.signup.email,
+                documents:this.signup.file1,
             })
             
             } catch (error) {

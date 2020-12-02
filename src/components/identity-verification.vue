@@ -7,7 +7,7 @@
             <h6 class="attach-desc">Attach Original ID(Aadhar ID/PAN Card/Driving License,etc)</h6>
   <form>
   <div class="custom-file">
-    <b-form-file v-model="file1" accept="image/*">Choose file</b-form-file>
+    <b-form-file  accept="image/*" @change="upload($event)">Choose file</b-form-file>
   </div>
 
             <div class="mb-3">
@@ -17,36 +17,50 @@
               </div>
             </div>
 </form>
-         
+         <p v-if="error">{{error}}</p>
             <div class="mb-3">
-              <button type="submit" class="btn btn-block text-uppercase proceed" @click="handle">
+              <b-button type="submit" class="btn btn-block text-uppercase proceed" @click.prevent="handle">
                 Proceed
-              </button>
+              </b-button>
             </div>
           </form>
         </div>
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
 
     data () {
         return {
-          file1:null,
+          file1:"",
+          error:null,
         }
     },
     methods:{
         handle(){
           // handle this page
-          console.log(this.signup) 
-          const {file1} = this;
-          this.$store.commit("signupflow",{
-          file1
-       })
-       this.$router.push('/signup/setup') // this will contain all data from previous page
-          // take input from all fields just like basic detais and commit it to vuex
-          // similarly do for the third page
-          // as there is no API as of now leave the part of saving it to database
+          if(this.file1!=""){
+            console.log(this.signup) ;
+            const {file1} = this;
+            this.$store.commit("signupflow",{
+            file1
+            })
+            this.$router.push('/signup/setup')
+          }
+          else{
+              this.error="Please upload a File"
+          }
+        },
+        async upload(event){
+          var file =event.target.files[0];
+          console.log(file);
+          const fileRef =firebase.storage().ref().child(file.name);
+          await fileRef.put(file);
+          fileRef.getDownloadURL().then((url)=>
+          this.file1=url,
+          console.log(this.file1)
+          );
         }
     }
 }

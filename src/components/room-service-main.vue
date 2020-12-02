@@ -11,40 +11,32 @@
       <div class="row food-order-pane">
         <div class="col-lg-6 col-md-12 u-add-height u-made-scroll">
         <h3 class="food-order-pane-heading">FOOD ITEMS</h3>
-        
-          <h4 class="food-order-types">MAIN COURSE</h4>
-          <ul class="food-order-items">
-            <li class="custom">DAL MAKHANI<div class="hover-text">-->dal makhani is a veg food</div></li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">CHANA MASALA<div class="hover-text">-->chana masala is a veg food</div></li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">PANEER TIKKA BUTTER MASALA</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">PALAK PANEER</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">MUSHROOM MASALA</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
+        <ul class="food-order-items" v-if="menu">
+            <li class="custom" v-for="rest in menu" :key="rest.name" >
+              <h3>{{rest.name}}</h3>
+              <ul v-for="item in rest.menu_items" :key="item._id">
+                <li>
+              {{item.name}}&nbsp;{{item.price}}<br> {{item.category.cuisine}}&nbsp;{{item.category.FoodPreferences}}
+              <div class="hover-text">
+                Allergens : <span v-for="allergy in item.category.possibleAllergics" :key="allergy">{{allergy}}&nbsp;</span>
+              </div>
+              <b-form-spinbutton class="my-spin-button" min=0 @change="Insert($event,item)">
+              </b-form-spinbutton>
+                </li>
+                </ul>
+            </li>
           </ul>
-          <h4 class="food-order-types">SALADS</h4>
-          <ul class="food-order-items">
-            <li class="custom">Vegetable Som Tam Salad</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">Compressed Melon Sliders</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">Mixed Beans Salad</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">Fruit Cube Salad</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-          </ul>
-          <h4 class="food-order-types">DRINKS</h4>
-          <ul class="food-order-items">
-            <li class="custom">vodka lemon</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">coke</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">orange juice</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-          </ul>
-          <h4 class="food-order-types">DESSERTS</h4>
-          <ul class="food-order-items">
-            <li class="custom">choco-lave cake</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">ras-malai</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-            <li class="custom">rice kheer</li><b-form-spinbutton class="my-spin-button" min=0></b-form-spinbutton>
-          </ul>
-      </div>
+        </div>
         <div class="col-lg-6 col-md-12 u-add-height u-made-scroll">
           <h3 class="food-order-pane-heading">CART</h3>
-          <div class="food-order-cart"><h4 class="food-order-types">TOTAL</h4>        
-          </div>
-          <button class="btn btn--blue order-now-btn">order now&rarr;</button>
+          <ul class="food-order-items" v-if="order">
+            <li class="custom" v-for="item in order" :key="item._id" >
+              {{item.name}}&nbsp;<br> {{item.quantity}}&nbsp;
+            </li>
+          </ul>
+          <a class="btn btn--blue order-now-btn" href="#" @click="Order">
+            Order Food&rarr;
+          </a>
       </div>
       </div>
     </div>
@@ -105,7 +97,7 @@
         </div>
         <div class="card-body">
           <p>
-            Hot, fresh and hygeinic food at your doorstep
+            Hot, fresh and hygienic food at your doorstep
           </p>
           <a href="#" class="myButton" v-on:click="openfood">Open</a>
         </div>
@@ -132,17 +124,20 @@
              <textarea placeholder="Enter the description of your service"></textarea>
         </div>
          <div class="mb-3">
-              <button type="submit" class="btn btn-block text-uppercase">
+              <b-button type="submit" class="btn btn-block text-uppercase">
                 Request
-              </button>
+              </b-button>
             </div>
         </div>
+        <p v-if="error"> {{error}}</p>
       </div>
     </div></div>
 </div>
 </template>
 <script>
-	import Navbar from "./navbar.vue";
+  import Navbar from "./navbar.vue";
+  import axios from "axios";
+import { mapGetters } from "vuex";
 export default {
 	components: {
 Navbar
@@ -155,7 +150,22 @@ Navbar
     others:false,
     menu:"",
     order:[],
+    error:"",
     };
+  },
+  computed: {
+    ...mapGetters(["user"]),
+    Orderfinal() {
+      var Orderfinal = this.order.map((product) => {
+        if (product.quantity != 0) {
+          return {
+            name: product.name,
+            count: product.quantity,
+          };
+        }
+      });
+      return Orderfinal;
+    },
   },
   methods:
   {
@@ -179,6 +189,17 @@ Navbar
    this.clean=false;
   this.laundry=false;
   this.others=false;
+  const helper =this;
+      axios.get("/allmenu", {
+          headers: {
+            authorization: this.user.ya,
+          },
+        })
+        .then(function (response) {
+        console.log(response);
+        helper.menu = response.data;
+        console.log(helper.menu);
+        });
   },
     openothers:function()
   {
@@ -186,7 +207,52 @@ Navbar
    this.clean=false;
   this.food=false;
   this.laundry=false;
-  }
+  },
+  Insert(event, item) {
+      this.val = event;
+      for (var i = 0; i < this.order.length; i++) {
+        if (this.order[i].id == item._id) {
+          this.order[i].quantity = this.val;
+          this.val = 0;
+          break;
+        }
+      }
+      if (this.val != 0) {
+        this.order.push({ quantity: this.val, id: item._id, name: item.name }); //How to add object to an existing array
+      }
+      console.log(this.order);
+    },
+    Order(){
+      const helper = this;
+      console.log(this.Orderfinal);
+      if (this.Orderfinal[0] !== undefined) {
+        try {
+          axios.post(
+            "/roomservice",
+            {
+              uid: helper.user.uid,
+              items: helper.Orderfinal,
+              preorder: true,
+              date: helper.restaurant.time,
+            },
+            {
+              headers: {
+                authorization: this.user.ya,
+              },
+            }
+          );
+        } catch (error) {
+          helper.error = error.message;
+        }
+        helper.Orderfinal=[];
+        helper.order=[];
+        this.error = "Your booking is done successfully";
+      } else {
+        this.error = "No items were selected";
+        helper.Orderfinal=[];
+        helper.order=[];
+      }
+    }
   }
 }
 </script>
