@@ -228,13 +228,14 @@ Navbar
       console.log(this.Orderfinal);
       if (this.Orderfinal[0] !== undefined) {
         try {
+          console.log("1");
           axios.post(
             "/roomservice",
             {
               uid: helper.user.uid,
               items: helper.Orderfinal,
               preorder: true,
-              date: helper.restaurant.time,
+              date:8,
             },
             {
               headers: {
@@ -244,7 +245,9 @@ Navbar
           );
         } catch (error) {
           helper.error = error.message;
+          console.log(error);
         }
+        console.log("2");
         helper.Orderfinal=[];
         helper.order=[];
         this.error = "Your booking is done successfully";
