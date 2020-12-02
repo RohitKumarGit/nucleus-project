@@ -6,9 +6,9 @@ const router = express.Router();
 const firebase = require('../middlewares/firebase');
 const TableR = require('../models/Table_reserve')
 router.get('/allbookings', firebase.verifyToken, async function (req, res) {
-  console.log("user",req.query.uid)
+  console.log("user", req.query.uid)
   const user = await User.findOne({
-    uid:req.query.uid
+    uid: req.query.uid
   })
   try {
     const buffets = await Buffet.find({
@@ -16,7 +16,7 @@ router.get('/allbookings', firebase.verifyToken, async function (req, res) {
         $in: [user._id]
       }
     }, "restaurant_id slots.slot_type slots.slot_details.time createdAt").populate('restaurant_id')
-   
+
     const tables = await TableR.find({
       'user_id': {
         $in: [user._id]
@@ -25,7 +25,6 @@ router.get('/allbookings', firebase.verifyToken, async function (req, res) {
     res.send({
       buffets,
       tables,
-      
     })
   } catch (error) {
     console.log(error)
@@ -127,34 +126,52 @@ router.patch('/buffet/reset', firebase.verifyToken, async (req, res) => {
 //Buffet Id
 //Slot Type
 //Slot Time
-router.patch('/buffet/cancel', firebase.verifyToken, async (req, res) => {
+router.delete('/buffet', firebase.verifyToken, async (req, res) => {
   try {
-    var user = User.findOne({
+    var user = await User.findOne({
       uid: req.body.uid
     });
-    var buffet = Buffet.findById({
+    var user_id = user._id
+    console.log(user_id);
+    var buffet = await Buffet.findOne({
       _id: req.body.bid
     });
-    var buffetType = buffet.slots[req.body.slotType].slot_details[req.body.slotTime];
-    var x = buffetType.totalPeople;
-    var y = buffetType.bookedBy.findIndex((z) => {
-      return z.user_id === req.body.uid;
-    });
-    //y return the index at which we find the required userID
-    var z = buffetType.bookedBy[y];
-    x -= z.number;
-    buffetType.totalPeople = x;
-
-    var k = user.forDashboard.buffet.indexOf(req.body.bid);
-    if (k > -1) {
-      user.forDashboard.buffet.splice(k, 1);
+    var buffetSlot = buffet.slots[req.body.slotType]; //Index 0-> MorningMania 1->Lunch 2->Dinner
+    var flag = false;
+    for (var i = 0; i < buffetSlot.slot_details.length; i++) {
+      var details = buffetSlot.slot_details[i];
+      if (details.time === req.body.time) {
+        var userIdx = -1;
+        for (var j = 0; j < details.bookedBy.length; j++) {
+          console.log(details.bookedBy[j].user_id);
+          if (String(user_id) == String(details.bookedBy[j].user_id)) {
+            userIdx = j;
+            break;
+          }
+        }
+        console.log(userIdx);
+        if (Number(userIdx) !== -1) {
+          var userNumber = details.bookedBy[userIdx].number;
+          console.log(userNumber);
+          details.totalPeople -= userNumber;
+          details.bookedBy.splice(userIdx, 1);
+          console.log(details.bookedBy);
+          flag = true;
+        }
+      }
+      if (flag) {
+        break;
+      }
     }
-    buffetType.bookedBy.splice(y, 1);
-    await user.save()
+    var index = user.forDashboard.buffet.indexOf(req.body.bid);
+    if (index != -1) {
+      user.forDashboard.buffet.splice(index, 1);
+    }
+    await user.save();
     await buffet.save();
     res.send(buffet);
   } catch (e) {
-    res.status(500).send();
+    res.send(e);
   }
 });
 module.exports = router;
