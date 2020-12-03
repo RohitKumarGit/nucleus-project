@@ -9,8 +9,8 @@
                 </div>
                 <div class="course-info">
                   <h2>Buffet Slot booked</h2>
-                  <p>ABCNI</p>
-                  <button class="btn">7:30pm</button>
+                  <p>{{buffet.restaurant_id.name}}</p>
+                  <button class="btn">{{buffet.restaurant_id.time_details[0].time_now}}(in 24 hr)</button>
                 </div>
               </div>
             </div>

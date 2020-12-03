@@ -34,9 +34,33 @@
               {{item.name}}&nbsp;<br> {{item.quantity}}&nbsp;
             </li>
           </ul>
+          <div>
+            <h6 class="ques">
+                        Do You want to pre-order food as well?
+                      </h6>
+                      <label
+                        >&nbsp;&nbsp;<input
+                          type="radio"
+                          name="optradio"
+                          v-model="x"
+                          value="yes"
+                          selected
+                        />&nbsp;&nbsp;Yes</label
+                      >&nbsp;&nbsp;&nbsp;&nbsp;
+                      <label
+                        >&nbsp;&nbsp;<input
+                          type="radio"
+                          name="optradio"
+                          v-model="x"
+                          value="no"
+                        />&nbsp;&nbsp;No</label
+                      >&nbsp;&nbsp;&nbsp;&nbsp;
+                      <br />
+                      <input type="number" v-if="x=='yes'" placeholder="Select time in 24hr format" v-model="num">
           <a class="btn btn--blue order-now-btn" href="#" @click="Order">
             Order Food&rarr;
           </a>
+          </div>
       </div>
       </div>
     </div>
@@ -106,6 +130,7 @@
               <button type="submit" class="btn btn-block text-uppercase" onclick="window.location.href = '#popup2';">
                Order Food
               </button>
+              <p v-if="error"> {{error}}</p>
             </div>
         </div>
       </div>
@@ -129,9 +154,11 @@
               </b-button>
             </div>
         </div>
-        <p v-if="error"> {{error}}</p>
+        
       </div>
-    </div></div>
+      
+    </div>
+    </div>
 </div>
 </template>
 <script>
@@ -151,6 +178,8 @@ Navbar
     menu:"",
     order:[],
     error:"",
+    num:0,
+    x:"no",
     };
   },
   computed: {
@@ -229,13 +258,18 @@ Navbar
       if (this.Orderfinal[0] !== undefined) {
         try {
           console.log("1");
+          if(helper.x=="no")
+          {
+            helper.num=0;
+          }
+          console.log(helper.num);
           axios.post(
             "/roomservice",
             {
               uid: helper.user.uid,
               items: helper.Orderfinal,
               preorder: true,
-              date:8,
+              date:helper.num,
             },
             {
               headers: {

@@ -18,7 +18,7 @@
             </div>
 </form>
          <p v-if="error">{{error}}</p>
-            <div class="mb-3">
+            <div class="mb-3" >
               <b-button type="submit" class="btn btn-block text-uppercase proceed" @click.prevent="handle">
                 Proceed
               </b-button>

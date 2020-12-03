@@ -46,7 +46,7 @@
                         >Select Food items</a
                       >
                       <p v-if="error">{{ error }}</p>
-                      <div class="mb-3" v-if="!error || x == 'no'">
+                      <div class="mb-3" v-if="!error && x == 'no'">
                         <b-button
                           type="submit"
                           class="btn btn-block text-uppercase"
