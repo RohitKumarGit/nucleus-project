@@ -1,5 +1,6 @@
 const express = require('express');
 const Buffet = require('../models/Buffet');
+const Billing = require('../models/Billing');
 const Restaurant = require('../models/Restaurant');
 const User = require('../models/Users');
 const router = express.Router();
@@ -62,7 +63,6 @@ router.get('/buffet', firebase.verifyToken, async (req, res) => {
 
 router.post('/buffet', firebase.verifyToken, async (req, res) => {
   try {
-
     var user = await User.findOne({
       uid: req.body.uid
     });
@@ -96,6 +96,12 @@ router.post('/buffet', firebase.verifyToken, async (req, res) => {
         user.forDashboard.buffet.push(buffet._id);
         await user.save();
       }
+      var billing = new Billing({
+        user_id: user._id,
+        buffet_id: buffet._id,
+        totalBill: Number(req.body.number) * 500
+      });
+      await billing.save();
       res.send(buffet);
     } else {
       throw new Error('Slot Full');
@@ -105,29 +111,6 @@ router.post('/buffet', firebase.verifyToken, async (req, res) => {
   }
 });
 
-
-//Slot type
-//Slot Time
-router.patch('/buffet/reset', firebase.verifyToken, async (req, res) => {
-  try {
-    var buffets = await Buffet.find({});
-    buffets.foreach(async (buffet) => {
-      var buffetType = buffet.slots[req.body.slotType].slot_details[req.body.slotTime];
-      buffetType.totalPeople = 0;
-      buffetType.bookedBy = [];
-      await buffet.save();
-    });
-    res.status().send()
-  } catch (e) {
-    res.status(500).send();
-  }
-});
-
-
-//User Id
-//Buffet Id
-//Slot Type
-//Slot Time
 router.delete('/buffet', firebase.verifyToken, async (req, res) => {
   try {
     var user = await User.findOne({
@@ -169,6 +152,11 @@ router.delete('/buffet', firebase.verifyToken, async (req, res) => {
     if (index != -1) {
       user.forDashboard.buffet.splice(index, 1);
     }
+    var billing = await Billing.findOne({
+      user_id: user._id,
+      buffet_id: req.body.bid
+    });
+    await billing.remove();
     await user.save();
     await buffet.save();
     res.send(buffet);
