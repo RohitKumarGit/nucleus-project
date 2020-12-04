@@ -16,6 +16,10 @@ const billingSchema = new mongoose.Schema({
   totalBill: {
     type: Number,
     default: 0
+  },
+  paid:{
+    default:false,
+    type:Boolean
   }
 });
 //for food only, for room orders, preorders, and table orders in restaurants

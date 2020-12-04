@@ -48,18 +48,21 @@ app.post('/signup/setup', async (req, res) => {
     res.status(400).send(e);
   }
 });
+
 const BuffetRouter = require('./Backend/routers/buffet')
 const RestaurantRouter = require('./Backend/routers/restaurant')
 const TableRouter = require('./Backend/routers/table')
 const RoomRouter = require('./Backend/routers/room')
 const OrderRouter = require('./Backend/routers/order');
+const BillingRouter = require('./Backend/routers/billing');
+
 // put all routers which need authentication below this
 app.use(BuffetRouter)
 app.use(RestaurantRouter)
 app.use(TableRouter)
 app.use(RoomRouter)
 app.use(OrderRouter);
-
+app.use(BillingRouter)
 
 app.use(history({
   verbose: false,

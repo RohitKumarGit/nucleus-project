@@ -18,7 +18,7 @@ router.get('/allbookings', async function (req, res) {
         $in: [user._id]
       }
     }, "restaurant_id slots.slot_type slots.slot_details.time createdAt").populate('restaurant_id')
-    const t = await TableR.find({},"user_id")
+   
     const tables = await TableR.find({
       'user_id': {
         $in: [user._id]
@@ -26,8 +26,7 @@ router.get('/allbookings', async function (req, res) {
     }).populate('restaurant_id')
     res.send({
       buffets,
-      tables,
-      t
+      tables
     })
   } catch (error) {
     console.log(error)
