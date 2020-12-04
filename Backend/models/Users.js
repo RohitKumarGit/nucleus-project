@@ -73,28 +73,6 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-
-userSchema.pre('remove', async function (next) {
-  var user = this;
-  var booking = await Booking.findOne({
-    user_id: user._id
-  });
-  var billing = await Billing.findOne({
-    user_id: user._id
-  });
-  for (i = 0; i < booking.room.size(); i++) {
-    var x = booking.room[i];
-    var y = Room.findOne({
-      number: x
-    });
-    y.vacant = true;
-    await y.save();
-  }
-  await booking.remove();
-  await billing.remove();
-  next();
-});
-
 userSchema.pre('save', async function (next) {
   var user = this;
   if (!user.isModified("password")) {
