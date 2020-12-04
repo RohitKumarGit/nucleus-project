@@ -132,4 +132,8 @@ export default {
 	right: 1rem;
 	letter-spacing: 1px;
 }
+.orders{
+  overflow-y:auto;
+  height:32rem;
+}
 </style>

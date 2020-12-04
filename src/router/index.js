@@ -17,6 +17,7 @@ import Room from '../components/room-service-main'
 import About from '../components/about'
 import Gallery from '../components/gallery'
 import Rooms from '../components/rooms'
+import Checkout from '../components/checkout'
 
 import Buffet from '../components/Buffet'
 import store from '../store'
@@ -33,6 +34,11 @@ const routes = [{
     path: '/gallery',
     name: 'Gallery',
     component: Gallery
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: Checkout
   },
   {
     path: '/about',

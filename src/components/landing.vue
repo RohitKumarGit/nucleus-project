@@ -41,16 +41,16 @@
 <div class="row">
     <div class="col-1-of-2">
      <h3 class="heading-tertiary u-margin-bottom-small">You're going to fall in love with nucleus</h3>
-     <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga dignissimos illum ea voluptates ut omnis aut tempora tempore eveniet. Voluptas dignissimos eos nesciunt maxime officiis a</p>
-       <h3 class="heading-tertiary u-margin-bottom-small">Live adventures like you have never have before</h3>
-     <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid illum, cupiditate facere eos qui, dolore, nisi aperiam facilis, accusamus expedita dolorum obcaecati quae molestias. Totam est dicta quam nobis corrupti.</p>
+     <p class="paragraph">Everything. Right, where you need it. </p>
+       <h3 class="heading-tertiary u-margin-bottom-small">why we are the best ?</h3>
+     <p class="paragraph">With the rapid automation of basic processes like ordering food (using apps like Swiggy), our team found great potential in automating the whole user experience for those staying at resorts by providing added functionality like ordering/pre ordering food for rooms, booking buffet slots, reserving tables and even pre ordering food to avoid waiting time, all this just a click away on our own Nucleus platform (making Resorts the Nucleus of your trip).</p>
      <a href="#" class="btn-text">Learn more &rarr;</a>
     </div>
      <div class="col-1-of-2">
         <div class="composition">
-            <img src="../assets/nat-1-large.jpg" alt="Photo 1" class="composition__photo composition__photo--p1">
-            <img src="../assets/nat-2-large.jpg" alt="Photo 2" class="composition__photo composition__photo--p2">
-            <img src="../assets/nat-3-large.jpg" alt="Photo 3" class="composition__photo composition__photo--p3">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="Photo 1" class="composition__photo composition__photo--p1">
+            <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1050&q=80" alt="Photo 2" class="composition__photo composition__photo--p2">
+            <img src="https://images.unsplash.com/photo-1580656155356-c0c1389c5cba?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=967&q=80" alt="Photo 3" class="composition__photo composition__photo--p3">
         </div>
     </div>
 </div>
@@ -59,41 +59,43 @@
                 
                 <div class="row">
                     <div class="col-1-of-4">
-                        <div class="feature-box">
-                            <i class="feature-box__icon fas fa-globe"></i>
-                            <h3 class="heading-tertiary u-margin-bottom-small">Explore the world</h3>
+                        <div class="feature-box u-add-featuresbg">
+                            <i class="feature-box__icon fas fa-utensils"></i>
+                            <h3 class="heading-tertiary u-margin-bottom-small">Buffet</h3>
                             <p class="feature-box__text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+French for get it yourself.
+Multi-cuisine buffet to suit your taste buds with a fresh menu for every meal. Juice, eggs, breads, cakes, sundays, we have it all, just name it. 
                             </p>
                         </div>
                     </div>
 
                     <div class="col-1-of-4">
-                        <div class="feature-box">
-                            <i class="feature-box__icon fas fa-leaf"></i>
-                            <h3 class="heading-tertiary u-margin-bottom-small">Meet nature</h3>
+                        <div class="feature-box u-add-featuresbg">
+                            <i class="feature-box__icon fas fa-chair"></i>
+                            <h3 class="heading-tertiary u-margin-bottom-small">Online table reservations</h3>
                             <p class="feature-box__text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+Have a hassle free stay and ensure to have a table reserved for the time that suits you through our online application.
                             </p>
                         </div>
                     </div>
 
                     <div class="col-1-of-4">
-                        <div class="feature-box">
-                            <i class="feature-box__icon fas fa-compass"></i>
-                            <h3 class="heading-tertiary u-margin-bottom-small">Find your way</h3>
+                        <div class="feature-box u-add-featuresbg">
+                            <i class="feature-box__icon fas fa-clock"></i>
+                            <h3 class="heading-tertiary u-margin-bottom-small">Pre Ordering Food</h3>
                              <p class="feature-box__text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+Find it unfair to wait long after ordering food when you are hungry right now? Now, you can order food for the time you like, delivered to your room or your table.
                             </p>
                         </div>
                     </div>
 
                     <div class="col-1-of-4">
-                        <div class="feature-box">
-                            <i class="feature-box__icon fas fa-heart"></i>
-                            <h3 class="heading-tertiary u-margin-bottom-small">Live a healthier life</h3>
+                        <div class="feature-box u-add-featuresbg">
+                            <i class="feature-box__icon fas fa-bicycle"></i>
+                            <h3 class="heading-tertiary u-margin-bottom-small">Local Attractions</h3>
                             <p class="feature-box__text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur.
+
+You can check for local attractions in our local attractions section and get to know about what's brewing around. Click on them to know more
                             </p>
                         </div>
                     </div>
@@ -102,7 +104,7 @@
 <section class="section-tours" id="section-tours">
                 <div class="u-center-text u-margin-bottom-medium">
                     <h2 class="heading-secondary">
-                        Most popular tours
+                        Most popular Packages
                     </h2>
                 </div>
 
@@ -114,23 +116,18 @@
                                     &nbsp;
                                 </div>
                                 <h4 class="card__heading">
-                                    <span class="card__heading-span card__heading-span--1">The Sea Explorer</span>
+                                    <span class="card__heading-span card__heading-span--1"><strong>Romance is in the air</strong></span>
                                 </h4>
                                 <div class="card__details">
-                                    <ul>
-                                        <li>3 day tours</li>
-                                        <li>Up to 30 people</li>
-                                        <li>2 tour guides</li>
-                                        <li>Sleep in cozy hotels</li>
-                                        <li>Difficulty: easy</li>
-                                    </ul>
+                                    4 days 3 Nights couple package<br>
+                                    Enjoy our Valentine special package this coming February far from the hectic city life to spend some time with your special loved one.
                                 </div>
                            </div>
                            <div class="card__side card__side--back card__side--back-1">
                                 <div class="card__cta">
                                     <div class="card__price-box">
                                         <p class="card__price-only">Only</p>
-                                        <p class="card__price-value">$297</p>
+                                        <p class="card__price-value">Rs. 6999</p>
                                     </div>
                                     <a href="#popup" class="btn btn--white">Book now!</a>
                                 </div>
@@ -146,16 +143,10 @@
                                     &nbsp;
                                 </div>
                                 <h4 class="card__heading">
-                                    <span class="card__heading-span card__heading-span--2">The Forest Hiker</span>
+                                    <span class="card__heading-span card__heading-span--2"><strong>Family is Family</strong></span>
                                 </h4>
                                 <div class="card__details">
-                                    <ul>
-                                        <li>7 day tours</li>
-                                        <li>Up to 40 people</li>
-                                        <li>6 tour guides</li>
-                                        <li>Sleep in provided tents</li>
-                                        <li>Difficulty: medium</li>
-                                    </ul>
+                                    5 days and 5 nights, family package for 4. Tired of the boring routine work? We provide you the chance to relax and rejuvenate this comming summers with your family, it is time for pool, spa and food.
                                 </div>
 
                             </div>
@@ -163,7 +154,7 @@
                                 <div class="card__cta">
                                     <div class="card__price-box">
                                         <p class="card__price-only">Only</p>
-                                        <p class="card__price-value">$497</p>
+                                        <p class="card__price-value">Rs. 9999</p>
                                     </div>
                                     <a href="#popup" class="btn btn--white">Book now!</a>
                                 </div>
@@ -179,16 +170,12 @@
                                     &nbsp;
                                 </div>
                                 <h4 class="card__heading">
-                                    <span class="card__heading-span card__heading-span--3">The Snow Adventurer</span>
+                                    <span class="card__heading-span card__heading-span--3"><strong>Adventure Awaits</strong></span>
                                 </h4>
                                 <div class="card__details">
-                                    <ul>
-                                        <li>5 day tours</li>
-                                        <li>Up to 15 people</li>
-                                        <li>3 tour guides</li>
-                                        <li>Sleep in provided tents</li>
-                                        <li>Difficulty: hard</li>
-                                    </ul>
+                                   3 days and 3 nights.
+Adventure package for 3
+Hello adventurers! We offer you the time of your life with your favourite adventure sports. Let the thrill begin with bungee, sky diving, rafting and much more.
                                 </div>
 
                             </div>
@@ -196,7 +183,7 @@
                                 <div class="card__cta">
                                     <div class="card__price-box">
                                         <p class="card__price-only">Only</p>
-                                        <p class="card__price-value">$897</p>
+                                        <p class="card__price-value">Rs. 11999</p>
                                     </div>
                                     <a href="#popup" class="btn btn--white">Book now!</a>
                                 </div>
@@ -233,9 +220,7 @@
                         <div class="story__text">
                             <h3 class="heading-tertiary u-margin-bottom-small">I had the best week ever with my family</h3>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur
-                                ducimus quam nisi exercitationem omnis earum qui. Aperiam, ipsum sapiente aspernatur libero
-                                repellat quis consequatur ducimus quam nisi exercitationem omnis earum qui.
+                                Had a resort stay after a long time and loved every bit of it, perfect way to enjoy a long vacation with friends amidst hot and delicious food, and what got our attention the most was the new tech adopted by them, made things a little more convenient and fun.
                             </p>
                         </div>
                     </div>
@@ -248,11 +233,9 @@
                             <figcaption class="story__caption">Jack Wilson</figcaption>
                         </figure>
                         <div class="story__text">
-                            <h3 class="heading-tertiary u-margin-bottom-small">WOW! My life is completely different now</h3>
+                            <h3 class="heading-tertiary u-margin-bottom-small">WOW! Perfection at its best</h3>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, ipsum sapiente aspernatur libero repellat quis consequatur
-                                ducimus quam nisi exercitationem omnis earum qui. Aperiam, ipsum sapiente aspernatur libero
-                                repellat quis consequatur ducimus quam nisi exercitationem omnis earum qui.
+                                I am not new to the resort experiences, but the food and facilities over here were loved by me and my family, and my children couldn't stop ordering food on their web page. Finally a place where I can check for the crowd in buffets without actually leaving my room.
                             </p>
                         </div>
                     </div>
@@ -818,7 +801,7 @@ animation-timing-function: ease-out;
     &__picture {
         background-size: cover;
         height: 13.5rem;
-        background-blend-mode: color;
+        background-blend-mode: overlay;
         -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         border-top-left-radius: 3px;
@@ -826,17 +809,17 @@ animation-timing-function: ease-out;
         
         &--1 {
             background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), 
-            url(../assets/nat-5.jpg);
+            url(https://images.unsplash.com/photo-1501901609772-df0848060b33?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);
         }
 
         &--2 {
             background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), 
-            url(../assets/nat-6.jpg);
+            url(https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=950&q=80);
         }
 
         &--3 {
             background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), 
-            url(../assets/nat-7.jpg);
+            url(https://images.unsplash.com/photo-1530870110042-98b2cb110834?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);
         }
     }
 
@@ -1259,4 +1242,7 @@ animation-timing-function: ease-out;
 .u-margin-top-big { margin-top: 8rem; }
 .u-margin-top-huge { margin-top: 10rem; }
 .u-changed-width-button{width:80%;}
+.u-add-featuresbg{
+    background-color:#ffffdd;
+}
 </style>

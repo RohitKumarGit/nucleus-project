@@ -4,7 +4,7 @@
       <Navbar></Navbar>
       <br>
       <div class="contents">
-        <span>Welcome {{user.email}} !</span>
+        <span>WELCOME {{user.email}} !</span>
       <div class="row">
         <div class="box col-12 col-lg-6 ">
       <Services></Services>
@@ -45,10 +45,9 @@ export default{
 background: linear-gradient(315deg, rgba(93,197,205,1) 1%, rgba(203,234,237,1) 29%, rgba(93,197,205,1) 50%, rgba(203,234,237,1) 82%, rgba(93,197,205,1) 100%);
   height: 100%;
   background-repeat: repeat;
-  overflow:auto;
 }
 .basic .row{
-  margin: 1rem;
+  margin: 0.8rem;
 }
 .contents{
   margin:1rem;
