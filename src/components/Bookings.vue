@@ -10,6 +10,7 @@
                 <div class="course-info">
                   <h2>Buffet Slot booked</h2>
                   <p>{{buffet.restaurant_id.name}}</p>
+                   <a href="#cancel" @click="Cancelb(buffet._id)">Cancel</a>
                   <button class="btn">{{buffet.restaurant_id.time_details[0].time_now}}(in 24 hr)</button>
                 </div>
               </div>
@@ -77,6 +78,20 @@ export default {
           },
       });
       table.user_id="cancel";
+      this.getData()
+    },
+    async Cancelb(id){
+   //   buffetcancel
+    const {data} = await axios.post('/buffetcancel',{
+      bid:id,
+      uid:this.user.uid
+    },{
+      headers:{
+        authorization:this.user.ya
+      }
+    })
+    console.log(data)
+    this.getData()
     }
   },
   created(){

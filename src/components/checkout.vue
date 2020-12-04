@@ -6,11 +6,8 @@
        <div class="row my-row">
            <div class="col-lg-6 col-md-12 col-sm-12 my-col">
              <h1 class="heading-secondary">Checkout form</h1>
-             <h4 class="fields">ROOM NO.</h4>
-             <h4 class="fields">ROOM CHARGES</h4>
-             <h4 class="fields">SERVICES</h4>
-             <h4 class="fields">GST</h4>
-             <h2 class="fields">TOTAL</h2>
+            <b-table striped hover :items="bill" :fields="fields"></b-table>
+             <h2 class="fields">TOTAL : <b class="text-primary d-inline-block">&#8377; {{total}}</b> </h2>
              <div class="col-1-of-2"><a href="#" class="btn btn--blue btn--animated"><strong>PAY SECURELY</strong></a></div>
            </div>
             <div class="col-6 d-none d-lg-block flower my-col">
@@ -25,13 +22,46 @@
 
 <script>
 import navbar from "./navbar.vue";
+import {mapState} from 'vuex'
+import axios from 'axios'
 export default {
 		components: {
 navbar
 	},
   data(){
     return {
+        bill:[],
+        total:0,
+        fields:["_id","totalBill"]
     };
+  },
+  computed:{
+      ...mapState(['user'])
+  },
+  
+  watch:{
+      user(){
+          this.getData()
+      }
+  },
+  methods:{
+      async getData(){
+      const {data} = await axios.get('/bill',{
+          params:{
+              uid:this.user.uid
+          },
+        headers:{
+            authorization:this.user.ya
+        }
+      })
+     
+      this.bill = data.bill
+      this.total = data.total
+  }
+  },
+  async created(){
+      this.getData()
+      
   }
 }
 </script>

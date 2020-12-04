@@ -6,14 +6,16 @@ const firebase = require('../middlewares/firebase');
 
 router.get('/bill',firebase.verifyToken, async (req, res) => {
   try {
-    const {user_id} = await User.findOne({
+    console.log(req.query)
+    const {_id} = await User.findOne({
       uid:req.query.uid
     })
-   
+
+   var user_id = _id
    
     const bill = await Billing.find({
       user_id
-    }).populate("order_id  ")
+    },"totalBill")
     var c = 0
     bill.forEach( b => {
         c+=b.totalBill

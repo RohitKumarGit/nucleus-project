@@ -1,6 +1,7 @@
 const express = require('express');
 const Buffet = require('../models/Buffet');
 const Billing = require('../models/Billing');
+const Order = require('../models/Order')
 const Restaurant = require('../models/Restaurant');
 const User = require('../models/Users');
 const router = express.Router();
@@ -24,9 +25,15 @@ router.get('/allbookings', async function (req, res) {
         $in: [user._id]
       }
     }).populate('restaurant_id')
+    const orders = await Order.find({
+      "user_id":{
+        $in:[user._id]
+      }
+    }).populate("restaurant_id","name")
     res.send({
       buffets,
-      tables
+      tables,
+      orders
     })
   } catch (error) {
     console.log(error)
@@ -110,8 +117,9 @@ router.post('/buffet', firebase.verifyToken, async (req, res) => {
   }
 });
 
-router.delete('/buffet', firebase.verifyToken, async (req, res) => {
+router.post('/buffetcancel', firebase.verifyToken, async (req, res) => {
   try {
+    console.log(req.body)
     var user = await User.findOne({
       uid: req.body.uid
     });
