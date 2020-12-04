@@ -7,7 +7,7 @@
         <h4 class="content">
           THIS IS THE PROJECT BUILT BY ANUREET , ROHIT , SHANTANU , SUJAL AND MAYANK. WE AT NUCLEUS BELIEVE IN PERFECTION AND THE CUSTOMER IS OUR FIRST PRIORITY.
         </h4>
-        <a href="./" class="btn btn--blue btn--animated my">GO BACK</a>
+        <router-link to="./" class="btn btn--blue btn--animated my">GO BACK</router-link>
     </div>
   </div>
 </template>

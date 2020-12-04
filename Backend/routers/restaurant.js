@@ -2,16 +2,20 @@ const express = require('express');
 const Restaurant = require('../models/Restaurant');
 const router = new express.Router();
 const firebase = require('../middlewares/firebase');
-router.get('/menu', firebase.verifyToken,async (req, res) => {
+router.get('/menu', firebase.verifyToken, async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({
       name: req.query.name,
-    },{
-      'menu_items.is_available':true
     });
-    console.log(restaurant)
+    var itemArray = [];
+    console.log(restaurant);
+    for (var i = 0; i < restaurant.menu_items.length; i++) {
+      if (restaurant.menu_items[i].is_available == true) {
+        itemArray.push(restaurant.menu_items[i]);
+      }
+    }
     var menu = new Object({
-      menu: restaurant.menu_items
+      menu: itemArray
     });
     res.status(200).send(menu);
   } catch (e) {
@@ -19,7 +23,7 @@ router.get('/menu', firebase.verifyToken,async (req, res) => {
   }
 });
 
-router.get('/vacancy',firebase.verifyToken, async (req, res) => {
+router.get('/vacancy', firebase.verifyToken, async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({
       name: req.query.name,

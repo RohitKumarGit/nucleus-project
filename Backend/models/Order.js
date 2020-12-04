@@ -45,7 +45,7 @@ const orderSchema = new mongoose.Schema({
       default: false
     },
     date_time: {
-      type: Date,
+      type: Number,
     }
   },
   isCancelled: {
