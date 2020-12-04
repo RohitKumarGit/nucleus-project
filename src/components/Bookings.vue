@@ -161,6 +161,7 @@ export default {
 .orders{
   overflow-y:auto;
   height:32rem;
+}
 .u-add-height {
   height: 35rem;
 }
