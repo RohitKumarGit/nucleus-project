@@ -6,18 +6,19 @@ const User = require('../models/Users');
 const router = express.Router();
 const firebase = require('../middlewares/firebase');
 const TableR = require('../models/Table_reserve')
-router.get('/allbookings', firebase.verifyToken, async function (req, res) {
+router.get('/allbookings', async function (req, res) {
   console.log("user", req.query.uid)
   const user = await User.findOne({
     uid: req.query.uid
   })
+  console.log(user._id)
   try {
     const buffets = await Buffet.find({
       'slots.slot_details.bookedBy.user_id': {
         $in: [user._id]
       }
     }, "restaurant_id slots.slot_type slots.slot_details.time createdAt").populate('restaurant_id')
-
+    const t = await TableR.find({},"user_id")
     const tables = await TableR.find({
       'user_id': {
         $in: [user._id]
@@ -26,6 +27,7 @@ router.get('/allbookings', firebase.verifyToken, async function (req, res) {
     res.send({
       buffets,
       tables,
+      t
     })
   } catch (error) {
     console.log(error)
