@@ -82,7 +82,7 @@ router.delete('/tablereserve', firebase.verifyToken, async (req, res) => {
     await reserve.remove();
     var idx = user.forDashboard.tableReserve.indexOf(r_id);
     if (idx > -1) {
-      user.splice(idx, 1);
+      user.forDashboard.tableReserve.splice(idx, 1);
     }
     await user.save();
     res.send(reserve);
