@@ -91,8 +91,8 @@ router.post('/buffet', firebase.verifyToken, async (req, res) => {
         }
         buffetType.totalPeople += Number(x);
         await buffet.save();
-        user.forDashboard.buffet.push(buffet._id);
-        await user.save();
+        // user.forDashboard.buffet.push(buffet._id);
+        // await user.save();
       }
       var billing = new Billing({
         user_id: user._id,
@@ -146,16 +146,16 @@ router.delete('/buffet', firebase.verifyToken, async (req, res) => {
         break;
       }
     }
-    var index = user.forDashboard.buffet.indexOf(req.body.bid);
-    if (index != -1) {
-      user.forDashboard.buffet.splice(index, 1);
-    }
+    // var index = user.forDashboard.buffet.indexOf(req.body.bid);
+    // if (index != -1) {
+    // user.forDashboard.buffet.splice(index, 1);
+    // }
     var billing = await Billing.findOne({
       user_id: user._id,
       buffet_id: req.body.bid
     });
     await billing.remove();
-    await user.save();
+    // await user.save();
     await buffet.save();
     res.send(buffet);
   } catch (e) {

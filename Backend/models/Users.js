@@ -55,20 +55,20 @@ const userSchema = new mongoose.Schema({
     default: false,
     type: Boolean
   },
-  forDashboard: {
-    order: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Order'
-    }],
-    buffet: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Buffet'
-    }],
-    tableReserve: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Table_reserve'
-    }],
-  }
+  // forDashboard: {
+  //   order: [{
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'Order'
+  //   }],
+  //   buffet: [{
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'Buffet'
+  //   }],
+  //   tableReserve: [{
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'Table_reserve'
+  //   }],
+  // }
 }, {
   timestamps: true
 });

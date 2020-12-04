@@ -110,14 +110,14 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
     console.log(x);
     var order = await new Order(x);
     var id = order._id;
-    user.forDashboard.order.push(id);
+    // user.forDashboard.order.push(id);
     var billing = new Billing({
       user_id: user._id,
       order_id: order._id,
       totalBill: totalbill
     });
     await billing.save();
-    await user.save();
+    // await user.save();
     await order.save();
     res.send(order);
   } catch (e) {
@@ -164,15 +164,15 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
     x.total_bill = totalbill;
     console.log(x);
     var order = await new Order(x);
-    var id = order._id;
-    user.forDashboard.order.push(id);
+    // var id = order._id;
+    // user.forDashboard.order.push(id);
     var billing = new Billing({
       user_id: user._id,
       order_id: order._id,
       totalBill: totalbill
     });
     await billing.save();
-    await user.save();
+    // await user.save();
     await order.save();
     res.send(order);
   } catch (e) {
@@ -188,19 +188,17 @@ router.delete('/orders', firebase.verifyToken, async (req, res) => {
     var order = await Order.findOne({
       _id: req.body.oid
     });
-    var o_id = order._id;
-    var bill = order.total_bill;
     order.remove();
-    var idx = user.forDashboard.order.indexOf(o_id);
-    if (idx > -1) {
-      user.forDashboard.order.splice(idx, 1);
-    }
+    // var idx = user.forDashboard.order.indexOf(o_id);
+    // if (idx > -1) {
+    // user.forDashboard.order.splice(idx, 1);
+    // }
     var billing = await Billing.findOne({
       user_id: user._id,
       order_id: req.body.oid
     });
     await billing.remove();
-    await user.save();
+    // await user.save();
     res.send(order);
   } catch (e) {
     res.send(e);
