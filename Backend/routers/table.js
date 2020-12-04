@@ -52,8 +52,8 @@ router.post('/tablereserve', firebase.verifyToken, async (req, res) => {
     var reserve = await new Table(x);
     await reserve.save();
     await restaurant.save();
-    user.forDashboard.tableReserve.push(reserve._id);
-    await user.save();
+    // user.forDashboard.tableReserve.push(reserve._id);
+    // await user.save();
     res.send(reserve);
   } catch (e) {
     res.status(500).send(e);
@@ -80,11 +80,11 @@ router.delete('/tablereserve', firebase.verifyToken, async (req, res) => {
     });
     await restaurant.save();
     await reserve.remove();
-    var idx = user.forDashboard.tableReserve.indexOf(r_id);
-    if (idx > -1) {
-      user.forDashboard.tableReserve.splice(idx, 1);
-    }
-    await user.save();
+    // var idx = user.forDashboard.tableReserve.indexOf(r_id);
+    // if (idx > -1) {
+    // user.forDashboard.tableReserve.splice(idx, 1);
+    // }
+    // await user.save();
     res.send(reserve);
   } catch (e) {
     res.send(e);
