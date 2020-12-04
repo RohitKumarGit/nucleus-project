@@ -5,7 +5,7 @@ const Order = require('../models/Order');
 const Restaurant = require('../models/Restaurant');
 const router = new express.Router();
 const firebase = require('../middlewares/firebase');
-
+const Billing = require('../models/Billing');
 
 router.get('/allmenu', firebase.verifyToken, async (req, res) => {
   try {
@@ -113,6 +113,12 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
     user.forDashboard.order.push(id);
     await user.save();
     await order.save();
+    const billing = await Billing.findOne({
+      user_id: user._id
+    });
+    billing.total_food_orders.order_id.push(order._id);
+    billing.total_food_orders.totalBill += Number(totalbill);
+    await billing.save();
     res.send(order);
   } catch (e) {
     res.status(500).send(e);
@@ -162,6 +168,12 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
     user.forDashboard.order.push(id);
     await user.save();
     await order.save();
+    const billing = await Billing.findOne({
+      user_id: user._id
+    });
+    billing.total_food_orders.order_id.push(order._id);
+    billing.total_food_orders.totalBill += Number(totalbill);
+    await billing.save();
     res.send(order);
   } catch (e) {
     res.status(500).send(e);
@@ -173,16 +185,26 @@ router.delete('/orders', firebase.verifyToken, async (req, res) => {
     var user = await User.findOne({
       uid: req.body.uid
     });
+    var billing = await Billing.findOne({
+      user_id: user._id
+    });
     var order = await Order.findOne({
       user_id: user._id
     });
     var o_id = order._id;
+    var bill = order.total_bill;
     order.remove();
     var idx = user.forDashboard.order.indexOf(o_id);
     if (idx > -1) {
-      user.splice(idx, 1);
+      user.forDashboard.order.splice(idx, 1);
     }
+    var index = billing.total_food_orders.order_id.indexOf(o_id);
+    if (index > -1) {
+      billing.total_food_orders.order_id.splice(index, 1);
+    }
+    billing.total_food_orders.totalBill -= Number(bill);
     await user.save();
+    await billing.save();
     res.send(order);
   } catch (e) {
     res.send(e);

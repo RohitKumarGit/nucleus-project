@@ -5,7 +5,6 @@ const billingSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-
   total_food_orders: {
     order_id: [{
       type: Schema.Types.ObjectId,
@@ -14,7 +13,6 @@ const billingSchema = new mongoose.Schema({
     totalBill: {
       type: Number,
       default: 0,
-      max: 10000
     }
   }
 
