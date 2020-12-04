@@ -111,14 +111,14 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
     var order = await new Order(x);
     var id = order._id;
     user.forDashboard.order.push(id);
+    var billing = new Billing({
+      user_id: user._id,
+      order_id: order._id,
+      totalBill: totalbill
+    });
+    await billing.save();
     await user.save();
     await order.save();
-    const billing = await Billing.findOne({
-      user_id: user._id
-    });
-    billing.total_food_orders.order_id.push(order._id);
-    billing.total_food_orders.totalBill += Number(totalbill);
-    await billing.save();
     res.send(order);
   } catch (e) {
     res.status(500).send(e);
@@ -166,14 +166,14 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
     var order = await new Order(x);
     var id = order._id;
     user.forDashboard.order.push(id);
+    var billing = new Billing({
+      user_id: user._id,
+      order_id: order._id,
+      totalBill: totalbill
+    });
+    await billing.save();
     await user.save();
     await order.save();
-    const billing = await Billing.findOne({
-      user_id: user._id
-    });
-    billing.total_food_orders.order_id.push(order._id);
-    billing.total_food_orders.totalBill += Number(totalbill);
-    await billing.save();
     res.send(order);
   } catch (e) {
     res.status(500).send(e);
@@ -185,11 +185,8 @@ router.delete('/orders', firebase.verifyToken, async (req, res) => {
     var user = await User.findOne({
       uid: req.body.uid
     });
-    var billing = await Billing.findOne({
-      user_id: user._id
-    });
     var order = await Order.findOne({
-      user_id: user._id
+      _id: req.body.oid
     });
     var o_id = order._id;
     var bill = order.total_bill;
@@ -198,13 +195,12 @@ router.delete('/orders', firebase.verifyToken, async (req, res) => {
     if (idx > -1) {
       user.forDashboard.order.splice(idx, 1);
     }
-    var index = billing.total_food_orders.order_id.indexOf(o_id);
-    if (index > -1) {
-      billing.total_food_orders.order_id.splice(index, 1);
-    }
-    billing.total_food_orders.totalBill -= Number(bill);
+    var billing = await Billing.findOne({
+      user_id: user._id,
+      order_id: req.body.oid
+    });
+    await billing.remove();
     await user.save();
-    await billing.save();
     res.send(order);
   } catch (e) {
     res.send(e);
