@@ -1,6 +1,6 @@
 <template>
     <div class="container rightdiv ">
-          <h1> Your Preorders and Registrations</h1>
+          <span> YOUR PREORDERS AND RESERVATIONS</span>
           <div class="orders u-add-height u-made-scroll">
             <div class="courses-container ">
               <div class="course"  v-for="buffet in bookings.buffets" :key="buffet._id">
@@ -179,5 +179,14 @@ export default {
 }
 .u-add-height {
   height: 35rem;
+}
+span{
+  color:#006a71;
+  font-size:1.6rem;
+  margin-left: 5rem ;
+  font-weight: 500;
+  background-color: rgba(256,256,256,0.9);
+  border-radius: 2rem;
+  padding:1rem;
 }
 </style>
