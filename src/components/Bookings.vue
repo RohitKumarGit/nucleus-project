@@ -204,8 +204,10 @@ scrollbar-width: thin;
   padding:1rem;
   display:inline-block;
   margin-bottom:0.2rem;
-  background-color:transparent;
-  color:lightyellow;
+  background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+background-image: linear-gradient(to right, #efef64, #f9f98e);
   text-shadow: 2px 7px 10px rgba(0,0,0,0.3), 
     0px -4px 10px rgba(255,255,255,0.3);
 }

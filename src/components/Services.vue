@@ -113,8 +113,11 @@ a{
 {
   font-size: 2rem;
   color:  lightyellow;
+  color:transparent;
+  background-clip:text;
+  background-image: linear-gradient(to right, #efef64, #f9f98e);
   font-weight: 700;
-  text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
+  text-shadow: 2px 7px 10px rgba(0,0,0,0.3), 
     0px -4px 10px rgba(255,255,255,0.3);
 }
 </style>
