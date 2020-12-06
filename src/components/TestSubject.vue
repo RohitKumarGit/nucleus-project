@@ -93,7 +93,6 @@ export default {
   position:fixed;
   height:100%;
   width:100%;
-  background-color: #cbeaed;
   overflow:auto;
 }
 h1{

@@ -37,14 +37,18 @@ export default{
   }
 }
 </script>
-<style  scoped>  
+<style scoped lang="scss">  
 .basic {
   position:fixed;
   width:100%;
- background: rgb(93,197,205);
-background: linear-gradient(315deg, rgba(93,197,205,1) 1%, rgba(203,234,237,1) 29%, rgba(93,197,205,1) 50%, rgba(203,234,237,1) 82%, rgba(93,197,205,1) 100%);
   height: 100%;
   background-repeat: repeat;
+  background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.6),
+        rgba($color-primary-dark, 0.6)),
+    url(https://i.ytimg.com/vi/L2WgJgAULo8/maxresdefault.jpg);
+    background-size: cover;
 }
 .basic .row{
   margin: 0.8rem;
@@ -56,9 +60,14 @@ span{
   color:#006a71;
   font-size:1.6rem;
   margin-left: 5rem ;
-  font-weight: 500;
-  background-color: rgba(256,256,256,0.9);
+  font-weight: 700;
+  background-color: #8EC5FC;
+background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+opacity:0.95;
   border-radius: 2rem;
   padding:1rem;
+  text-shadow: 2px 7px 10px rgba(0,0,0,0.3), 
+    0px -4px 10px rgba(255,255,255,0.3);
 }
+
 </style>

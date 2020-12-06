@@ -1,8 +1,7 @@
 <template>
   <div class="row leftdiv">
     <div class="para">
-      <p>What do you wish to do next ?</p>
-      <p><span> Enjoy your Stay </span></p>
+      <p class="wish-heading">WHAT DO YOU WISH TO DO NEXT ?</p>
     </div>
     <div class="row container">
       <div class="square col-12 col-sm-6 col-xl-4">
@@ -79,16 +78,6 @@
   display: flex;
   flex-direction: column;
 }
-span {
-  font-weight: 500;
-  line-height: 4rem;
-  font-size: 1.5rem;
-  color: white;
-  background: #db5c5a;
-  padding: 0.8rem 1.2rem;
-  margin: auto;
-  border-radius: 2rem;
-}
 .square {
   border: 1.2rem solid transparent;
   border-radius: 2rem;
@@ -119,5 +108,13 @@ img {
 }
 a{
   color:white;
+}
+.wish-heading
+{
+  font-size: 2rem;
+  color:  lightyellow;
+  font-weight: 700;
+  text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
+    0px -4px 10px rgba(255,255,255,0.3);
 }
 </style>

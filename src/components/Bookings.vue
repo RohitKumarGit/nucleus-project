@@ -1,8 +1,8 @@
 <template>
     <div class="container rightdiv ">
-          <span> YOUR PREORDERS AND RESERVATIONS</span>
+          <span class="orders-heading"> YOUR PREORDERS AND RESERVATIONS</span>
           <div class="orders u-add-height u-made-scroll">
-            <div class="courses-container ">
+            <div class="courses-container">
               <div class="course"  v-for="buffet in bookings.buffets" :key="buffet._id">
                 <div class="course-preview">
                   <i class="fas fa-pizza-slice fa-3x"></i>
@@ -10,7 +10,7 @@
                 <div class="course-info">
                   <h2>Buffet Slot booked</h2>
                   <p>{{buffet.restaurant_id.name}}</p>
-                   <a href="#cancel" @click="Cancelb(buffet._id)">Cancel</a>
+                   <a href="#cancel" @click="Cancelb(buffet._id)" class="cancel-links">Cancel</a>
                   <button class="btn">{{buffet.restaurant_id.time_details[0].time_now}}(in 24 hr)</button>
                 </div>
               </div>
@@ -23,7 +23,7 @@
                 <div class="course-info" v-if="table.user_id!='cancel'">
                   <h2>Table reservations </h2>
                   <p>At XYZ restaurant{{" "+table.restaurant_id.name}}</p>
-                  <span>for {{table.Duration}} hr/hrs &nbsp; <a href="#cancel" @click="Cancel(table)">Cancel</a></span>
+                  <span>FOR {{table.Duration}} hr/hrs &nbsp; <a href="#cancel" @click="Cancel(table)" class="cancel-links">Cancel</a></span>
                   <b-button class="btn">{{table.Time}}:00</b-button>
                 </div>
                 <div id="cancel" v-if="table.user_id=='cancel'">
@@ -103,6 +103,19 @@ export default {
 }
 </script>
 <style  scoped>  
+*::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+*::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+*::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
 .rightdiv{
   text-align:center;
   color:white;
@@ -176,17 +189,31 @@ export default {
 .orders{
   overflow-y:auto;
   height:32rem;
+scrollbar-width: thin;         
+  scrollbar-color: blue orange;
 }
 .u-add-height {
-  height: 35rem;
+  height: 28rem;
 }
-span{
+.orders-heading{
   color:#006a71;
-  font-size:1.6rem;
-  margin-left: 5rem ;
-  font-weight: 500;
+  font-size:2rem;
+  font-weight: 700;
   background-color: rgba(256,256,256,0.9);
   border-radius: 2rem;
   padding:1rem;
+  display:inline-block;
+  margin-bottom:0.2rem;
+  background-color:transparent;
+  color:lightyellow;
+  text-shadow: 2px 7px 10px rgba(0,0,0,0.3), 
+    0px -4px 10px rgba(255,255,255,0.3);
+}
+.cancel-links{
+  text-decoration:none;
+  font-size:1rem;
+  text-transform:uppercase;
+  font-weight:700;
+  color:orangered;
 }
 </style>
