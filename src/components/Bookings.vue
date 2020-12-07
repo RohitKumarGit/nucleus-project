@@ -53,7 +53,7 @@
                 <div class="course-info">
                   <h2>{{order.order_detail.is_preorder ? "Food Pre Order" :"Food Order"}}</h2>
                  
-                  <span>{{order.items.length}} Items  <a class="is-secondary d-block cancel-links" href="#cancel" @click="Cancelm(order._id)">CANCEL</a></span>
+                  <span>{{order.items.length}} Items  <a class="is-secondary d-block cancel-links" href="#cancel" @click="Cancelr(order._id)">CANCEL</a></span>
                   <b-button class="btn">Rs {{order.total_bill}} </b-button>
                 </div>
                
@@ -127,6 +127,19 @@ export default {
     const data = await axios.post('/orders',{
       uid:this.user.uid,
       oid
+    },{
+      headers:{
+        authorization:this.user.ya
+      }
+    })
+     console.log(data)
+    this.getData()
+  },
+   async Cancelr(oid){
+      console.log(this.user.ya)
+    const data = await axios.post('/restorders',{
+      uid:this.user.uid,
+      rid:oid
     },{
       headers:{
         authorization:this.user.ya
