@@ -367,7 +367,7 @@ export default {
 }
 .header{
 	height:95vh;
-	background-image:linear-gradient(to right bottom,rgba(#66CCFF,0.6),rgba(#10a5F5,0.6)) , url(../assets/hero.jpg);
+	background-image:linear-gradient(to right bottom,rgba(#66CCFF,0.45),rgba(#10a5F5,0.45)) , url(../assets/hero.jpg);
 	background-size: cover;
 	background-position: top;
 	clip-path:polygon(0 0,100% 0,100% 75vh,0 100%);
