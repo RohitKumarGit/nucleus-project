@@ -8,6 +8,7 @@ const Buffet = require('./Backend/models/Buffet');
 const Order = require('./Backend/models/Order');
 const AdminBroExpressjs = require('@admin-bro/express');
 const Restaurant = require('./Backend/models/Restaurant');
+const Slots = require('./Backend/models/BuffetSlot')
 const Room = require('./Backend/models/Room');
 const Table_reserve = require('./Backend/models/Table_reserve');
 const Users = require('./Backend/models/Users');
@@ -305,6 +306,42 @@ const permissions = function (currentAdmin, record, resource, permission) {
   
       }, {
         resource: Users,
+        options: {
+          actions: {
+            new: {
+              isAccessible: ({
+                currentAdmin,
+                record
+              }) => {
+  
+                return permissions(currentAdmin, record, "Users", "new")
+              }
+            },
+            edit: {
+              isAccessible: function ({
+                currentAdmin,
+                record
+              }) {
+  
+                return permissions(currentAdmin, record, "Users", "edit")
+              }
+            },
+            delete: {
+              isAccessible: function ({
+                currentAdmin,
+                record
+              }) {
+  
+                return permissions(currentAdmin, record, "Users", "delete")
+              }
+            }
+          }
+        }
+  
+  
+      },
+      {
+        resource: Slots,
         options: {
           actions: {
             new: {

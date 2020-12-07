@@ -98,10 +98,19 @@ userSchema.statics.comparePassword = async function (email, candidatePassword) {
   });
   console.log(user)
   if (!user) {
-    throw new Error('No user found!');
+   return false
   }
   try {
     const res = await bcrypt.compare(candidatePassword, user.password);
+    if(process.env.NODE_ENV === "production" ){
+      if(res){
+        return user
+      }
+      return false
+    }
+    else {
+      return user
+    }
     return user;
   } catch (error) {
     // throw new Error('Please Authenticate!');
