@@ -73,10 +73,10 @@
                       <input
                         class="hidden radio-label"
                         type="radio"
-                        name="0"
+                        name="Morning Mania"
                         id="0"
                         @change="onChange($event)"
-                        :disabled="Number(buffet.data.slots[0].slot_details[0].Limit) < Number(buffet.data.slots[0].slot_details[0].totalPeople) +Number(people)"
+                        :disabled="Number(buffet.data[0].totalCapacity) <= Number(buffet.data[0].currentCapacity) +Number(people)"
                       />
                       <label class="button-label" for="0">
                         <h1>8-9 am</h1>
@@ -84,10 +84,10 @@
                       <input
                         class="hidden radio-label"
                         type="radio"
-                        name="0"
+                        name="Morning Mania"
                         id="1"
                         @change="onChange($event)"
-                         :disabled="Number(buffet.data.slots[0].slot_details[1].Limit) < Number(buffet.data.slots[0].slot_details[1].totalPeople) +Number(people)"
+                         :disabled="Number(buffet.data[1].totalCapacity) <= Number(buffet.data[1].currentCapacity) +Number(people)"
                       />
 
                       <label class="button-label" for="1">
@@ -96,9 +96,9 @@
                       <input
                         class="hidden radio-label"
                         type="radio"
-                        name="0"
+                        name="Morning Mania"
                         id="2"
-                         :disabled="Number(buffet.data.slots[0].slot_details[2].Limit) < Number(buffet.data.slots[0].slot_details[2].totalPeople) +Number(people)"
+                         :disabled="Number(buffet.data[2].totalCapacity) <= Number(buffet.data[2].currentCapacity) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="2">
@@ -109,9 +109,9 @@
                       <input
                         class="hidden radio-label"
                         type="radio"
-                        name="1"
+                        name="Lovely Lunch"
                         id="3"
-                         :disabled="Number(buffet.data.slots[1].slot_details[0].Limit) < Number(buffet.data.slots[1].slot_details[0].totalPeople) +Number(people)"
+                         :disabled="Number(buffet.data[3].totalCapacity) <= Number(buffet.data[3].currentCapacity) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="3">
@@ -120,9 +120,9 @@
                       <input
                         class="hidden radio-label"
                         type="radio"
-                        name="1"
+                        name="Lovely Lunch"
                         id="4"
-                         :disabled="Number(buffet.data.slots[1].slot_details[1].Limit) < Number(buffet.data.slots[1].slot_details[1].totalPeople) +Number(people)"
+                         :disabled="Number(buffet.data[4].totalCapacity) <= Number(buffet.data[4].currentCapacity) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="4">
@@ -131,9 +131,9 @@
                       <input
                         class="hidden radio-label"
                         type="radio"
-                        name="1"
+                        name="Lovely Lunch"
                         id="5"
-                         :disabled="Number(buffet.data.slots[1].slot_details[2].Limit) < Number(buffet.data.slots[1].slot_details[2].totalPeople) +Number(people)"
+                         :disabled="Number(buffet.data[5].totalCapacity) <= Number(buffet.data[5].currentCapacity) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="5">
@@ -144,9 +144,9 @@
                       <input
                         class="hidden radio-label"
                         type="radio"
-                        name="2"
+                        name="Delightful Dinner"
                         id="6"
-                         :disabled="Number(buffet.data.slots[2].slot_details[0].Limit) < Number(buffet.data.slots[2].slot_details[0].totalPeople) +Number(people)"
+                         :disabled="Number(buffet.data[6].totalCapacity) <= Number(buffet.data[6].currentCapacity) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="6">
@@ -155,9 +155,9 @@
                       <input
                         class="hidden radio-label"
                         type="radio"
-                        name="2"
+                        name="Delightful Dinner"
                         id="7"
-                         :disabled="Number(buffet.data.slots[2].slot_details[1].Limit) < Number(buffet.data.slots[2].slot_details[1].totalPeople) +Number(people)"
+                         :disabled="Number(buffet.data[7].totalCapacity) <= Number(buffet.data[7].currentCapacity) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="7">
@@ -166,9 +166,9 @@
                       <input
                         class="hidden radio-label"
                         type="radio"
-                        name="2"
+                        name="Delightful Dinner"
                         id="8"
-                         :disabled="Number(buffet.data.slots[2].slot_details[2].Limit) < Number(buffet.data.slots[2].slot_details[2].totalPeople) +Number(people)"
+                         :disabled="Number(buffet.data[8].totalCapacity) <= Number(buffet.data[8].currentCapacity) +Number(people)"
                         @change="onChange($event)"
                       />
                       <label class="button-label" for="8">
@@ -235,7 +235,7 @@ export default {
         .then(function (response) {
           console.log(response);
           helper.buffet=response;
-          helper.morning =helper.buffet.data.slots;
+          console.log(helper.buffet);
         })
         .catch(function (error) {
           console.log(error);
@@ -247,19 +247,20 @@ export default {
     },
     onChange(event) {
               this.selected= event.target;
+              console.log(this.selected);
           },
     submit(){
       const helper =this;
       if(helper.selected){
           try {
-            const val=helper.selected.id - helper.selected.name*3;
+            const val=Number(helper.selected.id);
             console.log(val);
               axios.post('/buffet',{
-                uid:this.user.uid,
-                name:this.restaurantName,
-                slotType:this.selected.name,
+                uid:helper.user.uid,
+                name:helper.restaurantName,
+                slotType:helper.selected.name,
                 slotTime:val,
-                number:this.people,
+                number:helper.people,
             }, {
                 headers: {
                         authorization: this.user.ya,
