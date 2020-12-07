@@ -169,7 +169,7 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
     // user.forDashboard.order.push(id);
     var billing = new Billing({
       user_id: user._id,
-      order_id: order._id,
+      restOrder_id: order._id,
       totalBill: totalbill
     });
     await billing.save();
