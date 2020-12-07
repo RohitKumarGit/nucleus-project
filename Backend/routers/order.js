@@ -210,7 +210,7 @@ router.post('/orders', async (req, res) => {
 });
 
 
-router.post('/resrorders', async (req, res) => {
+router.post('/restorders', async (req, res) => {
   console.log(req.body)
   try {
     var user = await User.findOne({
