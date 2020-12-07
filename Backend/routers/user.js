@@ -12,7 +12,6 @@ router.post('/signup/setup', async (req, res) => {
       user
     });
   } catch (e) {
-    console.log(e)
     res.status(400).send(e);
   }
 });
