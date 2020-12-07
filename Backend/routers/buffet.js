@@ -92,7 +92,7 @@ router.post('/buffet', firebase.verifyToken, async (req, res) => {
 
 router.post('/buffetcancel', firebase.verifyToken, async (req, res) => {
   try {
-    var user = User.findOne({
+    var user = await User.findOne({
       uid: req.body.uid
     });
     var buffetid = req.body.bid;
