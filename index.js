@@ -6,7 +6,8 @@ const history = require('connect-history-api-fallback')
 var morgan = require('morgan')
 //const Buffet = require('./Backend/models/buffet')
 //const TableReserve = require('./Backend/models/Table_reserve');
-
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
 
 require('dotenv').config()
 
@@ -29,8 +30,6 @@ app.use(morgan('tiny'))
 
 const routers = require('./adminbro')
 app.use('/admin', routers)
-const bodyParser = require('body-parser')
-app.use(bodyParser.json())
 const path = require("path")
 
 
