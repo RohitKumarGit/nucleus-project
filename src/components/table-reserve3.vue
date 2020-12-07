@@ -43,7 +43,7 @@
                         class="btn btn-secondary"
                         @click="Menu"
                         v-if="x == 'yes'"
-                        >Select Food items</a
+                        ><strong>Select Food items</strong></a
                       >
                       <p v-if="error">{{ error }}</p>
                       <div class="mb-3" v-if="!error && x == 'no'">
@@ -510,7 +510,7 @@ img {
 }
 
 .food-order {
-  background-image: url(../assets/resort2.jpg);
+  background-image: url(../assets/foodorder.jpg);
   background-size: cover;
   filter: blur(0.1px);
   &-heading {
@@ -664,6 +664,6 @@ img {
 .order-now-btn {
   position: absolute;
   bottom: 1rem;
-  left: 10rem;
+  left: 3rem;
 }
 </style>

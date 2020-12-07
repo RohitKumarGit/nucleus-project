@@ -16,9 +16,8 @@
               <div v-if="!buffet">
                 <label name="restaurant" class="chooseRest"
                   >Select your favorite restaurant</label>
-                <select name="restaurant"   class="form-control" @click="getRests" v-model="restaurantName" placeholder="Restaurant ">
-                  <option value="Hidden Mist">Hidden Mist</option>
-                  <option value="Green Papaya">Green Papaya</option>
+                <select name="restaurant"   class="form-control" v-model="restaurantName" >
+                  <option  v-for="rest in rests" :key="rest.name"> {{rest.name}}</option>
                 </select>
                   <b-button
                           class="btn btn-block text-uppercase"
@@ -195,6 +194,9 @@ import Navbar from "./navbar";
 import axios from "axios";
 import { mapGetters } from "vuex";
 export default {
+  mounted(){
+    this.getRests();
+  },
   data() {
     return {
       isActive1: false,
@@ -213,7 +215,6 @@ export default {
   components: {
     Navbar: Navbar,
   },
-  mounted() {},
   computed: {
     ...mapGetters(["user"]),
   },
@@ -231,7 +232,8 @@ export default {
      })
      .then(function(response){
        console.log(response);
-     helper.rests=response;
+     helper.rests=response.data;
+    //  console.log(helper.rests[0].name);
      })
      .catch(function(error){
        console.log(error);
