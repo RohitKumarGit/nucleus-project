@@ -8,6 +8,7 @@ const Buffet = require('./Backend/models/Buffet');
 const Order = require('./Backend/models/Order');
 const AdminBroExpressjs = require('@admin-bro/express');
 const Restaurant = require('./Backend/models/Restaurant');
+const RestOrder=require('./Backend/models/RestOrder');
 const Slots = require('./Backend/models/BuffetSlot')
 const Room = require('./Backend/models/Room');
 const Table_reserve = require('./Backend/models/Table_reserve');
@@ -33,7 +34,7 @@ const permissions = function (currentAdmin, record, resource, permission) {
       }
     }
     if (currentAdmin.type === "Restaurant Owner") {
-      if (resource === "Order" || resource === "Buffet" || resource === "Table_reserve") {
+      if (resource === "Order" || resource === "Buffet" || resource === "Table_reserve" || resorce==="RestOrder" || resource==="Slots") {
         if (permission === "view") {
           return true
         }
@@ -342,6 +343,42 @@ const permissions = function (currentAdmin, record, resource, permission) {
       },
       {
         resource: Slots,
+        options: {
+          actions: {
+            new: {
+              isAccessible: ({
+                currentAdmin,
+                record
+              }) => {
+  
+                return permissions(currentAdmin, record, "Users", "new")
+              }
+            },
+            edit: {
+              isAccessible: function ({
+                currentAdmin,
+                record
+              }) {
+  
+                return permissions(currentAdmin, record, "Users", "edit")
+              }
+            },
+            delete: {
+              isAccessible: function ({
+                currentAdmin,
+                record
+              }) {
+  
+                return permissions(currentAdmin, record, "Users", "delete")
+              }
+            }
+          }
+        }
+  
+  
+      },
+      {
+        resource: RestOrder,
         options: {
           actions: {
             new: {

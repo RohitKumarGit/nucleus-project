@@ -16,7 +16,7 @@
               <div v-if="!buffet">
                 <label name="restaurant" class="chooseRest"
                   >Select your favorite restaurant</label>
-                <select name="restaurant"   class="form-control" v-model="restaurantName" placeholder="Restaurant ">
+                <select name="restaurant"   class="form-control" @click="getRests" v-model="restaurantName" placeholder="Restaurant ">
                   <option value="Hidden Mist">Hidden Mist</option>
                   <option value="Green Papaya">Green Papaya</option>
                 </select>
@@ -200,6 +200,7 @@ export default {
       isActive1: false,
       isActive2: false,
       isActive3: false,
+      rests:[],
       restaurantName: "",
       people:"1",
       slots: "",
@@ -217,6 +218,25 @@ export default {
     ...mapGetters(["user"]),
   },
   methods: {
+
+    getRests()
+    {    const helper=this;
+     axios.
+     get("/allrests",{
+       headers: {
+         authorization: this.user.ya,
+       },
+       params:{
+       },
+     })
+     .then(function(response){
+       console.log(response);
+     helper.rests=response;
+     })
+     .catch(function(error){
+       console.log(error);
+     });
+    },
     check(){
       if(this.restaurantName)
       {

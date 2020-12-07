@@ -2,6 +2,23 @@ const express = require('express');
 const Restaurant = require('../models/Restaurant');
 const router = new express.Router();
 const firebase = require('../middlewares/firebase');
+router.get('/allrests',firebase.verifyToken,async(req,res)=>{
+  try{
+    const itemArray = [];
+    const restaurants = await Restaurant.find({});
+    for (var i = 0; i < restaurants.length; i++) {
+      var restaurant = restaurants[i];
+      var x = new Object({
+        name: restaurant.name
+      });
+      itemArray.push(x);
+    }
+    res.send(itemArray);
+  }catch(e)
+  {
+    res.status(404).send();
+  }
+})
 router.get('/menu', firebase.verifyToken, async (req, res) => {
   try {
     const restaurant = await Restaurant.findOne({

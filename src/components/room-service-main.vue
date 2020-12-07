@@ -31,7 +31,7 @@
           <h3 class="food-order-pane-heading">CART</h3>
           <ul class="food-order-items" v-if="order">
             <li class="custom" v-for="item in order" :key="item._id" >
-              {{item.name}}&nbsp;<br> {{item.quantity}}&nbsp;
+              {{item.name}}&nbsp;<br/> {{item.quantity}}&nbsp;
             </li>
           </ul>
           <div>
@@ -42,8 +42,8 @@
                         >&nbsp;&nbsp;<input
                           type="radio"
                           name="optradio"
-                          v-model="x"
-                          value="yes"
+                          v-model="pre"
+                          value=true
                           selected
                         />&nbsp;&nbsp;Yes</label
                       >&nbsp;&nbsp;&nbsp;&nbsp;
@@ -51,12 +51,21 @@
                         >&nbsp;&nbsp;<input
                           type="radio"
                           name="optradio"
-                          v-model="x"
-                          value="no"
+                          v-model="pre"
+                          value=Boolean(false)
                         />&nbsp;&nbsp;No</label
                       >&nbsp;&nbsp;&nbsp;&nbsp;
                       <br />
-                      <input type="number" v-if="x=='yes'" placeholder="Select time in 24hr format" v-model="num">
+                      <div  v-if="pre=='true'">
+                        <input type="number" placeholder="Select time in 24hr format" v-model="num"> 
+                        <br/>
+                        <label >Select time in 24 hr format</label>
+                      </div>
+                      <div>
+                         Enter the room number 
+                         &nbsp;<input type="number" v-model="room">
+                      </div>
+                      <br/>
           <a class="btn btn--blue order-now-btn" href="#" @click="Order">
             Order Food&rarr;
           </a>
@@ -177,9 +186,10 @@ Navbar
     others:false,
     menu:"",
     order:[],
+    room:0,
     error:"",
     num:0,
-    x:"no",
+    pre:false
     };
   },
   computed: {
@@ -258,17 +268,18 @@ Navbar
       if (this.Orderfinal[0] !== undefined) {
         try {
           console.log("1");
-          if(helper.x=="no")
+          if(helper.pre==false)
           {
             helper.num=0;
           }
-          console.log(helper.num);
+          console.log(helper);
           axios.post(
             "/roomservice",
             {
               uid: helper.user.uid,
               items: helper.Orderfinal,
-              preorder: true,
+              room:helper.room,
+              preorder: helper.pre,
               date:helper.num,
             },
             {
