@@ -11,6 +11,7 @@ import './assets/app.scss'
 import 'bootstrap';
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import './registerServiceWorker'
 var firebaseConfig = {
   apiKey: "AIzaSyB4fI0N4OgXzEXdsioGfAbu_xZvAM7xO_Q",
   authDomain: "resort1234.firebaseapp.com",
