@@ -88,6 +88,7 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
       total_bill: 0
     });
     console.log(x);
+    console.log(2);
     var totalbill = 0;
     for (var i = 0; i < req.body.items.length; i++) {
       var name = req.body.items[i].name;
@@ -123,6 +124,7 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
     await order.save();
     res.send(order);
   } catch (e) {
+    console.log(e);
     res.status(500).send(e);
   }
 });
@@ -169,7 +171,7 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
     // user.forDashboard.order.push(id);
     var billing = new Billing({
       user_id: user._id,
-      order_id: order._id,
+      restOrder_id: order._id,
       totalBill: totalbill
     });
     await billing.save();

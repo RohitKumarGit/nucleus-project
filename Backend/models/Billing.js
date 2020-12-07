@@ -9,6 +9,10 @@ const billingSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'Order'
   },
+  restOrder_id:{
+  type: Schema.Types.ObjectId,
+  ref: 'RestOrder'
+  },
   buffet_id: {
     type: Schema.Types.ObjectId,
     ref: 'Buffet'
