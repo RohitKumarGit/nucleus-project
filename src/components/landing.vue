@@ -193,7 +193,7 @@ Hello adventurers! We offer you the time of your life with your favourite advent
                 </div>
 
                 <div class="u-center-text u-margin-top-medium">
-                    <a href="#" class="btn btn--blue discover">Discover all tours</a>
+                    <a href="#" class="btn btn--blue discover">Discover all packages</a>
                 </div>
             </section>
 <section class="section-stories">

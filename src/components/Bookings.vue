@@ -39,7 +39,7 @@
                 <div class="course-info">
                   <h2>{{order.order_detail.is_preorder ? "Food Pre Order" :"Food Order"}}</h2>
                  
-                  <span>{{order.items.length}} Items  <a class="is-secondary d-block" href="#cancel" @click="Cancelm(order._id)">CANCEL</a></span>
+                  <span>{{order.items.length}} Items  <a class="is-secondary d-block cancel-links" href="#cancel" @click="Cancelm(order._id)">CANCEL</a></span>
                   <b-button class="btn">Rs {{order.total_bill}} </b-button>
                 </div>
                

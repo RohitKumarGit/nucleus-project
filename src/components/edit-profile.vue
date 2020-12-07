@@ -281,4 +281,8 @@ Navbar
 .left-pane{
 	padding:4rem;
 }
+.profile-pic{
+  height:10rem;
+  margin-left:8rem;
+}
 </style>

@@ -296,10 +296,11 @@ export default {
   color: white;
   display: flex;
   justify-content: center;
+  padding-top:0;
 }
 
 #wrapper {
-  margin-top: 5rem;
+  margin-top: 2rem;
   width: 90%;
   max-width: 80rem;
 }
