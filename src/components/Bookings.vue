@@ -11,7 +11,7 @@
                   <h2>Buffet Slot booked</h2>
                   <p>{{buffet.restaurant_id.name}}</p>
                    <a href="#cancel" @click="Cancelb(buffet._id)" class="cancel-links">Cancel</a>
-                  <button class="btn">{{buffet.restaurant_id.time_details[0].time_now}}(in 24 hr)</button>
+                  <button class="btn">{{buffet.restaurant_id.time_details[0].time_now}}</button>
                 </div>
               </div>
             </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="course-info" v-if="table.user_id!='cancel'">
                   <h2>Table reservations </h2>
-                  <p>At XYZ restaurant{{" "+table.restaurant_id.name}}</p>
+                  <p>At {{" "+table.restaurant_id.name}}</p>
                   <span>FOR {{table.Duration}} hr/hrs &nbsp; <a href="#cancel" @click="Cancel(table)" class="cancel-links">Cancel</a></span>
                   <b-button class="btn">{{table.Time}}:00</b-button>
                 </div>
@@ -138,12 +138,14 @@ export default {
  
 *::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     border-radius: 10px;
 }
  
 *::-webkit-scrollbar-thumb {
     border-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 .rightdiv{
   text-align:center;

@@ -8,7 +8,7 @@
         <div class="skill-card">
           <header class="skill-card__header"><span><img src="../assets/beach.jpg" class="img-fluid skill-card__icon"></span></header>
           <section class="skill-card__body">
-            <h2 class="skill-card__title">xyz Beach</h2><span class="skill-card__duration">5 km</span>
+            <h2 class="skill-card__title">Colva Beach</h2><span class="skill-card__duration">5 km</span>
             <ul class="skill-card__knowledge">
               <li>Surfing </li>
               <li>Jet Sking</li>
@@ -20,7 +20,7 @@
         <div class="skill-card">
           <header class="skill-card__header"><span><img src="../assets/church.jpg" class="img-fluid skill-card__icon"></span></header>
           <section class="skill-card__body">
-            <h2 class="skill-card__title">Xyz Church</h2><span class="skill-card__duration">2.8 km</span>
+            <h2 class="skill-card__title">Alex Church</h2><span class="skill-card__duration">2.8 km</span>
             <ul class="skill-card__knowledge">
               <li>since 1900 </li>
               <li>Antique Architecture</li>
@@ -32,7 +32,7 @@
         <div class="skill-card">
           <header class="skill-card__header"><span><img src="../assets/park.jpg" class="img-fluid skill-card__icon"></span></header>
           <section class="skill-card__body">
-            <h2 class="skill-card__title">xyz Amusement Park</h2><span class="skill-card__duration">1.5 km</span>
+            <h2 class="skill-card__title">Froggyland Park</h2><span class="skill-card__duration">1.5 km</span>
             <ul class="skill-card__knowledge">
               <li>Variety of rides</li>
               <li>10 am to 8pm</li>
@@ -44,7 +44,7 @@
         <div class="skill-card">
           <header class="skill-card__header"><span><img src="../assets/garden.jpg" class="img-fluid skill-card__icon"></span></header>
           <section class="skill-card__body">
-            <h2 class="skill-card__title">xyz Garden</h2><span class="skill-card__duration">1 km</span>
+            <h2 class="skill-card__title">Campal Garden</h2><span class="skill-card__duration">1 km</span>
             <ul class="skill-card__knowledge">
               <li>Wide vareity of flowers</li>
               <li>Peace of mind</li>
@@ -56,7 +56,7 @@
         <div class="skill-card">
           <header class="skill-card__header"><span><img src="../assets/mall.jpg" class="img-fluid skill-card__icon"></span></header>
           <section class="skill-card__body">
-            <h2 class="skill-card__title">xyz Mall</h2><span class="skill-card__duration">4km</span>
+            <h2 class="skill-card__title">Caculo Mall</h2><span class="skill-card__duration">4km</span>
             <ul class="skill-card__knowledge">
               <li>Range of Brands</li>
               <li>Modern architecture</li>
@@ -68,7 +68,7 @@
         <div class="skill-card">
           <header class="skill-card__header"><span><img src="../assets/handicraft.jpg" class="img-fluid skill-card__icon"></span></header>
           <section class="skill-card__body">
-            <h2 class="skill-card__title">Handicraft Market</h2><span class="skill-card__duration">2km</span>
+            <h2 class="skill-card__title">Panjim market</h2><span class="skill-card__duration">2km</span>
             <ul class="skill-card__knowledge">
               <li>Vocal for local</li>
               <li>Culture infused products</li>
