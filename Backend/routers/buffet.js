@@ -69,7 +69,7 @@ router.post('/buffet', firebase.verifyToken, async (req, res) => {
       time: req.body.slotTime
     });
     var people = req.body.number;
-    slot.currentCapacity += people;
+    slot.currentCapacity = Number(slot.currentCapacity) + Number(people);
     var buffet = new Buffet({
       user_id: user._id,
       restaurant_id: restaurant._id,
@@ -104,7 +104,7 @@ router.post('/buffetcancel', firebase.verifyToken, async (req, res) => {
     var slot = await Slot.findOne({
       _id: slotid
     });
-    slot.currentCapacity -= people;
+    slot.currentCapacity -= Number(people);
     var billing = await Billing.findOne({
       user_id: user._id,
       buffet_id: buffetid,
