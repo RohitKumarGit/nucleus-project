@@ -2,7 +2,7 @@ const express = require('express');
 const Room = require('../models/Room');
 const User = require('../models/Users');
 const Order = require('../models/Order');
-const RestOrder=require('../models/RestOrder');
+const RestOrder = require('../models/RestOrder');
 const Restaurant = require('../models/Restaurant');
 const router = new express.Router();
 const firebase = require('../middlewares/firebase');
@@ -84,7 +84,7 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
         is_preorder: req.body.preorder,
         date_time: req.body.date,
       },
-      room_no:room._id,
+      room_no: room._id,
       total_bill: 0
     });
     console.log(x);
@@ -208,4 +208,32 @@ router.post('/orders', async (req, res) => {
     res.send(e);
   }
 });
+
+
+router.post('/resrorders', async (req, res) => {
+  console.log(req.body)
+  try {
+    var user = await User.findOne({
+      uid: req.body.uid
+    });
+    var rest = await RestOrder.findOne({
+      _id: req.body.rid
+    });
+    rest.remove();
+    // var idx = user.forDashboard.order.indexOf(o_id);
+    // if (idx > -1) {
+    // user.forDashboard.order.splice(idx, 1);
+    // }
+    var billing = await Billing.findOne({
+      user_id: user._id,
+      restOrder_id: req.body.rid
+    });
+    await billing.remove();
+    // await user.save();
+    res.send(rest);
+  } catch (e) {
+    res.send(e);
+  }
+});
+
 module.exports = router;
