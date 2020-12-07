@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
-const orderSchema = new mongoose.Schema({
+const restOrderSchema = new mongoose.Schema({
   user_id: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -25,10 +25,8 @@ const orderSchema = new mongoose.Schema({
       default: null
     }
   }],
-
-  room_no: {
-    type: Schema.Types.ObjectId,
-    ref: 'Room',
+  table_number: {
+    type: Number,
     default: null
   },
   order_detail: {
@@ -53,5 +51,5 @@ const orderSchema = new mongoose.Schema({
     type: Number
   }
 });
-const Order = mongoose.model('Order', orderSchema);
-module.exports = Order;
+const restOrder = mongoose.model('Rest_Order', restOrderSchema);
+module.exports = restOrder;

@@ -2,6 +2,7 @@ const express = require('express');
 const Room = require('../models/Room');
 const User = require('../models/Users');
 const Order = require('../models/Order');
+const RestOrder=require('../models/RestOrder');
 const Restaurant = require('../models/Restaurant');
 const router = new express.Router();
 const firebase = require('../middlewares/firebase');
@@ -40,7 +41,6 @@ router.get('/roomservice', firebase.verifyToken, async (req, res) => {
       user_id: user._id,
       restaurant_id: restaurant._id,
       room_no: room._id,
-      order_type: 'Room Service'
     });
     res.send(orders);
   } catch (error) {
@@ -56,10 +56,9 @@ router.get('/selfservice', firebase.verifyToken, async (req, res) => {
     const restaurant = await Restaurant.findOne({
       name: req.query.restaurant_name
     });
-    const orders = await Order.find({
+    const orders = await RestOrder.find({
       user_id: user._id,
       restaurant_id: restaurant._id,
-      order_type: 'Restaurant Table Self Help'
     });
     res.send(orders);
   } catch (error) {
@@ -73,16 +72,19 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
     const user = await User.findOne({
       uid: req.body.uid
     });
+    const room = await Room.findOne({
+      number: req.body.room
+    });
     console.log(1);
     var itemArray = [];
     var x = new Object({
       user_id: user._id,
       items: itemArray,
-      order_type: 'Room Service',
       order_detail: {
         is_preorder: req.body.preorder,
         date_time: req.body.date,
       },
+      room_no:room._id,
       total_bill: 0
     });
     console.log(x);
@@ -139,7 +141,6 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
       user_id: user._id,
       restaurant_id: restaurant._id,
       items: req.body.items,
-      order_type: 'Restaurant Table Self Help',
       order_detail: {
         is_preorder: req.body.preorder,
         date_time: req.body.date,
@@ -163,7 +164,7 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
     console.log(totalbill);
     x.total_bill = totalbill;
     console.log(x);
-    var order = await new Order(x);
+    var order = await new RestOrder(x);
     // var id = order._id;
     // user.forDashboard.order.push(id);
     var billing = new Billing({
