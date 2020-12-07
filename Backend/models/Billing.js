@@ -9,9 +9,9 @@ const billingSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'Order'
   },
-  restOrder_id:{
-  type: Schema.Types.ObjectId,
-  ref: 'RestOrder'
+  restOrder_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'RestOrder'
   },
   buffet_id: {
     type: Schema.Types.ObjectId,
@@ -21,9 +21,9 @@ const billingSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  paid:{
-    default:false,
-    type:Boolean
+  paid: {
+    default: false,
+    type: Boolean
   }
 });
 //for food only, for room orders, preorders, and table orders in restaurants

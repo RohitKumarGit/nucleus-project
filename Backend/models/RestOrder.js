@@ -51,5 +51,5 @@ const restOrderSchema = new mongoose.Schema({
     type: Number
   }
 });
-const restOrder = mongoose.model('Rest_Order', restOrderSchema);
+const restOrder = mongoose.model('RestOrder', restOrderSchema);
 module.exports = restOrder;
