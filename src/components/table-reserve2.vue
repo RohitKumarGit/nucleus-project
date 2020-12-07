@@ -19,8 +19,7 @@
                   <b-form class="form-box px-3">
                   <div class="form-input">
                     <select name="restaurant"  class="form-control" v-model="restaurantName" placeholder="Select restaurant">
-                      <option value="Hidden Mist">Hidden Mist</option>
-                      <option value="Green Papaya">Green Papaya</option>
+                      <option  v-for="rest in rests" :key="rest.name"> {{rest.name}}</option>
                     </select>
                   </div>
                   </b-form>
@@ -44,7 +43,7 @@
 
 <script>
 import Navbar from "./navbar.vue";
-// import axios from "axios";
+import axios from "axios";
 import { mapGetters } from "vuex";
 export default {
 components: {
@@ -55,12 +54,36 @@ Navbar
       restaurantName:"",
       location:null,
       error:null,
+      rests:[],
     };
   },
   computed: {
     ...mapGetters(["user"]),
   },
+  
+  mounted(){
+    this.getRests();
+  },
   methods:{
+    getRests()
+    {    const helper=this;
+     axios.
+     get("/allrests",{
+       headers: {
+         authorization: this.user.ya,
+       },
+       params:{
+       },
+     })
+     .then(function(response){
+       console.log(response);
+     helper.rests=response.data;
+    //  console.log(helper.rests[0].name);
+     })
+     .catch(function(error){
+       console.log(error);
+     });
+    },
     submit(){
       const helper=this;
       const {restaurantName} = this;
