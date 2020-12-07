@@ -2,8 +2,7 @@ const express = require('express');
 const Buffet = require('../models/Buffet');
 const Slot = require('../models/BuffetSlot');
 const Billing = require('../models/Billing');
-const Order = require('../models/Order');
-const RestOrder = require('../models/RestOrder');
+const Order = require('../models/Order')
 const Restaurant = require('../models/Restaurant');
 const User = require('../models/Users');
 const router = express.Router();
@@ -24,11 +23,6 @@ router.get('/allbookings', async function (req, res) {
         $in: [user._id]
       }
     }).populate('restaurant_id')
-    const restOrders = await RestOrder.find({
-      "user_id": {
-        $in: [user.id]
-      }
-    }).populate("restaurant_id","name")
     const orders = await Order.find({
       "user_id": {
         $in: [user._id]
@@ -37,7 +31,6 @@ router.get('/allbookings', async function (req, res) {
     res.send({
       buffets,
       tables,
-      restOrders,
       orders
     })
   } catch (error) {
