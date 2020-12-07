@@ -8,7 +8,8 @@
 		</h1>
 		<div class="row">
 			<div class="col-1-of-2 left-pane">
-				<img src="../assets/pic1.jpg" class="profile-pic">
+    
+				<img :src="user.photoURL ? user.photoURL : ia" class="profile-pic">
 				<h1 class="heading-secondary name">
 				{{user.email}}
 				</h1>
@@ -61,10 +62,15 @@ Navbar
       npassword:null,
       cpassword:null,
       error:null,
+      
     };
   },
   computed : {
-      ...mapGetters(["user"])
+      ...mapGetters(["user"]),
+      ia(){
+        
+        return "https://ui-avatars.com/api/?background=random&name=" + this.user.firstname + this.user.lastname
+      }
     },
   methods:{
       async changePass(){

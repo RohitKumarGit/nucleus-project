@@ -24,12 +24,14 @@ router.get('/allbookings', async function (req, res) {
       'user_id': {
         $in: [user._id]
       }
+    },{
+      isCancelled:false
     }).populate('restaurant_id')
     const orders = await Order.find({
       "user_id":{
         $in:[user._id]
       }
-    }).populate("restaurant_id","name")
+    }).populate("restaurant_id")
     res.send({
       buffets,
       tables,

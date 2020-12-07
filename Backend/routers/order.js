@@ -180,7 +180,8 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
   }
 });
 
-router.delete('/orders', firebase.verifyToken, async (req, res) => {
+router.post('/orders', async (req, res) => {
+  console.log(req.body)
   try {
     var user = await User.findOne({
       uid: req.body.uid

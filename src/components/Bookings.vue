@@ -31,6 +31,20 @@
                 </div>
               </div>
             </div>
+            <div class="courses-container">
+              <div class="course" v-for="order in bookings.orders" :key="order._id">
+                <div class="course-preview">
+                  <i class="fas fa-chair fa-3x"></i>
+                </div>
+                <div class="course-info">
+                  <h2>{{order.order_detail.is_preorder ? "Food Pre Order" :"Food Order"}}</h2>
+                 
+                  <span>{{order.items.length}} Items  <a class="is-secondary d-block" href="#cancel" @click="Cancelm(order._id)">CANCEL</a></span>
+                  <b-button class="btn">Rs {{order.total_bill}} </b-button>
+                </div>
+               
+              </div>
+            </div>
           </div>
         </div>
 </template>
@@ -62,6 +76,7 @@ export default {
         }
       })
       this.bookings = data
+      console.log(data)
       console.log(this.bookings);
     },
     Cancel(table){
@@ -81,7 +96,7 @@ export default {
       this.getData()
     },
     async Cancelb(id){
-   //   buffetcancel
+   //   order cancel
     const {data} = await axios.post('/buffetcancel',{
       bid:id,
       uid:this.user.uid
@@ -92,8 +107,22 @@ export default {
     })
     console.log(data)
     this.getData()
-    }
+    },
+    async Cancelm(oid){
+      console.log(this.user.ya)
+    const data = await axios.post('/orders',{
+      uid:this.user.uid,
+      oid
+    },{
+      headers:{
+        authorization:this.user.ya
+      }
+    })
+     console.log(data)
+    this.getData()
+  }
   },
+  
   created(){
     this.getData()
   },

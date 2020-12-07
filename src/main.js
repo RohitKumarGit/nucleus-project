@@ -2,6 +2,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Vue from 'vue'
+import axios from 'axios'
 import {
   BootstrapVue,
   IconsPlugin
@@ -22,7 +23,14 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.auth().onAuthStateChanged((user)=>{
+firebase.auth().onAuthStateChanged(async (user)=>{
+  const {data} = await axios.get('/user',{
+    params:{
+      uid:user.uid
+    }
+  })
+
+  user = {...user,...data}
   store.commit("updateUser",{user});
 });
 Vue.use(BootstrapVue)
