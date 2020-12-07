@@ -45,6 +45,20 @@
                
               </div>
             </div>
+            <div class="courses-container">
+              <div class="course" v-for="order in bookings.restOrders" :key="order._id">
+                <div class="course-preview">
+                  <i class="fas fa-chair fa-3x"></i>
+                </div>
+                <div class="course-info">
+                  <h2>{{order.order_detail.is_preorder ? "Food Pre Order" :"Food Order"}}</h2>
+                 
+                  <span>{{order.items.length}} Items  <a class="is-secondary d-block cancel-links" href="#cancel" @click="Cancelm(order._id)">CANCEL</a></span>
+                  <b-button class="btn">Rs {{order.total_bill}} </b-button>
+                </div>
+               
+              </div>
+            </div>
           </div>
         </div>
 </template>
