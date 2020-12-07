@@ -5,7 +5,7 @@
           ABOUT US
         </h1>
         <h4 class="content">
-          THIS IS THE PROJECT BUILT BY ANUREET , ROHIT , SHANTANU , SUJAL AND MAYANK. WE AT NUCLEUS BELIEVE IN PERFECTION AND THE CUSTOMER IS OUR FIRST PRIORITY.
+          THIS IS THE PROJECT BUILT BY TEAM NUCLEUS COMPRISING OF ANUREET , MAYANK, ROHIT , SHANTANU AND SUJAL. WE BELIEVE IN PERFECTION AND OUR FIRST PRIORITY IS OUR CUSTOMER.
         </h4>
         <router-link to="./" class="btn btn--blue btn--animated my">GO BACK</router-link>
     </div>
@@ -33,7 +33,7 @@ export default {
     url(../assets/nat-4.jpg);
 }
 .about-us{
-	width:30%;
+	width:35%;
 	background-color:white;
 	@include absCenter;
 	height:28rem;
@@ -145,7 +145,7 @@ export default {
     }
 }
 .my{
-	margin-left:6rem;
+	margin-left:9rem;
 	margin-top:2rem;
 }
 </style>
