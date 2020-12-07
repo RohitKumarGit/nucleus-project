@@ -35,28 +35,7 @@
             </li>
           </ul>
           <div>
-            <h6 class="ques">
-                        Do You want to pre-order food as well?
-                      </h6>
-                      <label
-                        >&nbsp;&nbsp;<input
-                          type="radio"
-                          name="optradio"
-                          v-model="x"
-                          value="yes"
-                          selected
-                        />&nbsp;&nbsp;Yes</label
-                      >&nbsp;&nbsp;&nbsp;&nbsp;
-                      <label
-                        >&nbsp;&nbsp;<input
-                          type="radio"
-                          name="optradio"
-                          v-model="x"
-                          value="no"
-                        />&nbsp;&nbsp;No</label
-                      >&nbsp;&nbsp;&nbsp;&nbsp;
-                      <br />
-                      <input type="number" v-if="x=='yes'" placeholder="Select time in 24hr format" v-model="num">
+            <br />
           <a class="btn btn--blue order-now-btn" href="#" @click="Order">
             Order Food&rarr;
           </a>

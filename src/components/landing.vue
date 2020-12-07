@@ -43,7 +43,7 @@
      <h3 class="heading-tertiary u-margin-bottom-small">You're going to fall in love with nucleus</h3>
      <p class="paragraph">Everything. Right, where you need it. </p>
        <h3 class="heading-tertiary u-margin-bottom-small">why we are the best ?</h3>
-     <p class="paragraph">With the rapid automation of basic processes like ordering food (using apps like Swiggy), our team found great potential in automating the whole user experience for those staying at resorts by providing added functionality like ordering/pre ordering food for rooms, booking buffet slots, reserving tables and even pre ordering food to avoid waiting time, all this just a click away on our own Nucleus platform (making Resorts the Nucleus of your trip).</p>
+     <p class="paragraph">With the rapid automation of basic processes like ordering food , our team found great potential in automating the whole user experience for those staying at resorts by providing added functionality like ordering/pre ordering food for rooms, booking buffet slots, reserving tables and even pre ordering food to avoid waiting time, all this just a click away on our own Nucleus platform making Resorts <strong>the Nucleus</strong> of your trip.</p>
      <a href="#" class="btn-text">Learn more &rarr;</a>
     </div>
      <div class="col-1-of-2">
