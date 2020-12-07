@@ -4,7 +4,7 @@
       <Navbar></Navbar>
       <br>
       <div class="contents">
-        <span>WELCOME {{user.email}} !</span>
+        <span>WELCOME {{user.firstname +" "+ user.lastname}} !</span>
       <div class="row">
         <div class="box col-12 col-lg-6 ">
       <Services></Services>
