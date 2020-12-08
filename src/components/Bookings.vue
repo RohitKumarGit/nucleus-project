@@ -11,7 +11,7 @@
                   <h2>Buffet Slot booked</h2>
                   <p>{{buffet.restaurant_id.name}}</p>
                    <a href="#cancel" @click="Cancelb(buffet._id)" class="cancel-links">Cancel</a>
-                  <button class="btn">{{buffet.restaurant_id.time_details[0].time_now}}</button>
+                  <button class="btn">{{buffet.slot_id.time}}</button>
                 </div>
               </div>
             </div>

@@ -18,7 +18,7 @@ router.get('/allbookings', async function (req, res) {
   try {
     const buffets = await Buffet.find({
       user_id: user._id
-    }).populate('restaurant_id');
+    }).populate('slot_id restaurant_id');
     const tables = await TableR.find({
       'user_id': {
         $in: [user._id]
