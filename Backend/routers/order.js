@@ -192,7 +192,7 @@ router.post('/orders', async (req, res) => {
     var order = await Order.findOne({
       _id: req.body.oid
     });
-    order.remove();
+    await order.remove();
     // var idx = user.forDashboard.order.indexOf(o_id);
     // if (idx > -1) {
     // user.forDashboard.order.splice(idx, 1);
@@ -219,7 +219,7 @@ router.post('/restorders', async (req, res) => {
     var rest = await RestOrder.findOne({
       _id: req.body.rid
     });
-    rest.remove();
+    await rest.remove();
     // var idx = user.forDashboard.order.indexOf(o_id);
     // if (idx > -1) {
     // user.forDashboard.order.splice(idx, 1);
