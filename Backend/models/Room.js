@@ -12,17 +12,16 @@ const roomSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  Isvacant: [{
-    Date:{
-      type:Date,
-      default:Date.now,
-      required:true
-    },
-    vacant:
-    {type: Boolean,
-    default: false}
-  }],
-
+  start:{
+    type:Date,
+    default:0
+  },
+  end:{
+    type:Date,
+    default:0
+  }
+},{
+  timestamps: true
 });
 const Room = mongoose.model('Room', roomSchema);
 module.exports = Room;

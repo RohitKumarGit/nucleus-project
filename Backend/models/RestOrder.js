@@ -50,6 +50,8 @@ const restOrderSchema = new mongoose.Schema({
     default: 0,
     type: Number
   }
+},{
+  timestamps: true
 });
 const restOrder = mongoose.model('RestOrder', restOrderSchema);
 module.exports = restOrder;

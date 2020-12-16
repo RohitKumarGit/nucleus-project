@@ -14,6 +14,8 @@ const laundrySchema = new mongoose.Schema({
         required:true
     }
 
+},{
+  timestamps: true
 });
 const Laundry = mongoose.model('Laundry', laundrySchema);
 module.exports = Laundry;

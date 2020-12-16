@@ -17,6 +17,10 @@ const billingSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'Buffet'
   },
+  room_id:{
+    type: Schema.Types.ObjectId,
+    ref: 'Room'
+  },
   totalBill: {
     type: Number,
     default: 0
@@ -26,6 +30,5 @@ const billingSchema = new mongoose.Schema({
     type: Boolean
   }
 });
-//for food only, for room orders, preorders, and table orders in restaurants
 const Billing = mongoose.model('Billing', billingSchema);
 module.exports = Billing;

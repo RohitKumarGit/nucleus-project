@@ -19,6 +19,8 @@ const buffetSchema = new mongoose.Schema({
   people: {
     type: Number
   }
+},{
+  timestamps: true
 });
 const Buffet = mongoose.model('Buffet', buffetSchema);
 module.exports = Buffet;
