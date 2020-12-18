@@ -49,26 +49,12 @@ const userSchema = new mongoose.Schema({
   },
   documents: {
     type: String,
-    //  required: true
+    required: true
   },
   isVerified: {
     default: false,
     type: Boolean
   },
-  // forDashboard: {
-  //   order: [{
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: 'Order'
-  //   }],
-  //   buffet: [{
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: 'Buffet'
-  //   }],
-  //   tableReserve: [{
-  //     type: mongoose.Schema.Types.ObjectId,
-  //     ref: 'Table_reserve'
-  //   }],
-  // }
 }, {
   timestamps: true
 });
@@ -111,9 +97,7 @@ userSchema.statics.comparePassword = async function (email, candidatePassword) {
     else {
       return user
     }
-    return user;
   } catch (error) {
-    // throw new Error('Please Authenticate!');
     return false
   }
 };
