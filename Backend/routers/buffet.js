@@ -41,7 +41,7 @@ router.get('/allbookings', async function (req, res) {
       restOrders
     })
   } catch (error) {
-    console.log(error)
+    //console.log(error)
     res.send({
       error
     })

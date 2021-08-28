@@ -68,14 +68,14 @@ router.get('/selfservice', firebase.verifyToken, async (req, res) => {
 
 router.post('/roomservice', firebase.verifyToken, async (req, res) => {
   try {
-    console.log(req.body.items);
+   // console.log(req.body.items);
     const user = await User.findOne({
       uid: req.body.uid
     });
     const room = await Room.findOne({
       number: req.body.room
     });
-    console.log(1);
+    //console.log(1);
     var itemArray = [];
     var x = new Object({
       user_id: user._id,
@@ -87,30 +87,30 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
       room_no: room._id,
       total_bill: 0
     });
-    console.log(x);
-    console.log(2);
+    //console.log(x);
+    //console.log(2);
     var totalbill = 0;
     for (var i = 0; i < req.body.items.length; i++) {
       var name = req.body.items[i].name;
-      console.log(name);
+      //console.log(name);
       var count = req.body.items[i].count;
-      console.log(count);
+      //console.log(count);
       var price = req.body.items[i].price;
-      console.log(price);
+      //console.log(price);
       totalbill += Number(price) * count;
-      console.log(totalbill);
+      //console.log(totalbill);
       var y = {
         name: name,
         count: count
       };
       console.log(y);
       itemArray.push(y);
-      console.log(itemArray);
+      //console.log(itemArray);
     }
-    console.log(totalbill);
+    //console.log(totalbill);
     x.total_bill = totalbill;
     x.items = itemArray;
-    console.log(x);
+   // console.log(x);
     var order = await new Order(x);
     var id = order._id;
     // user.forDashboard.order.push(id);
@@ -124,7 +124,7 @@ router.post('/roomservice', firebase.verifyToken, async (req, res) => {
     await order.save();
     res.send(order);
   } catch (e) {
-    console.log(e);
+   // console.log(e);
     res.status(500).send(e);
   }
 });
@@ -137,8 +137,8 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
     const restaurant = await Restaurant.findOne({
       name: req.body.restaurant_name
     });
-    console.log(user._id);
-    console.log(restaurant._id);
+    //console.log(user._id);
+   // console.log(restaurant._id);
     var x = new Object({
       user_id: user._id,
       restaurant_id: restaurant._id,
@@ -149,23 +149,23 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
       },
       total_bill: 0
     });
-    console.log(x);
+    //console.log(x);
     var totalbill = 0;
     for (var i = 0; i < x.items.length; i++) {
       var name = x.items[i].name;
-      console.log(name);
+      //console.log(name);
       var count = x.items[i].count;
-      console.log(count);
+      //console.log(count);
       for (var j = 0; j < restaurant.menu_items.length; j++) {
         if (restaurant.menu_items[j].name == name) {
           totalbill = totalbill + Number((count * restaurant.menu_items[j].price));
-          console.log("TB", totalbill);
+         // console.log("TB", totalbill);
         }
       }
     }
-    console.log(totalbill);
+    //console.log(totalbill);
     x.total_bill = totalbill;
-    console.log(x);
+   // console.log(x);
     var order = await new RestOrder(x);
     // var id = order._id;
     // user.forDashboard.order.push(id);
@@ -184,7 +184,7 @@ router.post('/selfservice', firebase.verifyToken, async (req, res) => {
 });
 
 router.post('/orders', async (req, res) => {
-  console.log(req.body)
+  //console.log(req.body)
   try {
     var user = await User.findOne({
       uid: req.body.uid

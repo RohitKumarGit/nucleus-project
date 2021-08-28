@@ -11,7 +11,7 @@ router.get('/user',async (req,res) =>{
 })
 router.get('/bill',firebase.verifyToken, async (req, res) => {
   try {
-    console.log(req.query)
+    //console.log(req.query)
     const {_id} = await User.findOne({
       uid:req.query.uid
     })
@@ -25,11 +25,11 @@ router.get('/bill',firebase.verifyToken, async (req, res) => {
     bill.forEach( b => {
         c+=b.totalBill
     })
-    console.log(c)
+   // console.log(c)
    
     res.send({bill,total:c})
   } catch (e) {
-    console.log(e)
+   // console.log(e)
     res.send({
       e
     });

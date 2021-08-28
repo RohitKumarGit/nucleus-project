@@ -17,7 +17,7 @@ const verifyToken = async function (req, res, next) {
         req.uid = uid
         next()
     } catch (error) {
-        console.log(error)
+        //console.log(error)
         res.send({
             message: "Authentication problem",
             error
