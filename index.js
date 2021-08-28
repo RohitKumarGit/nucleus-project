@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express()
-const port = 8082;
+const port = process.env.PORT || 8082;
 const mongoose = require("mongoose")
 const history = require('connect-history-api-fallback')
 var morgan = require('morgan')
