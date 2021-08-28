@@ -1,6 +1,6 @@
 <template>
 	<nav class="navbar navbar-expand-lg navbar-mainbg">
-  <a class="navbar-brand navbar-logo" onmouseover="this.style.color='white'" href="#"><strong>NUCLEUS</strong></a>
+ <span> <router-link class="navbar-brand navbar-logo" onmouseover="this.style.color='white'" to="./"><strong>NUCLEUS</strong></router-link></span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars text-white"></i>
         </button>
